@@ -33,7 +33,7 @@ cli
     usage('t <task>             # start working (shortcut to "start")');
     console.log('');
     usage('t <date>             # show entries for the date');
-    usage('t <date> - <enddate> # show entries for date range');
+    usage('t <date> - <end>     # show entries for date range');
     console.log('');
     usage('t edit               # open the data file in your text editor');
 

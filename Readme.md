@@ -57,13 +57,14 @@ $ t stop coffee break
 ~~~ sh
 $ t
 
-  september 18, 2013
+  september 18, 2013                                          total 1h 15m
 
   1:30pm     Jsconf email speakers                                     52m
   2:22pm     ⋅⋅ coffee break                                            8m
   2:30pm     Jsconf check ticket sales                               1h 5m
   3:35pm     ⋅⋅ break                                                   3m
   3:38pm  ✓  Errands grocery
+
 
 ~~~
 

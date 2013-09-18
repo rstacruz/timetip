@@ -28,7 +28,7 @@
     "coffee-script": "1.6.x"
   },
   "bin": {
-    "timewriter": "./bin/timewriter"
+    "twritter": "./bin/twritter"
   },
   "license": "MIT"
 }

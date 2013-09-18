@@ -5,11 +5,10 @@ Initial version:
 	Misc features:
 		- Handle break after break @done
 		- Do `tw edit` @done
-		- Offsets
 		- Better --help @done
 		- Empty @done
 		- Show total time
-		- tw summary
+		- Offsets
 	
 	Querying:
 		- tw date
@@ -19,6 +18,10 @@ Initial version:
 	Reporter feature:
 		- Make `tw date` (et al) delegate to a reporter
 
-	Exporting:
+		reporter(mode, data)
+		reporter('today', data)
+		reporter('range', data)
+
+	Other reporters:
 		- json
 		- csv

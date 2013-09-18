@@ -65,18 +65,11 @@ today  >  September 18, 2013
 ## Catching up
 
 Oops. Did you start working and forget to run your timer? No problem, just use 
-add an offset in the format `-<minutes>`. Example:
+add an offset in the format `+<minutes>`. Example:
 
 ~~~ sh
-$ t Misc coffee -3
+$ t Misc coffee +3
 # ...starts "Misc coffee" as if you ran it 3 mins ago
-~~~
-
-Or even stop *40 minutes* in advance:
-
-~~~ sh
-$ t stop +40
-# ...stops the current task in 40 minutes
 ~~~
 
 ## Storage
@@ -163,11 +156,12 @@ $ tw --help
 
   Usage:
 
-    tw [start] <project> [<task>]  # start working
-    tw stop [<reason>]             # stop working
-
     tw                             # show current status
-    tw summary                     # summarize log for all dates
+
+    tw <task>                      # start working
+    tw start <task>                # start working
+    tw start <task> +<N>           # start working, offset N minutes
+    tw stop [<reason>]             # stop working
 
     tw <date>                      # show entries
     tw <date> - <date>             # show entries for date range
@@ -181,4 +175,5 @@ $ tw --help
 ~~~
 
 [prog]: http://en.wikipedia.org/wiki/Programmer
+
 

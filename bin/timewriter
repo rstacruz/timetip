@@ -10,11 +10,12 @@ cli
   .on('--help', function() {
     console.log('  Usage:');
     console.log('');
-    console.log('    '+cli._name+' [start] <project> [<task>]  # start working');
-    console.log('    '+cli._name+' stop [<reason>]             # stop working');
+    console.log('    '+cli._name+'                             # show current status');
     console.log('');
-    console.log('    '+cli._name+' [status]                    # show current status');
-    console.log('    '+cli._name+' summary                     # summarize log for all dates');
+    console.log('    '+cli._name+' <task>                      # start working');
+    console.log('    '+cli._name+' start <task>                # start working');
+    console.log('    '+cli._name+' start <task> +<N>           # start working, offset N minutes');
+    console.log('    '+cli._name+' stop [<reason>]             # stop working');
     console.log('');
     console.log('    '+cli._name+' <date>                      # show entries');
     console.log('    '+cli._name+' <date> - <date>             # show entries for date range');

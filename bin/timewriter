@@ -1,0 +1,52 @@
+#!/usr/bin/env node
+// vim:ft=javascript
+
+var cli = require('commander');
+var DateParser = require('../lib/date_parser');
+var SpecParser = require('../lib/spec_parser');
+
+cli
+  .version(require('../package').version)
+  .option('-p, --prefix <path>', 'the data path [~/.timelogs]', '~/.timelogs')
+  .on('--help', function() {
+    console.log('  Usage:');
+    console.log('');
+    console.log('    '+cli._name+' <project> [<task>]   # start working');
+    console.log('    '+cli._name+' stop [<reason>]      # stop working');
+    console.log('    '+cli._name+' <date>               # show entries');
+    console.log('');
+    console.log('  Examples:');
+    console.log('');
+    console.log('    '+cli._name+' myproject            # start working on "myproject"');
+    console.log('    '+cli._name+' stop                 # stop tracking');
+    console.log('    '+cli._name+' stop lunch break     # stop tracking and log the reason');
+    console.log('    '+cli._name+' 2 days ago           # show entries from 2 days ago');
+  })
+  .parse(process.argv);
+
+
+var args = cli.args.join(' ');
+var date, spec;
+
+if (cli.args.length === 0) {
+  cli.outputHelp();
+}
+
+else if (cli.args[0].match(/^(stop|x|finish|done|break)$/)) {
+  console.log("Stop");
+}
+
+else if (date = DateParser(args)) {
+  console.log(date);
+}
+
+else if (spec = SpecParser(args)) {
+  console.log("Logging");
+  console.log(spec);
+}
+
+else {
+  console.error(""+cli._name+": invalid usage");
+  console.error("try `"+cli._name+" --help` for more info");
+  process.exit(26);
+}

@@ -1,0 +1,6 @@
+Initial version:
+	Recording time:
+		- Record to ~/.timelogs/timelog
+
+	Recording breaks:
+		- Handle break after break

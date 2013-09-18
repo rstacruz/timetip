@@ -8,12 +8,13 @@ Initial version:
 		- Offsets
 		- Better --help @done
 		- Empty @done
-		- Show summaries
+		- Show total time
+		- tw summary
 	
-	Extra features:
-		- ts date
-		- ts date - date
-		- ts all
+	Querying:
+		- tw date
+		- tw date - date
+		- tw all
 
 	Reporter feature:
 		- Make `tw date` (et al) delegate to a reporter

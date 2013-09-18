@@ -10,16 +10,22 @@ cli
   .on('--help', function() {
     console.log('  Usage:');
     console.log('');
-    console.log('    '+cli._name+' <project> [<task>]   # start working');
-    console.log('    '+cli._name+' stop [<reason>]      # stop working');
-    console.log('    '+cli._name+' <date>               # show entries');
+    console.log('    '+cli._name+' [start] <project> [<task>]  # start working');
+    console.log('    '+cli._name+' stop [<reason>]             # stop working');
+    console.log('');
+    console.log('    '+cli._name+' status                      # show current status');
+    console.log('    '+cli._name+' summary                     # summarize log for all dates');
+    console.log('');
+    console.log('    '+cli._name+' <date>                      # show entries');
+    console.log('    '+cli._name+' <date> - <date>             # show entries for date range');
+    console.log('');
     console.log('');
     console.log('  Examples:');
     console.log('');
-    console.log('    '+cli._name+' myproject            # start working on "myproject"');
-    console.log('    '+cli._name+' stop                 # stop tracking');
-    console.log('    '+cli._name+' stop lunch break     # stop tracking and log the reason');
-    console.log('    '+cli._name+' 2 days ago           # show entries from 2 days ago');
+    console.log('    '+cli._name+' myproject                   # start working on "myproject"');
+    console.log('    '+cli._name+' stop                        # stop tracking');
+    console.log('    '+cli._name+' stop lunch break            # stop tracking and log the reason');
+    console.log('    '+cli._name+' 2 days ago                  # show entries from 2 days ago');
   })
   .parse(process.argv);
 
@@ -33,13 +39,30 @@ var DateParser = require('../lib/date_parser');
 var SpecParser = require('../lib/spec_parser');
 var TimeLog = require('../lib/time_log');
 
+var cmd  = cli.args[0];
+var rest = cli.args.slice(1).join(' ');
 var args = cli.args.join(' ');
+
 var date, spec;
 var log = new TimeLog(cli.file);
 
-if (cli.args[0].match(/^(stop|x|finish|done|break)$/)) {
+if (cmd.match(/^(stop|x)$/)) {
   var reason = cli.args.slice(1);
   log.push({ 'break': reason, 'date': new Date() }).save();
+}
+
+else if (cmd.match(/^(st|status)$/)) {
+  console.log("showing last");
+}
+
+else if (cmd.match(/^(summary)$/)) {
+  log.dates().forEach(function(date) {
+    console.log(date);
+  });
+}
+
+else if (cmd.match(/^(start)$/) && (spec = SpecParser(rest))) {
+  log.push(extend(spec, { date: new Date() })).save();
 }
 
 else if (date = DateParser(args)) {

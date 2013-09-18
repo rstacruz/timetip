@@ -122,7 +122,7 @@ if (cmd === '' || cmd.match(/^(st|status)$/)) {
   App.status();
 }
 
-else if (cmd.match(/^(stop|x|break)$/)) {
+else if (cmd.match(/^(stop|-)$/)) {
   var reason = cli.args.slice(1).join(' ');
   App.log.push({ type: 'break', reason: reason, date: new Date() }).save();
   App.status();

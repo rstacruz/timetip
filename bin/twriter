@@ -13,27 +13,29 @@ cli
   .option('-f, --file <path>', 'the data file [~/.timelogs]', '~/.timelogs')
   .option('--edit', 'open the data file in a text editor')
   .on('--help', function() {
-    function usage(str) { printUsage(cli._name, str, 36); }
-    function ex(str)    { printUsage(cli._name, str, 32); }
-    console.log('  Logging tasks:');
-    usage('t start <task>       # start working');
-    usage('t start <task> +<N>  # start working, offset N minutes');
-    usage('t stop [<reason>]    # stop working');
-    console.log('');
-    console.log('  Viewing logs:');
-    usage('t                      # show today');
-    usage('t show <date>          # show entries for the date');
-    usage('t show <date> - <end>  # show entries for date range');
-    console.log('');
-    console.log('  Shortcuts:');
-    usage('t <task>             # start working (alias: `start`)');
-    usage('t <date>             # show entries for the date (alias: `show`)');
-    console.log('');
-    console.log('  Examples:');
+    function us(str) { printUsage(cli._name, str, 36); }
+    function ex(str) { printUsage(cli._name, str, 32); }
+    function p(str)  { console.log(str); }
+
+    p('  Logging tasks:');
+    us('t start <task>       # start working');
+    us('t start <task> +<N>  # start working, offset N minutes');
+    us('t stop [<reason>]    # stop working');
+    p('');
+    p('  Viewing logs:');
+    us('t                      # show today');
+    us('t show <date>          # show entries for the date');
+    us('t show <date> - <end>  # show entries for date range');
+    p('');
+    p('  Shortcuts:');
+    us('t <task>             # start working (alias: `start`)');
+    us('t <date>             # show entries for the date (alias: `show`)');
+    p('');
+    p('  Examples:');
     ex('t Myproject stuff    # start working on "Myproject stuff"');
     ex('t stop               # stop the current task');
     ex('t stop lunch break   # stop the current task, and log the reason');
-    console.log('');
+    p('');
     ex('t Sept 2             # show entries september 2');
     ex('t 4 days ago         # show entries from 4 days ago');
     ex('t Yesterday          # show entries from yesterday');
@@ -64,9 +66,10 @@ App = {
   log: new TimeLog(cli.file),
 
   noLogs: function(date) {
-    console.log(cli._name+": no logs yet for "+date.format('{yyyy}-{MM}-{dd}'));
-    console.log("start one with: `"+cli._name+" <your task>`");
-    console.log("see `"+cli._name+" --help` for more info.");
+    console.error(cli._name+": no logs for "+date.format('{yyyy}-{MM}-{dd}'));
+    console.error('');
+    console.error("start one with: `"+cli._name+" <your task>`");
+    console.error("see `"+cli._name+" --help` for more info.");
     process.exit(0);
   },
 

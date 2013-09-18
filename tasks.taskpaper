@@ -11,12 +11,13 @@ Initial version:
 		- Offsets
 	
 	Querying:
-		- tw date
+		- tw date @done
 		- tw date - date
 		- tw all
+		- Log.range()
 
 	Reporter feature:
-		- .get()
+		- Log.get() @done
 		- Make `tw date` (et al) delegate to a reporter @done
 			reporter(mode, data)
 			reporter('today', data)
@@ -25,3 +26,7 @@ Initial version:
 	Other reporters:
 		- json
 		- csv
+
+	No color support:
+		- A better printf()
+		- Flag --no-color

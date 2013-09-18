@@ -71,8 +71,9 @@ App = {
     var entries = this.log.day(day);
     var now = this.log.now(day);
 
-    puts(day.format('{month} {dd} {yyyy}'), { prefix: 'today' });
-    puts("");
+    console.log("");
+    console.log("  " + c(day.format('{month} {dd} {yyyy}')+" "+gt, 0));
+    console.log("");
 
     entries.forEach(function(entry) { self.entry(entry); });
     if (now)
@@ -90,21 +91,29 @@ App = {
     var sep = '  ';
     var str, dur;
 
-    if (entry.type === 'task')
-      str = f("%s %s", c(entry.project, 34), entry.task);
-    else if (entry.reason)
-      str = c(dash + ' ' + entry.reason + ' ' + dash, 30);
+    var col
+    if (entry.type === 'break')
+      col = 30;
+    else if (options && options.now)
+      col = 32;
     else
-      str = c(dash + dash, 30);
+      col = 34;
+
+    if (entry.type === 'task')
+      str = f("%s %s", c(entry.project, col), entry.task||'');
+    else if (entry.reason)
+      str = c(dash + ' ' + entry.reason + ' ' + dash, col);
+    else
+      str = c(dash + dash, col);
 
     if (options && options.now) {
       time = c(chk + ' ' + time, 32);
-      dur = c(duration(new Date() - entry.date)+'+', 32);
-      console.log(f('%26s %s %-65s  %s', time, sep, str, dur));
+      dur = c(duration(new Date() - entry.date)+"+", 32);
+      console.log(f('%20s %s %-65s  %s', time, sep, str, dur));
     } else {
       time = c(time, 30);
-      dur = c(duration(entry.duration), 34);
-      console.log(f('%26s %s %-65s  %s', time, sep, str, dur));
+      dur = c(duration(entry.duration), 0);
+      console.log(f('%20s %s %-65s  %s', time, sep, str, dur));
     }
   }
 };

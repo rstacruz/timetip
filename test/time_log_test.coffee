@@ -94,41 +94,6 @@ describe 'TimeLog', ->
       expect(dates[1]).eql new Date(2013, 8, 17)
       expect(dates[2]).eql new Date(2013, 8, 18)
 
-    it.skip '.day() - non-existent', ->
-      entries = @log.day(new Date(2013, 8, 1))
-      expect(entries).eql []
-
-    it.skip '.day() - last day', ->
-      entries = @log.day()
-
-      expect(entries[0]).eql
-        type: 'task'
-        project: 'Work'
-        task: 'stuff'
-        date: Date.create('2013-09-18 3:14pm')
-        duration: 10 * 60000
-        endDate: Date.create('2013-09-18 3:24pm')
-
-      expect(entries[1]).eql
-        type: 'break'
-        reason: 'coffee'
-        date: Date.create('2013-09-18 3:24pm')
-        duration: 10 * 60000
-        endDate: Date.create('2013-09-18 3:34pm')
-
-    it.skip '.now()', ->
-      expect(@log.now()).eql
-        type: 'task'
-        project: 'Work'
-        task: 'make music'
-        date: Date.create('2013-09-18 3:34pm')
-
-    it.skip '.now(Date)', ->
-      expect(@log.now(Date.create('2013-09-17'))).eql
-        type: 'break'
-        reason: null
-        date: Date.create('2013-09-17 4:00pm')
-
     describe '.get() - nonexistent', ->
       beforeEach ->
         @data = @log.get(new Date(2013, 8, 1))

@@ -44,37 +44,60 @@ var rest = cli.args.slice(1).join(' ');
 var args = cli.args.join(' ');
 
 var date, spec;
-var log = new TimeLog(cli.file);
+
+/*
+ * The controller
+ */
+
+App = {
+  log: new TimeLog(cli.file),
+
+  status: function() {
+    var now = this.log.now();
+    if (now.project && now.task)
+      console.log('  now  >', now.project+': '+now.task);
+    else if (now.type === 'break')
+      console.log('  now  >', 'stopped');
+    else
+      console.log('  now  >', now.project);
+
+    if (new Date() - now.date > 1000)
+      console.log('        ', 'running for', now.date.relative().replace(' ago',''));
+  },
+
+  query: function(date) {
+    console.log("Entries for ", date);
+  }
+};
 
 if (cmd.match(/^(stop|x)$/)) {
   var reason = cli.args.slice(1);
-  log.push({
-    type: 'break',
-    reason: reason,
-    date: new Date()
-  }).save();
+  App.log.push({ type: 'break', reason: reason, date: new Date() }).save();
+  App.status();
 }
 
 else if (cmd.match(/^(st|status)$/)) {
-  console.log("showing last");
+  App.status();
 }
 
 else if (cmd.match(/^(summary)$/)) {
-  log.dates().forEach(function(date) {
-    console.log(date);
+  App.log.dates().forEach(function(date) {
+    App.query(date);
   });
 }
 
 else if (cmd.match(/^(start)$/) && (spec = SpecParser(rest))) {
-  log.push(extend(spec, { date: new Date() })).save();
+  App.log.push(extend(spec, { date: new Date() })).save();
+  App.status();
 }
 
 else if (date = DateParser(args)) {
-  console.log("Showing results for", date);
+  App.query(date);
 }
 
 else if (spec = SpecParser(args)) {
-  log.push(extend(spec, { date: new Date() })).save();
+  App.log.push(extend(spec, { date: new Date() })).save();
+  App.status();
 }
 
 else {

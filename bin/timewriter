@@ -105,7 +105,9 @@ App = {
 
     if (options && options.now) {
       time = c(time + '  ', 30) + c(chk, 32);
-      dur = c(duration(new Date() - entry.date), 37) + c("+", 32);
+      dur = duration(new Date() - entry.date);
+      if (dur.length)
+        dur = c(duration(new Date() - entry.date), 37) + c("+", 32);
       console.log(f('%29s  %-65s  %22s', time, str, dur));
     } else {
       time = c(time + '  ', 30) + c(' ', 32);

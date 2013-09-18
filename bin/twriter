@@ -134,9 +134,9 @@ App = {
     if (entry.type === 'task')
       str = f("%s %s", c(entry.project, col), entry.task||'');
     else if (entry.reason)
-      str = c(dot+dot + ' ' + entry.reason, col);
+      str = c(dot + ' ' + entry.reason, col);
     else
-      str = c(dot+dot, col);
+      str = c(dot, col);
 
     if (options && options.now) {
       time = c(time + '  ', 30) + c(chk, 32);

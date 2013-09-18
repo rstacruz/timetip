@@ -64,16 +64,6 @@ var log = new TimeLog(cli.file);
 var reporter = new Reporter(log);
 
 App = {
-  log: new TimeLog(cli.file),
-
-  noLogs: function(date) {
-    console.error(cli._name+": no logs for "+date.format('{yyyy}-{MM}-{dd}'));
-    console.error('');
-    console.error("start one with: `"+cli._name+" <your task>`");
-    console.error("see `"+cli._name+" --help` for more info.");
-    process.exit(0);
-  },
-
   status: function() {
     var data = this.getLogs(new Date());
     reporter.day(data);
@@ -84,10 +74,6 @@ App = {
     reporter.day(data);
   },
 
-  /**
-   * Start task
-   */
-
   start: function(spec) {
     var date = new Date();
     log.push(extend(spec, { date: date })).save();
@@ -96,13 +82,23 @@ App = {
 
   stop: function(reason) {
     log.push({ type: 'break', reason: reason, date: new Date() }).save();
-    App.status();
+    this.status();
   },
+
+  /* ---- */
 
   invalidUsage: function() {
     console.error(""+cli._name+": invalid usage");
     console.error("try `"+cli._name+" --help` for more info");
     process.exit(26);
+  },
+
+  noLogs: function(date) {
+    console.error(cli._name+": no logs for "+date.format('{yyyy}-{MM}-{dd}'));
+    console.error('');
+    console.error("start one with: `"+cli._name+" <your task>`");
+    console.error("see `"+cli._name+" --help` for more info.");
+    process.exit(0);
   },
 
   /**

@@ -2,12 +2,11 @@
 // vim:ft=javascript
 
 var cli = require('commander');
-var DateParser = require('../lib/date_parser');
-var SpecParser = require('../lib/spec_parser');
+var extend = require('util')._extend;
 
 cli
   .version(require('../package').version)
-  .option('-p, --prefix <path>', 'the data path [~/.timelogs]', '~/.timelogs')
+  .option('-f, --file <path>', 'the data file [~/.timelogs]', '~/.timelogs')
   .on('--help', function() {
     console.log('  Usage:');
     console.log('');
@@ -25,24 +24,30 @@ cli
   .parse(process.argv);
 
 
-var args = cli.args.join(' ');
-var date, spec;
-
 if (cli.args.length === 0) {
   cli.outputHelp();
+  process.exit(26);
 }
 
-else if (cli.args[0].match(/^(stop|x|finish|done|break)$/)) {
-  console.log("Stop");
+var DateParser = require('../lib/date_parser');
+var SpecParser = require('../lib/spec_parser');
+var TimeLog = require('../lib/time_log');
+
+var args = cli.args.join(' ');
+var date, spec;
+var log = new TimeLog(cli.file);
+
+if (cli.args[0].match(/^(stop|x|finish|done|break)$/)) {
+  var reason = cli.args.slice(1);
+  log.push({ 'break': reason, date: new Date() });
 }
 
 else if (date = DateParser(args)) {
-  console.log(date);
+  console.log("Showing results for", date);
 }
 
 else if (spec = SpecParser(args)) {
-  console.log("Logging");
-  console.log(spec);
+  log.push(extend(spec, { date: new Date() }));
 }
 
 else {

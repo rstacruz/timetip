@@ -33,7 +33,7 @@ describe 'TimeLog', ->
 
       expect(@log.toString().trim()).eql '''
       [2010-10-15 fri]
-      3:00am = test: hello
+      3:00am = test hello
       '''
 
     it 'push() of break', ->
@@ -43,7 +43,7 @@ describe 'TimeLog', ->
 
       expect(@log.toString().trim()).eql '''
       [2010-10-15 fri]
-      3:00am = --
+      3:00am = ----
       '''
 
     it 'push() of break with reason', ->
@@ -82,9 +82,9 @@ describe 'TimeLog', ->
         '2013-09-17 tue':
           '4:00pm': '--'
         '2013-09-18 wed':
-          '3:14pm': 'Work: stuff'
+          '3:14pm': 'Work stuff'
           '3:24pm': '-- coffee --'
-          '3:34pm': 'Work: make music'
+          '3:34pm': 'Work make music'
 
     it '.dates()', ->
       dates = @log.dates()

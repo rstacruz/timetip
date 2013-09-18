@@ -1,12 +1,36 @@
-Writes timelogs:
+# timewriter
 
-    [2013-08-07 mon]
-    3:12pm = MyProject: start [24m]
-    3:36pm = -- coffee -- [10m]
-    3:45pm = MyProject: start again [3h 14m]
-    3:36pm = --
+Minimal time log tracker. Runs on top of Node.js.
 
-    3:12pm = SqlVision (24m)
-    3:36pm = -- (10m)
-    3:45pm = SqlVision (24m)
-    3:36pm = break
+### Install
+
+Install via NPM:
+
+    npm install -g timewriter
+
+To make things easier, add this to your `~/.profile`:
+
+    alias t="timewriter --file ~/.timelogs"
+
+### Usage
+
+Log a task by typing `t PROJECT [TASK]`. For instance:
+
+    $ t Jsconf email speakers
+
+And stop it using:
+
+    $ t stop
+
+You may also issue a reason to stop:
+
+    $ t stop coffee break
+
+Now view the status:
+
+    $ t
+
+    today  >  sept 18, 2013
+              3:14pm Jsconf email speakers        [45m]
+              3:59pm -- coffee break --
+

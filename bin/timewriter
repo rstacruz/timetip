@@ -29,7 +29,6 @@ cli
   })
   .parse(process.argv);
 
-
 if (cli.args.length === 0) {
   cli.outputHelp();
   process.exit(26);
@@ -54,6 +53,12 @@ App = {
 
   status: function() {
     var now = this.log.now();
+
+    if (!now) {
+      console.log('  now  > not doing anything.');
+      return;
+    }
+
     if (now.project && now.task)
       console.log('  now  >', now.project+': '+now.task);
     else if (now.type === 'break')
@@ -86,7 +91,8 @@ else if (cmd.match(/^(summary)$/)) {
   });
 }
 
-else if (cmd.match(/^(start)$/) && (spec = SpecParser(rest))) {
+else if (cmd.match(/^(start)$/)) {
+  spec = SpecParser(test);
   App.log.push(extend(spec, { date: new Date() })).save();
   App.status();
 }

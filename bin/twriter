@@ -9,9 +9,10 @@ var c = require('../lib/helpers').color;
 cli
   .version(require('../package').version)
   .option('-f, --file <path>', 'the data file [~/.timelogs]', '~/.timelogs')
+  .option('--edit', 'open in text editor')
   .on('--help', function() {
     function print(str, col) {
-      var m = str.match(/^[a-z]+ (?:([a-z]+) )?(?:(.*?))? *# (.*)$/);
+      var m = str.match(/^[a-z]+ (?:((?:--)?[a-z]+) )?(?:(.*?))? *# (.*)$/);
       var cmd = m[1], args = m[2].toLowerCase(), text = m[3];
       cmd = (!cmd) ? cli._name : (cli._name+' '+cmd);
       var left = c(cmd,col) + ' ' + c(args||'', 30);
@@ -35,7 +36,7 @@ cli
     usage('t <date>             # show entries for the date');
     usage('t <date> - <end>     # show entries for date range');
     console.log('');
-    usage('t edit               # open the data file in your text editor');
+    usage('t --edit             # open the data file in your text editor');
 
     console.log('');
     console.log('  Examples:');
@@ -154,11 +155,7 @@ App = {
   }
 };
 
-if (cmd === '') {
-  App.status();
-}
-
-else if (cmd === 'edit') {
+if (cli.edit) {
   var spawn = require('child_process').spawn;
   var editor = process.env['EDITOR'];
   var cmd = editor + " " + cli.file;
@@ -171,16 +168,14 @@ else if (cmd === 'edit') {
   var proc = spawn('sh', ['-c', cmd], { stdio: 'inherit' });
 }
 
+else if (cmd === '') {
+  App.status();
+}
+
 else if (cmd === 'stop' || cmd === '-') {
   var reason = cli.args.slice(1).join(' ');
   App.log.push({ type: 'break', reason: reason, date: new Date() }).save();
   App.status();
-}
-
-else if (cmd === 'summary') {
-  App.log.dates().forEach(function(date) {
-    App.query(date);
-  });
 }
 
 else if (cmd === 'start') {

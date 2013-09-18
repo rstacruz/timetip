@@ -33,7 +33,7 @@ var SpecParser = require('../lib/spec_parser');
 var TimeLog    = require('../lib/time_log');
 var duration   = require('../lib/helpers').duration;
 var c          = require('../lib/helpers').color;
-var f          = require('util').format;
+var f          = require('printf');
 var _          = require('underscore');
 
 var cmd  = cli.args[0] || '';
@@ -86,22 +86,25 @@ App = {
   },
 
   entry: function(entry, options) {
-    var time = c(entry.date.format(App.log.formats.time) + ' ' + gt, 30);
-    var str;
+    var time = entry.date.format(App.log.formats.time);
+    var sep = '  ';
+    var str, dur;
 
     if (entry.type === 'task')
-      str = f("%s  %s %s", time, c(entry.project, 34), entry.task);
+      str = f("%s %s", c(entry.project, 34), entry.task);
     else if (entry.reason)
-      str = f("%s  %s %s %s", time, c(dash, 30), c(entry.reason, 33), c(dash, 30));
+      str = c(dash + ' ' + entry.reason + ' ' + dash, 30);
     else
-      str = f("%s  %s", time, c(dash, 30));
+      str = c(dash + dash, 30);
 
     if (options && options.now) {
-      str += c(' ['+duration(new Date() - entry.date)+'+]', 34);
-      console.log('        ' + c(chk,32) + '  ' + str);
+      time = c(chk + ' ' + time, 32);
+      dur = c(duration(new Date() - entry.date)+'+', 32);
+      console.log(f('%26s %s %-65s  %s', time, sep, str, dur));
     } else {
-      str += c(' ['+duration(entry.duration)+']', 34);
-      console.log('           ' + str);
+      time = c(time, 30);
+      dur = c(duration(entry.duration), 34);
+      console.log(f('%26s %s %-65s  %s', time, sep, str, dur));
     }
   }
 };

@@ -57,7 +57,8 @@ describe 'TimeLog', ->
     beforeEach ->
       @log.raw =
         '#': {}
-        '2013-09-17 tue': {}
+        '2013-09-17 tue':
+          '4:00pm': '--'
         '2013-09-18 wed':
           '3:14pm': 'Work: stuff'
           '3:24pm': '-- coffee --'
@@ -92,8 +93,18 @@ describe 'TimeLog', ->
         duration: 10 * 60000
         endDate: Date.create('2013-09-18 3:34pm')
 
-    it.skip '.now()', ->
-      console.log @log.now()
+    it '.now()', ->
+      expect(@log.now()).eql
+        type: 'task'
+        project: 'Work'
+        task: 'make music'
+        date: Date.create('2013-09-18 3:34pm')
+
+    it '.now(Date)', ->
+      expect(@log.now(Date.create('2013-09-17'))).eql
+        type: 'break'
+        break: null
+        date: Date.create('2013-09-17 4:00pm')
 
     it.skip '.day() - skip invalid entries'
 

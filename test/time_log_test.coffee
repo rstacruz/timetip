@@ -35,6 +35,24 @@ describe 'TimeLog', ->
       3:00am = test: hello
       '''
 
+  describe '.format()', ->
+    it '.format(date)', ->
+      d = @log.format(new Date(2013, 2, 4), 'date')
+      expect(d).eql '2013-03-04 mon'
+
+    it '.format(time)', ->
+      d = @log.format(new Date(2013, 2, 4, 15, 20), 'time')
+      expect(d).eql '3:20pm'
+
+  describe '.parse()', ->
+    it '.parse(date)', ->
+      d = @log.parse('2013-03-04 mon')
+      expect(d).eql new Date(2013, 2, 4)
+
+    it '.parse(time, date)', ->
+      d = @log.parse('3:20pm', '2013-03-04')
+      expect(d).eql new Date(2013, 2, 4, 15, 20)
+
   describe 'reading', ->
     beforeEach ->
       @log.raw =

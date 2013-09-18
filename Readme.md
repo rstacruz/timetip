@@ -30,26 +30,54 @@ To make things easier, add this to your `~/.profile`. (optional)
 **Log** a task by typing `t <thing-to-do>`. (By convention, the first word 
     is ideally the project name).  For instance:
 
-    $ t Jsconf email speakers
+~~~ sh
+$ t Jsconf email speakers
+# ...starts the task "Jsconf email speakers"
+~~~
 
 **Stop** it using `t stop`:
 
-    $ t stop
+~~~ sh
+$ t stop
+# ...stops the current task
+~~~
 
 You may also issue a reason to stop:
 
-    $ t stop coffee break
+~~~ sh
+$ t stop coffee break
+# ...stops the current task for the reason of "coffee break"
+~~~
 
 **View the status** with simply `t`:
 
-    $ t
+~~~ sh
+$ t
 
-    today  >  September 18, 2013
+today  >  September 18, 2013
 
-              3:14pm  Jsconf email speakers              45m
-              3:59pm  -- coffee break                    10m
-              4:09pm  Jsconf check ticket sales          14m
-      now  >  4:25pm  Errands grocery                     4m+
+          3:14pm  Jsconf email speakers              45m
+          3:59pm  -- coffee break                    10m
+          4:09pm  Jsconf check ticket sales          14m
+  now  >  4:25pm  Errands grocery                     4m+
+~~~
+
+## Catching up
+
+Oops. Did you start working and forget to run your timer? No problem, just use 
+add an offset in the format `-<minutes>`. Example:
+
+~~~ sh
+$ t Misc coffee -3
+# ...starts "Misc coffee" as if you ran it 3 mins ago
+~~~
+
+Or even stop *40 minutes* in advance:
+
+~~~ sh
+$ t stop +40
+# ...stops the current task in 40 minutes
+~~~
 
 ## Storage
 
@@ -122,6 +150,9 @@ task  2013-09-18     4:42pm  4:5Apm   43000    Jsconf    check tickets
 
 ## --help
 
+~~~ sh
+$ tw --help
+
   Usage: tw [options]
 
   Options:
@@ -135,7 +166,7 @@ task  2013-09-18     4:42pm  4:5Apm   43000    Jsconf    check tickets
     tw [start] <project> [<task>]  # start working
     tw stop [<reason>]             # stop working
 
-    tw [status]                    # show current status
+    tw                             # show current status
     tw summary                     # summarize log for all dates
 
     tw <date>                      # show entries
@@ -147,6 +178,7 @@ task  2013-09-18     4:42pm  4:5Apm   43000    Jsconf    check tickets
     tw stop                        # stop tracking
     tw stop lunch break            # stop tracking and log the reason
     tw 2 days ago                  # show entries from 2 days ago
+~~~
 
 [prog]: http://en.wikipedia.org/wiki/Programmer
 

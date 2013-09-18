@@ -3,29 +3,50 @@
 
 var cli = require('commander');
 var extend = require('util')._extend;
+var f = require('printf');
+var c = require('../lib/helpers').color;
 
 cli
   .version(require('../package').version)
   .option('-f, --file <path>', 'the data file [~/.timelogs]', '~/.timelogs')
   .on('--help', function() {
+    function print(str, col) {
+      var m = str.match(/^[a-z]+ (?:([a-z]+) )?(?:(.*?))? *# (.*)$/);
+      var cmd = m[1], args = m[2].toLowerCase(), text = m[3];
+      cmd = (!cmd) ? cli._name : (cli._name+' '+cmd);
+      var left = c(cmd,col) + ' ' + c(args||'', 30);
+      console.log(f('    %-45s %s', left, text));
+    }
+
+    function usage(str) { print(str, 36); }
+    function ex(str) { print(str, 32); }
+
     console.log('  Usage:');
     console.log('');
-    console.log('    '+cli._name+'                             # show current status');
+
+    usage('t                    # show current status');
     console.log('');
-    console.log('    '+cli._name+' <task>                      # start working');
-    console.log('    '+cli._name+' start <task>                # start working');
-    console.log('    '+cli._name+' start <task> +<N>           # start working, offset N minutes');
-    console.log('    '+cli._name+' stop [<reason>]             # stop working');
+    usage('t start <task>       # start working');
+    usage('t start <task> +<N>  # start working, offset N minutes');
+    usage('t stop [<reason>]    # stop working');
     console.log('');
-    console.log('    '+cli._name+' <date>                      # show entries');
-    console.log('    '+cli._name+' <date> - <date>             # show entries for date range');
+    usage('t <task>             # start working (shortcut to "start")');
+    console.log('');
+    usage('t <date>             # show entries for the date');
+    usage('t <date> - <enddate> # show entries for date range');
+    console.log('');
+    usage('t edit               # open the data file in your text editor');
+
     console.log('');
     console.log('  Examples:');
     console.log('');
-    console.log('    '+cli._name+' myproject                   # start working on "myproject"');
-    console.log('    '+cli._name+' stop                        # stop tracking');
-    console.log('    '+cli._name+' stop lunch break            # stop tracking and log the reason');
-    console.log('    '+cli._name+' 2 days ago                  # show entries from 2 days ago');
+    ex('t Myproject stuff    # start working on "Myproject stuff"');
+    ex('t stop               # stop the current task');
+    ex('t stop lunch break   # stop the current task, and log the reason');
+    console.log('');
+    ex('t Sept 2             # show entries september 2');
+    ex('t 4 days ago         # show entries from 4 days ago');
+    ex('t Yesterday          # show entries from yesterday');
   })
   .parse(process.argv);
 

@@ -56,13 +56,12 @@ describe 'TimeLog', ->
   describe 'reading', ->
     beforeEach ->
       @log.raw =
-        '#': []
-        '2013-09-17 tue': []
-        '2013-09-18 wed': [
-          '3:14pm = Work: stuff'
-          '3:24pm = -- coffee --'
-          '3:34pm = Work: make music'
-        ]
+        '#': {}
+        '2013-09-17 tue': {}
+        '2013-09-18 wed':
+          '3:14pm': 'Work: stuff'
+          '3:24pm': '-- coffee --'
+          '3:34pm': 'Work: make music'
 
     it '.dates()', ->
       dates = @log.dates()
@@ -70,6 +69,18 @@ describe 'TimeLog', ->
       expect(dates.length).eql 2
       expect(dates[0]).eql new Date(2013, 8, 17)
       expect(dates[1]).eql new Date(2013, 8, 18)
+
+    it '.day() - non-existent', ->
+      entries = @log.day(new Date(2013, 8, 1))
+      expect(entries).be.undefined
+
+    it '.day() - last day', ->
+      entries = @log.day()
+
+      expect(entries).eql
+        '3:14pm': 'Work: stuff'
+        '3:24pm': '-- coffee --'
+        '3:34pm': 'Work: make music'
 
     it.skip '.now()', ->
       console.log @log.now()

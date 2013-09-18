@@ -39,7 +39,7 @@ var log = new TimeLog(cli.file);
 
 if (cli.args[0].match(/^(stop|x|finish|done|break)$/)) {
   var reason = cli.args.slice(1);
-  log.push({ 'break': reason, date: new Date() });
+  log.push({ 'break': reason, 'date': new Date() }).save();
 }
 
 else if (date = DateParser(args)) {
@@ -47,7 +47,7 @@ else if (date = DateParser(args)) {
 }
 
 else if (spec = SpecParser(args)) {
-  log.push(extend(spec, { date: new Date() }));
+  log.push(extend(spec, { date: new Date() })).save();
 }
 
 else {

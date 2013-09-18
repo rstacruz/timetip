@@ -122,6 +122,12 @@ if (cmd === '' || cmd.match(/^(st|status)$/)) {
   App.status();
 }
 
+else if (cmd === 'edit') {
+  var spawn = require('child_process').spawn;
+  var editor = process.env['EDITOR'];
+  var proc = spawn('sh', ['-c', editor + " " + cli.file], { stdio: 'inherit' });
+}
+
 else if (cmd.match(/^(stop|-)$/)) {
   var reason = cli.args.slice(1).join(' ');
   App.log.push({ type: 'break', reason: reason, date: new Date() }).save();

@@ -14,6 +14,7 @@ cli
     function print(str, col) {
       var m = str.match(/^[a-z]+ (?:((?:--)?[a-z]+) )?(?:(.*?))? *# (.*)$/);
       var cmd = m[1], args = m[2].toLowerCase(), text = m[3];
+      text = text.replace(/`(.*?)`/, function(_, a) { return c(a, col); });
       cmd = (!cmd) ? cli._name : (cli._name+' '+cmd);
       var left = c(cmd,col) + ' ' + c(args||'', 30);
       console.log(f('    %-45s %s', left, text));
@@ -23,22 +24,20 @@ cli
     function ex(str) { print(str, 32); }
 
     console.log('  Logging tasks:');
-    console.log('');
-
     usage('t start <task>       # start working');
     usage('t start <task> +<N>  # start working, offset N minutes');
     usage('t stop [<reason>]    # stop working');
-    usage('t <task>             # start working (shortcut to "start")');
     console.log('');
     console.log('  Viewing logs:');
+    usage('t                      # show today');
+    usage('t show <date>          # show entries for the date');
+    usage('t show <date> - <end>  # show entries for date range');
     console.log('');
-    usage('t                    # show today');
-    usage('t <date>             # show entries for the date');
-    usage('t <date> - <end>     # show entries for date range');
-
+    console.log('  Shortcuts:');
+    usage('t <task>             # start working (alias: `start`)');
+    usage('t <date>             # show entries for the date (alias: `show`)');
     console.log('');
     console.log('  Examples:');
-    console.log('');
     ex('t Myproject stuff    # start working on "Myproject stuff"');
     ex('t stop               # stop the current task');
     ex('t stop lunch break   # stop the current task, and log the reason');

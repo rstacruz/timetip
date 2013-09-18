@@ -163,20 +163,20 @@ task  2013-09-18     4:42pm  4:5Apm   43000    Jsconf    check tickets
     --edit             open the data file in a text editor
 
   Logging tasks:
-
     tw start <task>             start working
     tw start <task> +<n>        start working, offset N minutes
     tw stop [<reason>]          stop working
-    tw <task>                   start working (shortcut to "start")
 
   Viewing logs:
-
     tw                          show today
-    tw <date>                   show entries for the date
-    tw <date> - <end>           show entries for date range
+    tw show <date>              show entries for the date
+    tw show <date> - <end>      show entries for date range
+
+  Shortcuts:
+    tw <task>                   start working (alias: start)
+    tw <date>                   show entries for the date (alias: show)
 
   Examples:
-
     tw myproject stuff          start working on "Myproject stuff"
     tw stop                     stop the current task
     tw stop lunch break         stop the current task, and log the reason

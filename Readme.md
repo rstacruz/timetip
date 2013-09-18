@@ -25,6 +25,9 @@ To make things easier, add this to your `~/.profile`. (optional)
 
     alias t="timewriter --file ~/.timelogs"
 
+*Note: the examples below assume that you have the alias above. If you choose 
+not to to use it, assume that the `t` below is `timewriter`.*
+
 ## Get started
 
 **Log** a task by typing `t <thing-to-do>`. (By convention, the first word 
@@ -54,12 +57,14 @@ $ t stop coffee break
 ~~~ sh
 $ t
 
-today  >  September 18, 2013
+  september 18, 2013
 
-          3:14pm  Jsconf email speakers              45m
-          3:59pm  -- coffee break                    10m
-          4:09pm  Jsconf check ticket sales          14m
-  now  >  4:25pm  Errands grocery                     4m+
+  1:30pm     Jsconf email speakers                                     52m
+  2:22pm     ⋅⋅ coffee break                                            8m
+  2:30pm     Jsconf check ticket sales                               1h 5m
+  3:35pm     ⋅⋅ break                                                   3m
+  3:38pm  ✓  Errands grocery
+
 ~~~
 
 ## Catching up

@@ -6,8 +6,9 @@ Initial version:
 		- Handle break after break @done
 		- Do `tw edit` @done
 		- Offsets
-		- Better --help
+		- Better --help @done
 		- Empty @done
+		- Show summaries
 	
 	Extra features:
 		- ts date

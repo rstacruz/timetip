@@ -85,8 +85,8 @@ App = {
     this.statusToday();
   },
 
-  noLogs: function() {
-    console.log(cli._name+": no logs yet.");
+  noLogs: function(date) {
+    console.log(cli._name+": no logs yet for "+date.format('{yyyy}-{MM}-{dd}'));
     console.log("start one with: `"+cli._name+" <your task>`");
     console.log("see `"+cli._name+" --help` for more info.");
   },
@@ -95,13 +95,16 @@ App = {
     var self = this;
     var day = _.last(this.log.dates());
 
-    if (!day) {
-      this.noLogs();
+    var date = new Date();
+    var data = this.log.get(date);
+
+    if (!date) {
+      this.noLogs(date);
       process.exit(0);
     }
 
-    var entries = this.log.day(day);
-    var now = this.log.now(day);
+    var entries = data.entries;
+    var now = data.last;
 
     console.log("");
     console.log("  " + c(day.format('{month} {dd} {yyyy}'), 34));

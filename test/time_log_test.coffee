@@ -164,5 +164,4 @@ describe 'TimeLog', ->
           task: 'make music'
           date: Date.create('2013-09-18 3:34pm')
 
-
     it.skip '.day() - skip invalid entries'

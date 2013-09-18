@@ -76,7 +76,21 @@ describe 'TimeLog', ->
 
     it '.day() - last day', ->
       entries = @log.day()
-      console.log(entries)
+
+      expect(entries[0]).eql
+        type: 'task'
+        project: 'Work'
+        task: 'stuff'
+        date: Date.create('2013-09-18 3:14pm')
+        duration: 10 * 60000
+        endDate: Date.create('2013-09-18 3:24pm')
+
+      expect(entries[1]).eql
+        type: 'break'
+        break: 'coffee'
+        date: Date.create('2013-09-18 3:24pm')
+        duration: 10 * 60000
+        endDate: Date.create('2013-09-18 3:34pm')
 
     it.skip '.now()', ->
       console.log @log.now()

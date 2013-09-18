@@ -1,6 +1,15 @@
 Initial version:
 	Recording time:
-		- Record to ~/.timelogs/timelog
+		- Record to ~/.timelogs/timelog @done
 
 	Recording breaks:
 		- Handle break after break
+	
+	Extra features:
+		- ts date
+		- ts date - date
+		- ts all
+
+	Exporting:
+		- json
+		- csv

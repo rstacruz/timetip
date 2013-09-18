@@ -63,7 +63,7 @@ var date, spec;
 var log = new TimeLog(cli.file);
 var reporter = new Reporter(log);
 
-App = {
+require('util')._extend(cli, {
   status: function() {
     var data = this.getLogs(new Date());
     reporter.day(data);
@@ -111,21 +111,21 @@ App = {
     if (!data) return this.noLogs(date);
     return data;
   }
-};
+});
 
 if (cli.edit)
   openEditor(cli.file);
 else if (cmd === '')
-  App.status();
+  cli.status();
 else if (cmd === 'stop' || cmd === '-')
-  App.stop(rest);
+  cli.stop(rest);
 else if (cmd === 'start')
-  App.start(SpecParser(rest));
+  cli.start(SpecParser(rest));
 else if (cmd === 'show')
-  App.query(DateParser(rest));
+  cli.query(DateParser(rest));
 else if (date = DateParser(args))
-  App.query(date);
+  cli.query(date);
 else if (spec = SpecParser(args))
-  App.start(spec);
+  cli.start(spec);
 else
-  App.invalidUsage();
+  cli.invalidUsage();

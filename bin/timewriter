@@ -13,12 +13,11 @@ cli
     console.log('    '+cli._name+' [start] <project> [<task>]  # start working');
     console.log('    '+cli._name+' stop [<reason>]             # stop working');
     console.log('');
-    console.log('    '+cli._name+' status                      # show current status');
+    console.log('    '+cli._name+' [status]                    # show current status');
     console.log('    '+cli._name+' summary                     # summarize log for all dates');
     console.log('');
     console.log('    '+cli._name+' <date>                      # show entries');
     console.log('    '+cli._name+' <date> - <date>             # show entries for date range');
-    console.log('');
     console.log('');
     console.log('  Examples:');
     console.log('');
@@ -29,16 +28,11 @@ cli
   })
   .parse(process.argv);
 
-if (cli.args.length === 0) {
-  cli.outputHelp();
-  process.exit(26);
-}
-
 var DateParser = require('../lib/date_parser');
 var SpecParser = require('../lib/spec_parser');
 var TimeLog = require('../lib/time_log');
 
-var cmd  = cli.args[0];
+var cmd  = cli.args[0] || '';
 var rest = cli.args.slice(1).join(' ');
 var args = cli.args.join(' ');
 
@@ -52,6 +46,24 @@ App = {
   log: new TimeLog(cli.file),
 
   status: function() {
+    this.statusToday();
+    this.statusNow();
+  },
+
+  statusToday: function() {
+    var entries = this.log.day();
+
+    console.log(' today > '+entries.length+' items');
+    entries.forEach(function(entry) {
+      if (entry.type === 'task')
+        console.log('         '+entry.project+': '+entry.task);
+      else 
+        console.log('         break');
+    });
+    console.log('');
+  },
+
+  statusNow: function() {
     var now = this.log.now();
 
     if (!now) {
@@ -75,13 +87,13 @@ App = {
   }
 };
 
-if (cmd.match(/^(stop|x)$/)) {
-  var reason = cli.args.slice(1);
-  App.log.push({ type: 'break', reason: reason, date: new Date() }).save();
+if (cmd === '' || cmd.match(/^(st|status)$/)) {
   App.status();
 }
 
-else if (cmd.match(/^(st|status)$/)) {
+else if (cmd.match(/^(stop|x|break)$/)) {
+  var reason = cli.args.slice(1).join(' ');
+  App.log.push({ type: 'break', reason: reason, date: new Date() }).save();
   App.status();
 }
 

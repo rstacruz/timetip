@@ -3,10 +3,12 @@
 
 var cli        = require('commander');
 var extend     = require('util')._extend;
+var _          = require('underscore');
 var f          = require('printf');
 var c          = require('../lib/helpers').color;
 var openEditor = require('../lib/helpers').openEditor;
 var printUsage = require('../lib/helpers').printUsage;
+var duration   = require('../lib/helpers').duration;
 
 cli
   .version(require('../package').version)
@@ -40,21 +42,10 @@ cli
     ex('t Sept 2             # show entries september 2');
     ex('t 4 days ago         # show entries from 4 days ago');
     ex('t Yesterday          # show entries from yesterday');
-  })
-  .parse(process.argv);
+  });
 
-var DateParser = require('../lib/date_parser');
-var SpecParser = require('../lib/spec_parser');
 var TimeLog    = require('../lib/time_log');
-var duration   = require('../lib/helpers').duration;
-var _          = require('underscore');
 var Reporter   = require('../lib/reporters/default');
-
-var cmd  = cli.args[0] || '';
-var rest = cli.args.slice(1).join(' ');
-var args = cli.args.join(' ');
-
-var date, spec;
 
 /*
  * The controller
@@ -110,22 +101,36 @@ require('util')._extend(cli, {
     var data = log.get(date);
     if (!data) return this.noLogs(date);
     return data;
+  },
+
+  run: function(argv) {
+    cli.parse(argv);
+
+    var DateParser = require('../lib/date_parser');
+    var SpecParser = require('../lib/spec_parser');
+    var cmd  = cli.args[0] || '';
+    var rest = cli.args.slice(1).join(' ');
+    var args = cli.args.join(' ');
+
+    var date, spec;
+
+    if (cli.edit)
+      openEditor(cli.file);
+    else if (cmd === '')
+      this.status();
+    else if (cmd === 'stop' || cmd === '-')
+      this.stop(rest);
+    else if (cmd === 'start')
+      this.start(SpecParser(rest));
+    else if (cmd === 'show')
+      this.query(DateParser(rest));
+    else if (date = DateParser(args))
+      this.query(date);
+    else if (spec = SpecParser(args))
+      this.start(spec);
+    else
+      this.invalidUsage();
   }
 });
 
-if (cli.edit)
-  openEditor(cli.file);
-else if (cmd === '')
-  cli.status();
-else if (cmd === 'stop' || cmd === '-')
-  cli.stop(rest);
-else if (cmd === 'start')
-  cli.start(SpecParser(rest));
-else if (cmd === 'show')
-  cli.query(DateParser(rest));
-else if (date = DateParser(args))
-  cli.query(date);
-else if (spec = SpecParser(args))
-  cli.start(spec);
-else
-  cli.invalidUsage();
+cli.run(process.argv);

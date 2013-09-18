@@ -2,13 +2,20 @@ Initial version:
 	Recording time:
 		- Record to ~/.timelogs/timelog @done
 
-	Recording breaks:
-		- Handle break after break
+	Misc features:
+		- Handle break after break @done
+		- Do `tw edit` @done
+		- Offsets
+		- Better --help
+		- Empty @done
 	
 	Extra features:
 		- ts date
 		- ts date - date
 		- ts all
+
+	Reporter feature:
+		- Make `tw date` (et al) delegate to a reporter
 
 	Exporting:
 		- json

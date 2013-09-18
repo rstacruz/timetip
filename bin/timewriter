@@ -66,9 +66,21 @@ App = {
     this.statusToday();
   },
 
+  noLogs: function() {
+    console.log(cli._name+": no logs yet.");
+    console.log("start one with: `"+cli._name+" <your task>`");
+    console.log("see `"+cli._name+" --help` for more info.");
+  },
+
   statusToday: function() {
     var self = this;
     var day = _.last(this.log.dates());
+
+    if (!day) {
+      this.noLogs();
+      process.exit(0);
+    }
+
     var entries = this.log.day(day);
     var now = this.log.now(day);
 
@@ -76,9 +88,12 @@ App = {
     console.log("  " + c(day.format('{month} {dd} {yyyy}'), 34));
     console.log("");
 
-    entries.forEach(function(entry) { self.entry(entry); });
-    if (now)
+    if (now) {
+      entries.forEach(function(entry) { self.entry(entry); });
       self.entry(now, { now: true });
+    } else {
+      console.log("  no entries");
+    }
 
     console.log('');
   },
@@ -118,29 +133,36 @@ App = {
   }
 };
 
-if (cmd === '' || cmd.match(/^(st|status)$/)) {
+if (cmd === '') {
   App.status();
 }
 
 else if (cmd === 'edit') {
   var spawn = require('child_process').spawn;
   var editor = process.env['EDITOR'];
-  var proc = spawn('sh', ['-c', editor + " " + cli.file], { stdio: 'inherit' });
+  var cmd = editor + " " + cli.file;
+
+  // Vim hack to open the file and scroll to the last line
+  // (`vim + ~/.timelogs`)
+  if (editor.match(/vim$/)) cmd = editor + " + " + cli.file;
+
+  // Spawn, lol
+  var proc = spawn('sh', ['-c', cmd], { stdio: 'inherit' });
 }
 
-else if (cmd.match(/^(stop|-)$/)) {
+else if (cmd === 'stop' || cmd === '-') {
   var reason = cli.args.slice(1).join(' ');
   App.log.push({ type: 'break', reason: reason, date: new Date() }).save();
   App.status();
 }
 
-else if (cmd.match(/^(summary)$/)) {
+else if (cmd === 'summary') {
   App.log.dates().forEach(function(date) {
     App.query(date);
   });
 }
 
-else if (cmd.match(/^(start)$/)) {
+else if (cmd === 'start') {
   spec = SpecParser(test);
   App.log.push(extend(spec, { date: new Date() })).save();
   App.status();

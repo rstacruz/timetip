@@ -29,6 +29,7 @@ cli
     p('');
     p('  Shortcuts:');
     us('t <task>             # start working (alias: `start`)');
+    us('t - [<reason>]       # stop working (alias: `stop`)');
     us('t <date>             # show entries for the date (alias: `show`)');
     p('');
     p('  Examples:');

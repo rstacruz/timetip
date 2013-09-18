@@ -9,7 +9,7 @@ var c = require('../lib/helpers').color;
 cli
   .version(require('../package').version)
   .option('-f, --file <path>', 'the data file [~/.timelogs]', '~/.timelogs')
-  .option('--edit', 'open in text editor')
+  .option('--edit', 'open the data file in a text editor')
   .on('--help', function() {
     function print(str, col) {
       var m = str.match(/^[a-z]+ (?:((?:--)?[a-z]+) )?(?:(.*?))? *# (.*)$/);
@@ -22,21 +22,19 @@ cli
     function usage(str) { print(str, 36); }
     function ex(str) { print(str, 32); }
 
-    console.log('  Usage:');
+    console.log('  Logging tasks:');
     console.log('');
 
-    usage('t                    # show current status');
-    console.log('');
     usage('t start <task>       # start working');
     usage('t start <task> +<N>  # start working, offset N minutes');
     usage('t stop [<reason>]    # stop working');
-    console.log('');
     usage('t <task>             # start working (shortcut to "start")');
     console.log('');
+    console.log('  Viewing logs:');
+    console.log('');
+    usage('t                    # show today');
     usage('t <date>             # show entries for the date');
     usage('t <date> - <end>     # show entries for date range');
-    console.log('');
-    usage('t --edit             # open the data file in your text editor');
 
     console.log('');
     console.log('  Examples:');

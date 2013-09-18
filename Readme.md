@@ -81,8 +81,8 @@ $ t Misc coffee +3
 ## Storage
 
 Everything is stored in a human-editable format into `~/.timelogs` (use `--file` 
-    to change the location). This means you can add, edit, delete and rearrange 
-entries using your favorite text editor.
+    to change the location). This means you can (should!) add, edit, delete and 
+rearrange entries using your favorite text editor.
 
 ~~~ ini
 $ cat ~/.timelogs
@@ -98,6 +98,9 @@ $ cat ~/.timelogs
 4:09pm = Jsconf check ticket sales
 4:25pm = Errands grocery
 ~~~
+
+You can use the shortcut `t --edit` to open in in your default text editor 
+(*$EDITOR*).
 
 ## Looking up entries
 
@@ -150,8 +153,6 @@ task  2013-09-18     4:42pm  4:5Apm   43000    Jsconf    check tickets
 ## --help
 
 ~~~ sh
-$ tw --help
-
   Usage: tw [options]
 
   Options:
@@ -159,25 +160,30 @@ $ tw --help
     -h, --help         output usage information
     -V, --version      output the version number
     -f, --file <path>  the data file [~/.timelogs]
+    --edit             open the data file in a text editor
 
-  Usage:
+  Logging tasks:
 
-    tw                             # show current status
+    tw start <task>             start working
+    tw start <task> +<n>        start working, offset N minutes
+    tw stop [<reason>]          stop working
+    tw <task>                   start working (shortcut to "start")
 
-    tw <task>                      # start working
-    tw start <task>                # start working
-    tw start <task> +<N>           # start working, offset N minutes
-    tw stop [<reason>]             # stop working
+  Viewing logs:
 
-    tw <date>                      # show entries
-    tw <date> - <date>             # show entries for date range
+    tw                          show today
+    tw <date>                   show entries for the date
+    tw <date> - <end>           show entries for date range
 
   Examples:
 
-    tw myproject                   # start working on "myproject"
-    tw stop                        # stop tracking
-    tw stop lunch break            # stop tracking and log the reason
-    tw 2 days ago                  # show entries from 2 days ago
+    tw myproject stuff          start working on "Myproject stuff"
+    tw stop                     stop the current task
+    tw stop lunch break         stop the current task, and log the reason
+
+    tw sept 2                   show entries september 2
+    tw 4 days ago               show entries from 4 days ago
+    tw yesterday                show entries from yesterday
 ~~~
 
 [prog]: http://en.wikipedia.org/wiki/Programmer

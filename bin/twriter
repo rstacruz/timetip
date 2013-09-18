@@ -57,72 +57,75 @@ var date, spec;
  * The controller
  */
 
+var log = new TimeLog(cli.file);
+var reporter = new Reporter(log);
+
 App = {
   log: new TimeLog(cli.file),
-
-  status: function() {
-    this.statusToday();
-  },
 
   noLogs: function(date) {
     console.log(cli._name+": no logs yet for "+date.format('{yyyy}-{MM}-{dd}'));
     console.log("start one with: `"+cli._name+" <your task>`");
     console.log("see `"+cli._name+" --help` for more info.");
+    process.exit(0);
   },
 
-  statusToday: function() {
-    var self = this;
-    var date = new Date();
-
-    if (!date) {
-      this.noLogs(date);
-      process.exit(0);
-    }
-
-    Reporter.day(this.log.get(date), { log: this.log });
-    return;
+  status: function() {
+    var data = this.getLogs(new Date());
+    reporter.day(data);
   },
 
   query: function(date) {
-    console.log("Entries for ", date);
+    var data = this.getLogs(date);
+    reporter.day(data);
   },
+
+  /**
+   * Start task
+   */
+
+  start: function(spec) {
+    var date = new Date();
+    log.push(extend(spec, { date: date })).save();
+    reporter.day(log.get(date), { added: true });
+  },
+
+  stop: function(reason) {
+    log.push({ type: 'break', reason: reason, date: new Date() }).save();
+    App.status();
+  },
+
+  invalidUsage: function() {
+    console.error(""+cli._name+": invalid usage");
+    console.error("try `"+cli._name+" --help` for more info");
+    process.exit(26);
+  },
+
+  /**
+   * Returns logs for a given `date` or dies with a message
+   * @private
+   */
+
+  getLogs: function(date) {
+    var data = log.get(date);
+    if (!data) return this.noLogs(date);
+    return data;
+  }
 };
 
-if (cli.edit) {
+if (cli.edit)
   openEditor(cli.file);
-}
-
-else if (cmd === '') {
+else if (cmd === '')
   App.status();
-}
-
-else if (cmd === 'stop' || cmd === '-') {
-  var reason = cli.args.slice(1).join(' ');
-  App.log.push({ type: 'break', reason: reason, date: new Date() }).save();
-  App.status();
-}
-
-else if (cmd === 'start') {
-  spec = SpecParser(rest);
-  App.log.push(extend(spec, { date: new Date() })).save();
-  App.status();
-}
-
-else if (cmd === 'show') {
+else if (cmd === 'stop' || cmd === '-')
+  App.stop(rest);
+else if (cmd === 'start')
+  App.start(SpecParser(rest));
+else if (cmd === 'show')
   App.query(DateParser(rest));
-}
-
-else if (date = DateParser(args)) {
+else if (date = DateParser(args))
   App.query(date);
-}
-
-else if (spec = SpecParser(args)) {
-  App.log.push(extend(spec, { date: new Date() })).save();
-  App.status();
-}
-
-else {
-  console.error(""+cli._name+": invalid usage");
-  console.error("try `"+cli._name+" --help` for more info");
-  process.exit(26);
-}
+else if (spec = SpecParser(args))
+  App.start(spec);
+else
+  App.invalidUsage();

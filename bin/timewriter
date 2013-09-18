@@ -48,7 +48,11 @@ var log = new TimeLog(cli.file);
 
 if (cmd.match(/^(stop|x)$/)) {
   var reason = cli.args.slice(1);
-  log.push({ 'break': reason, 'date': new Date() }).save();
+  log.push({
+    type: 'break',
+    reason: reason,
+    date: new Date()
+  }).save();
 }
 
 else if (cmd.match(/^(st|status)$/)) {

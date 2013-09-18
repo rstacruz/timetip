@@ -26,6 +26,7 @@ describe 'TimeLog', ->
   describe 'writing', ->
     it 'push() of task', ->
       @log.push
+        type: "task"
         date: new Date(2010, 9, 15, 3, 0)
         project: "test"
         task: "hello"
@@ -33,6 +34,27 @@ describe 'TimeLog', ->
       expect(@log.toString().trim()).eql '''
       [2010-10-15 fri]
       3:00am = test: hello
+      '''
+
+    it 'push() of break', ->
+      @log.push
+        type: "break"
+        date: new Date(2010, 9, 15, 3, 0)
+
+      expect(@log.toString().trim()).eql '''
+      [2010-10-15 fri]
+      3:00am = --
+      '''
+
+    it 'push() of break with reason', ->
+      @log.push
+        type: "break"
+        date: new Date(2010, 9, 15, 3, 0)
+        reason: "coffee"
+
+      expect(@log.toString().trim()).eql '''
+      [2010-10-15 fri]
+      3:00am = -- coffee --
       '''
 
   describe '.format()', ->
@@ -88,7 +110,7 @@ describe 'TimeLog', ->
 
       expect(entries[1]).eql
         type: 'break'
-        break: 'coffee'
+        reason: 'coffee'
         date: Date.create('2013-09-18 3:24pm')
         duration: 10 * 60000
         endDate: Date.create('2013-09-18 3:34pm')
@@ -103,7 +125,7 @@ describe 'TimeLog', ->
     it '.now(Date)', ->
       expect(@log.now(Date.create('2013-09-17'))).eql
         type: 'break'
-        break: null
+        reason: null
         date: Date.create('2013-09-17 4:00pm')
 
     it.skip '.day() - skip invalid entries'

@@ -16,11 +16,11 @@ Initial version:
 		- tw all
 
 	Reporter feature:
-		- Make `tw date` (et al) delegate to a reporter
-
-		reporter(mode, data)
-		reporter('today', data)
-		reporter('range', data)
+		- .get()
+		- Make `tw date` (et al) delegate to a reporter @done
+			reporter(mode, data)
+			reporter('today', data)
+			reporter('range', data)
 
 	Other reporters:
 		- json

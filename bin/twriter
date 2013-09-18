@@ -5,23 +5,15 @@ var cli = require('commander');
 var extend = require('util')._extend;
 var f = require('printf');
 var c = require('../lib/helpers').color;
+var printUsage = require('../lib/helpers').printUsage;
 
 cli
   .version(require('../package').version)
   .option('-f, --file <path>', 'the data file [~/.timelogs]', '~/.timelogs')
   .option('--edit', 'open the data file in a text editor')
   .on('--help', function() {
-    function print(str, col) {
-      var m = str.match(/^[a-z]+ (?:((?:--)?[a-z]+) )?(?:(.*?))? *# (.*)$/);
-      var cmd = m[1], args = m[2].toLowerCase(), text = m[3];
-      text = text.replace(/`(.*?)`/, function(_, a) { return c(a, col); });
-      cmd = (!cmd) ? cli._name : (cli._name+' '+cmd);
-      var left = c(cmd,col) + ' ' + c(args||'', 30);
-      console.log(f('    %-45s %s', left, text));
-    }
-
-    function usage(str) { print(str, 36); }
-    function ex(str) { print(str, 32); }
+    function usage(str) { printUsage(cli._name, str, 36); }
+    function ex(str) { printUsage(cli._name, str, 32); }
 
     console.log('  Logging tasks:');
     usage('t start <task>       # start working');
@@ -55,6 +47,7 @@ var duration   = require('../lib/helpers').duration;
 var c          = require('../lib/helpers').color;
 var f          = require('printf');
 var _          = require('underscore');
+var Reporter   = require('../lib/reporters/default');
 
 var cmd  = cli.args[0] || '';
 var rest = cli.args.slice(1).join(' ');
@@ -65,18 +58,6 @@ var date, spec;
 /*
  * The controller
  */
-
-var dot = '⋅';
-var dash = '┄ ';
-var gt = '›';
-var peg = '✈';
-var chk = '✓';
-
-function puts(str, options) {
-  var pre = '          ';
-  if (options && options.prefix) pre = '   '+options.prefix+' '+gt;
-  console.log(pre, str);
-}
 
 App = {
   log: new TimeLog(cli.file),
@@ -93,66 +74,20 @@ App = {
 
   statusToday: function() {
     var self = this;
-    var day = _.last(this.log.dates());
-
     var date = new Date();
-    var data = this.log.get(date);
 
     if (!date) {
       this.noLogs(date);
       process.exit(0);
     }
 
-    var entries = data.entries;
-    var now = data.last;
-
-    console.log("");
-    console.log("  " + c(day.format('{month} {dd} {yyyy}'), 34));
-    console.log("");
-
-    if (now) {
-      entries.forEach(function(entry) { self.entry(entry); });
-      self.entry(now, { now: true });
-    } else {
-      console.log("  no entries");
-    }
-
-    console.log('');
+    Reporter.day(this.log.get(date), { log: this.log });
+    return;
   },
 
   query: function(date) {
     console.log("Entries for ", date);
   },
-
-  entry: function(entry, options) {
-    var time = entry.date.format(App.log.formats.time);
-    var str, dur;
-
-    var col
-    if (entry.type === 'break')
-      col = 30;
-    else
-      col = 37;
-
-    if (entry.type === 'task')
-      str = f("%s %s", c(entry.project, col), entry.task||'');
-    else if (entry.reason)
-      str = c(dot + ' ' + entry.reason, col);
-    else
-      str = c(dot, col);
-
-    if (options && options.now) {
-      time = c(time + '  ', 30) + c(chk, 32);
-      dur = duration(new Date() - entry.date);
-      if (dur.length)
-        dur = c(duration(new Date() - entry.date), 37) + c("+", 32);
-      console.log(f('%29s  %-65s  %22s', time, str, dur));
-    } else {
-      time = c(time + '  ', 30) + c(' ', 32);
-      dur = c(duration(entry.duration), 37);
-      console.log(f('%29s  %-65s  %12s', time, str, dur));
-    }
-  }
 };
 
 if (cli.edit) {

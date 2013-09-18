@@ -176,9 +176,13 @@ else if (cmd === 'stop' || cmd === '-') {
 }
 
 else if (cmd === 'start') {
-  spec = SpecParser(test);
+  spec = SpecParser(rest);
   App.log.push(extend(spec, { date: new Date() })).save();
   App.status();
+}
+
+else if (cmd === 'show') {
+  App.query(DateParser(rest));
 }
 
 else if (date = DateParser(args)) {

@@ -30,7 +30,11 @@ cli
 
 var DateParser = require('../lib/date_parser');
 var SpecParser = require('../lib/spec_parser');
-var TimeLog = require('../lib/time_log');
+var TimeLog    = require('../lib/time_log');
+var duration   = require('../lib/helpers').duration;
+var c          = require('../lib/helpers').color;
+var f          = require('util').format;
+var _          = require('underscore');
 
 var cmd  = cli.args[0] || '';
 var rest = cli.args.slice(1).join(' ');
@@ -42,48 +46,63 @@ var date, spec;
  * The controller
  */
 
+var dot = '⋅';
+var dash = '┄ ';
+var gt = '›';
+var peg = '✈';
+var chk = '✓';
+
+function puts(str, options) {
+  var pre = '          ';
+  if (options && options.prefix) pre = '   '+options.prefix+' '+gt;
+  console.log(pre, str);
+}
+
 App = {
   log: new TimeLog(cli.file),
 
   status: function() {
     this.statusToday();
-    this.statusNow();
   },
 
   statusToday: function() {
-    var entries = this.log.day();
+    var self = this;
+    var day = _.last(this.log.dates());
+    var entries = this.log.day(day);
+    var now = this.log.now(day);
 
-    console.log(' today > '+entries.length+' items');
-    entries.forEach(function(entry) {
-      if (entry.type === 'task')
-        console.log('         '+entry.project+': '+entry.task);
-      else 
-        console.log('         break');
-    });
+    puts(day.format('{month} {dd} {yyyy}'), { prefix: 'today' });
+    puts("");
+
+    entries.forEach(function(entry) { self.entry(entry); });
+    if (now)
+      self.entry(now, { now: true });
+
     console.log('');
-  },
-
-  statusNow: function() {
-    var now = this.log.now();
-
-    if (!now) {
-      console.log('  now  > not doing anything.');
-      return;
-    }
-
-    if (now.project && now.task)
-      console.log('  now  >', now.project+': '+now.task);
-    else if (now.type === 'break')
-      console.log('  now  >', 'stopped');
-    else
-      console.log('  now  >', now.project);
-
-    if (new Date() - now.date > 1000)
-      console.log('        ', 'running for', now.date.relative().replace(' ago',''));
   },
 
   query: function(date) {
     console.log("Entries for ", date);
+  },
+
+  entry: function(entry, options) {
+    var time = c(entry.date.format(App.log.formats.time) + ' ' + gt, 30);
+    var str;
+
+    if (entry.type === 'task')
+      str = f("%s  %s %s", time, c(entry.project, 34), entry.task);
+    else if (entry.reason)
+      str = f("%s  %s %s %s", time, c(dash, 30), c(entry.reason, 33), c(dash, 30));
+    else
+      str = f("%s  %s", time, c(dash, 30));
+
+    if (options && options.now) {
+      str += c(' ['+duration(new Date() - entry.date)+'+]', 34);
+      console.log('        ' + c(chk,32) + '  ' + str);
+    } else {
+      str += c(' ['+duration(entry.duration)+']', 34);
+      console.log('           ' + str);
+    }
   }
 };
 

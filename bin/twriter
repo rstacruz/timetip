@@ -14,7 +14,10 @@ cli
   .version(require('../package').version)
   .option('-f, --file <path>', 'the data file [~/.timelogs]', '~/.timelogs')
   .option('--edit', 'open the data file in a text editor')
+  .option('--no-color', 'disable colors', true)
   .on('--help', function() {
+    if (!cli.color) process.env.NO_COLOR = true;
+
     function us(str) { printUsage(cli._name, str, 36); }
     function ex(str) { printUsage(cli._name, str, 32); }
     function p(str)  { console.log(str); }
@@ -109,6 +112,9 @@ extend(cli, {
     var args = cli.args.join(' ');
 
     var date, spec;
+
+    if (!cli.color)
+      process.env.NO_COLOR = true;
 
     if (cli.edit)
       openEditor(cli.file);

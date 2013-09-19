@@ -206,7 +206,7 @@ var TimeLog = require('timetip').TimeLog;
 
 var log = new TimeLog('~/.timelogs');
 
-var day = log.get('yesterday');
+var day = log.get('2013-09-02');
 var day = log.get(new Date(2013, 8, 2));
 
 day.entries

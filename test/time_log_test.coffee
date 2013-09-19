@@ -23,6 +23,7 @@ describe 'TimeLog', ->
       [a]
       b = c
       '''
+
   describe 'writing', ->
     it 'push() of task', ->
       @log.push
@@ -94,12 +95,18 @@ describe 'TimeLog', ->
       expect(dates[1]).eql new Date(2013, 8, 17)
       expect(dates[2]).eql new Date(2013, 8, 18)
 
-    describe '.get() - nonexistent', ->
-      beforeEach ->
+    describe '.get() sceranios', ->
+      it 'non-existent', ->
         @data = @log.get(new Date(2013, 8, 1))
-
-      it 'null', ->
         expect(@data).eql null
+
+      it 'invalid', ->
+        assert.throws =>
+          @log.get(new Date('a'))
+
+      it 'string', ->
+        @data = @log.get('2013-09-18')
+        expect(@data.date).eql new Date(2013, 8, 18)
 
     describe '.get() - empty', ->
       beforeEach ->

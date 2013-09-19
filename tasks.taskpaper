@@ -26,12 +26,6 @@ Initial version:
 		- Json reporter
 		- Csv reporter
 
-	Programmatic usage:
-		A user should be able to use parse time logs in Node.js through an
-		npm package.
-
-		- Expose TimeLog in index.js @done
-
 	Misc features:
 		- Handle break after break @done
 		- Do `tw edit` @done
@@ -42,6 +36,12 @@ Initial version:
 
 	Stuff that's done
 	-----------------
+
+	Programmatic usage:
+		A user should be able to use parse time logs in Node.js through an
+		npm package.
+
+		- Expose TimeLog in index.js @done
 
 	Recording time:
 		- Record to ~/.timelogs/timelog @done

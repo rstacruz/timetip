@@ -56,9 +56,7 @@ var TimeLog = require('../lib/time_log');
  * The controller
  */
 
-var log = new TimeLog(cli.file);
-var reporter;
-
+var log, reporter;
 
 extend(cli, {
   status: function() {
@@ -78,8 +76,8 @@ extend(cli, {
   log: function(spec) {
     if (!spec) return this.invalidUsage();
 
-    log.push(spec).save();
-    this.getReporter().day(log.get(spec.date), { added: true });
+    this.getLog().push(spec).save();
+    this.getReporter().day(this.getLog().get(spec.date), { added: true });
   },
 
   /* ---- */
@@ -112,9 +110,16 @@ extend(cli, {
    */
 
   getLogs: function(date) {
-    var data = log.get(date);
+    var data = this.getLog().get(date);
     if (!data) return this.noLogs(date);
     return data;
+  },
+
+  getLog: function() {
+    if (log) return log;
+
+    log = new TimeLog(cli.file);
+    return log;
   },
 
   /**

@@ -67,13 +67,13 @@ describe 'TimeLog', ->
       d = @log.format(new Date(2013, 2, 4, 15, 20), 'time')
       expect(d).eql '3:20pm'
 
-  describe '.parse()', ->
-    it '.parse(date)', ->
-      d = @log.parse('2013-03-04 mon')
+  describe '.parseDate()', ->
+    it 'date', ->
+      d = @log.parseDate('2013-03-04 mon')
       expect(d).eql new Date(2013, 2, 4)
 
-    it '.parse(time, date)', ->
-      d = @log.parse('3:20pm', new Date(2013, 2, 4))
+    it 'time, date', ->
+      d = @log.parseDate('3:20pm', new Date(2013, 2, 4))
       expect(d).eql new Date(2013, 2, 4, 15, 20)
 
   describe 'reading', ->

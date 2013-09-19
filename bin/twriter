@@ -64,14 +64,12 @@ extend(cli, {
     reporter.day(data);
   },
 
-  start: function(spec) {
+  // Start or stop
+  log: function(spec) {
+    if (!spec) return this.invalidUsage();
+
     log.push(spec).save();
     reporter.day(log.get(spec.date), { added: true });
-  },
-
-  stop: function(reason) {
-    log.push({ type: 'break', reason: reason, date: new Date() }).save();
-    this.status();
   },
 
   /* ---- */
@@ -117,9 +115,9 @@ extend(cli, {
     else if (cmd === '')
       this.status();
     else if (cmd === 'stop' || cmd === '-')
-      this.stop(rest);
+      this.log(SpecParser(rest, { mode: 'break' }));
     else if (cmd === 'start')
-      this.start(SpecParser(rest));
+      this.log(SpecParser(rest));
     else if (cmd === 'show')
       this.query(DateParser(rest) || new Date());
     else if (date = DateParser(args))

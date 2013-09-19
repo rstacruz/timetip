@@ -55,5 +55,30 @@ describe 'SpecParser', ->
       task: 'world'
       date: new Date(2010, 9, 15, 8, 0)
 
+  describe 'mode: break', ->
+    it 'reason', ->
+      expect(SpecParser('hello world', mode: 'break')).eql
+        type: 'break'
+        reason: 'hello world'
+        date: new Date(2010, 9, 15, 12, 0)
+
+    it 'reason, time', ->
+      expect(SpecParser('hello world 11:00am', mode: 'break')).eql
+        type: 'break'
+        reason: 'hello world'
+        date: new Date(2010, 9, 15, 11, 0)
+
+    it 'time only', ->
+      expect(SpecParser('11:00am', mode: 'break')).eql
+        type: 'break'
+        reason: null
+        date: new Date(2010, 9, 15, 11, 0)
+
+    it 'empty', ->
+      expect(SpecParser('', mode: 'break')).eql
+        type: 'break'
+        reason: null
+        date: new Date(2010, 9, 15, 12, 0)
+
   it 'empty', ->
     expect(SpecParser('')).be.undefined

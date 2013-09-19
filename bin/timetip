@@ -62,7 +62,10 @@ var reporter;
 
 extend(cli, {
   status: function() {
-    var data = this.getLogs(new Date());
+    var date = new Date();
+    var data = this.getLogs(date);
+    if (!data.now) return this.noLogs(date);
+
     this.getReporter().day(data);
   },
 

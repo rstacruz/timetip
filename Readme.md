@@ -2,7 +2,8 @@ timetip
 =======
 
 Deliciously-minimal time tracker for the command-line. Built on Node.js.  
-Features:
+
+![Screenshot](https://github.com/rstacruz/timetip/raw/master/support/screenshot.png)
 
  - **Friction-free time logging.** Just type `t shopping in the grocery` to 
  [start a task](#get-started).

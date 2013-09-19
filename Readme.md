@@ -1,7 +1,7 @@
 timetip
 =======
 
-*(WIP: works, but see [feature roadmap][tasks.taskpaper] for progress on getting 
+*(WIP: works, but see [feature roadmap](tasks.taskpaper) for progress on getting 
     it feature-complete.)*
 
 Deliciously-minimal time tracker for the command-line. Built on Node.js.  
@@ -16,8 +16,8 @@ anywhere Node can. (even Windows!)
  - **Built for [humans][prog] who love text editors.** Time logs are stored in a 
  [human-readable format](#storage) that you can (should!) edit yourself.
 
- - **Natural language.** All commands are made in such a way as if you're 
- talking to timetip, eg: `t stop`, `t Doing things 3 minutes ago`.
+ - **Natural language parsing.** All commands are made in such a way as if 
+ you're talking to timetip, eg: `t stop`, `t Doing things 3 minutes ago`.
 
  - **Portable data.** Aside from its human-readable format, you can [easily 
  export your data](#exporting) to json or csv.

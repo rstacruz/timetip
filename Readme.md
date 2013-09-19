@@ -5,24 +5,27 @@ Deliciously-minimal time tracker for the command-line. Built on Node.js.
 
 ![Screenshot](https://github.com/rstacruz/timetip/raw/master/support/screenshot.png)
 
- - **Friction-free time logging.** Just type `t shopping in the grocery` to 
- [start a task](#get-started).
+ - **Friction-free time logging.**  
+ [Start a task](#get-started) by typing `t shopping in the grocery`.
 
- - **Everything in the terminal.** It's a Node.js command-line app that runs 
-anywhere Node can. (even Windows!)
+ - **Everything in the terminal.**  
+  [It's a Node.js command-line app](#install) that runs anywhere Node can.
+  Even Windows!
 
- - **Built for [humans][prog]** who love text editors. Time logs are stored in a 
- [human-editable format](#storage) that you can (should!) edit yourself.
+ - **Natural language parsing.**   
+ [All commands](#--help) are made in such a way as if you're talking to timetip.  
+ Examples: `t stop` or `t Meeting 3 minutes ago`.
 
- - **Natural language parsing.** All commands are made in such a way as if 
- you're talking to timetip, eg: `t stop`, `t Doing things 3 minutes ago`.
+ - **For humans who love text editors.**  
+ [Time logs](#storage) are stored in a simple *human-editable* format that you're
+ encouraged to edit yourself.
 
- - **Portable data.** Aside from its human-editable format, you can [easily 
- export your data](#exporting) to json or csv. You can also use it as an [npm 
- package](#programmatic-usage) to parse out your files in Node.
+ - **Portable data.**  
+ [Export your data](#exporting) to json or csv painlessly. You can also use it as an
+ [npm package](#programmatic-usage) to parse out your files in Node.
 
-*(WIP: works, but see [feature roadmap](tasks.taskpaper) for progress on getting 
-    it feature-complete.)*
+*(WIP, and works very well! see [feature roadmap](tasks.taskpaper) for progress
+    on getting it feature-complete.)*
 
 ## Install
 
@@ -96,8 +99,8 @@ $ t stop 12:30pm
 
 ## Storage
 
-Everything is stored in a human-editable format into `~/.timelogs` (use `--file` 
-    to change the location). This means you can (should!) add, edit, delete and 
+Everything is stored in a human-editable format into `~/.timelogs` (use `--file`
+    to change the location). You're encouraged to add, edit, delete and
 rearrange entries using your favorite text editor.
 
 ~~~ ini
@@ -179,6 +182,12 @@ task  2013-09-18     4:42pm  4:5Apm   43000    Jsconf    check tickets
     -R, --reporter <r>  use reporter (default|json)
     --no-color          disable colors
 
+  Shortcuts:
+    timetip <task>                 start working (alias: start)
+    timetip - [<reason>]           stop working (alias: stop)
+    timetip <date>                 show entries for the date (alias: show)
+    timetip                        show today (alias: show today)
+
   Logging tasks:
     timetip start <task>           start working
     timetip stop [<reason>]        stop working
@@ -187,12 +196,6 @@ task  2013-09-18     4:42pm  4:5Apm   43000    Jsconf    check tickets
     timetip show <date>            show entries for the date
     timetip show <date> - <end>    show entries for date range
     timetip edit                   open in text editor
-
-  Shortcuts:
-    timetip                        show today (alias: show today)
-    timetip <task>                 start working (alias: start)
-    timetip - [<reason>]           stop working (alias: stop)
-    timetip <date>                 show entries for the date (alias: show)
 
   Examples:
     timetip myproject stuff        start working on "myproject stuff"
@@ -228,6 +231,4 @@ day.summary
 © 2013, Rico Sta. Cruz. Released under the [MIT License].
 
 [MIT License]: http://www.opensource.org/licenses/mit-license.php
-
-[prog]: http://en.wikipedia.org/wiki/Programmer
 [time_log.js]: lib/time_log.js

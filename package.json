@@ -18,8 +18,7 @@
     "underscore": "1.5.x",
     "sugar": "1.4.x",
     "ini": "1.1.x",
-    "commander": "2.0.x",
-    "printf": "~0.1.2"
+    "commander": "2.0.x"
   },
   "devDependencies": {
     "mocha": "1.13.x",

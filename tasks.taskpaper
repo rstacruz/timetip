@@ -9,6 +9,7 @@ Initial version:
 		- Empty @done
 		- Show total time
 		- Bug: showing yesterday gives you (+) on last item
+		- tw --quiet
 
 	Offsets:
 		- Handle '3m ago' @done

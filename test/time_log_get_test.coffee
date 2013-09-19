@@ -24,6 +24,9 @@ describe 'TimeLog.get()', ->
     beforeEach ->
       @day = @log.get('2013-09-14')
 
+    it '.today', ->
+      expect(@day.today).be.undefined
+
     it '.last.duration', ->
       expect(@day.last.duration).be.undefined
 
@@ -32,10 +35,13 @@ describe 'TimeLog.get()', ->
 
   describe 'today', ->
     beforeEach ->
-      @today = @log.get('2013-09-15')
+      @day = @log.get('2013-09-15')
+
+    it '.today', ->
+      expect(@day.today).be.true
 
     it '.last.duration', ->
-      expect(@today.last.duration).eql 2 * hours
+      expect(@day.last.duration).eql 2 * hours
 
     it '.summary.productive', ->
-      expect(@today.summary.productive).eql 2.5 * hours
+      expect(@day.summary.productive).eql 2.5 * hours

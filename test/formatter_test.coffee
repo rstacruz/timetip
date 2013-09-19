@@ -10,10 +10,6 @@ describe 'Formatter', ->
       @f("Hello %s", "John").should.eql \
         "Hello John"
 
-    it '%i', ->
-      @f("There are %i people", 12).should.eql \
-        "There are 12 people"
-
     it '%s %s', ->
       @f("Hey %s & %s", "Tegan", "Sara").should.eql \
         "Hey Tegan & Sara"
@@ -21,6 +17,10 @@ describe 'Formatter', ->
     it '%s', ->
       @f("Hey %s & %s", "Tegan", "Sara").should.eql \
        "Hey Tegan & Sara"
+
+    it '%s int', ->
+      @f("Hey %s", 112).should.eql \
+       "Hey 112"
 
   describe 'floats', ->
     it '%f', ->
@@ -48,6 +48,10 @@ describe 'Formatter', ->
         "0000003.14"
 
   describe 'integers', ->
+    it '%i', ->
+      @f("There are %i people", 12).should.eql \
+        "There are 12 people"
+
     it '%d', ->
       @f("%d", 12).should.eql \
         "12"
@@ -71,6 +75,15 @@ describe 'Formatter', ->
     it '%+4i', ->
       @f("%+4i", 12).should.eql \
         " +12"
+
+  describe 'hash tables', ->
+    it '%(x)i', ->
+      @f("it's %(temp)i*C", {temp: 4}).should.eql \
+        "it's 4*C"
+
+    it 'multiple', ->
+      @f("from %(me)s to %(you)s", {me: 'R', you: 'K'}).should.eql \
+        "from R to K"
 
   describe 'char', ->
     it '%c 36', ->

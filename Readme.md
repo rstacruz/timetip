@@ -22,7 +22,7 @@ Deliciously-minimal time tracker for the command-line. Built on Node.js.
 
  - **Portable data.**  
  [Export your data](#exporting) to json or csv painlessly. You can also use it as an
- [npm package](#programmatic-usage) to parse out your files in Node.
+ [npm package](#programmatic-usage) to parse out your files.
 
 *(WIP, and works very well! see [feature roadmap](tasks.taskpaper) for progress
     on getting it feature-complete.)*
@@ -72,10 +72,10 @@ $ t
   september 18, 2013                                          total 1h 15m
 
   1:30pm     Jsconf email speakers                                     52m
-  2:22pm     ⋅⋅ coffee break                                            8m
+  2:22pm     ⋅ coffee break                                             8m
   2:30pm     Jsconf check ticket sales                               1h 5m
-  3:35pm     ⋅⋅ break                                                   3m
-  3:38pm  ✓  Errands grocery
+  3:35pm     ⋅ break                                                   14m
+  3:49pm  ✓  Errands grocery                                        ⋅⋅ now
 ~~~
 
 ## Catching up

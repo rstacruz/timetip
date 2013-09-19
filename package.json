@@ -1,5 +1,5 @@
 {
-  "name": "timewriter",
+  "name": "timetip",
   "description": "",
   "keywords": [
     ""
@@ -8,7 +8,7 @@
   "version": "0.1.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rstacruz/timewriter.git"
+    "url": "https://github.com/rstacruz/timetip.git"
   },
   "main": "index",
   "scripts": {
@@ -27,7 +27,7 @@
     "coffee-script": "1.6.x"
   },
   "bin": {
-    "twritter": "./bin/twritter"
+    "timetip": "./bin/timetip"
   },
   "license": "MIT"
 }

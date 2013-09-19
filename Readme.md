@@ -1,4 +1,4 @@
-timewriter
+timetip
 ==========
 
 Minimal time logs tracker. Runs on Node.js. Features:
@@ -13,7 +13,7 @@ anywhere Node can. (even Windows!)
  [human-readable format](#storage) that you can (should!) edit yourself.
 
  - **Natural language.** All commands are made in such a way as if you're 
- talking to timewriter, eg: `t stop`, `t Doing things 3 minutes ago`.
+ talking to timetip, eg: `t stop`, `t Doing things 3 minutes ago`.
 
  - **Portable data.** Aside from its human-readable format, you can [easily 
  export your data](#exporting) to json or csv.
@@ -22,14 +22,14 @@ anywhere Node can. (even Windows!)
 
 Install it via npm:
 
-    npm install -g timewriter
+    npm install -g timetip
 
 To make things easier, add this to your `~/.profile`. (optional)
 
-    alias t="timewriter --file ~/.timelogs"
+    alias t="timetip --file ~/.timelogs"
 
 *Note: the examples below assume that you have the alias above. If you choose 
-not to to use it, assume that the `t` below is `timewriter`.*
+not to to use it, assume that the `t` below is `timetip`.*
 
 ## Get started
 

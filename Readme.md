@@ -115,8 +115,7 @@ $ cat ~/.timelogs
 4:25pm = Errands grocery
 ~~~
 
-You can use the shortcut `t --edit` to open in in your default text editor 
-(*$EDITOR*).
+You can use `t edit` to open in in your default text editor ($EDITOR).
 
 ## Looking up entries
 

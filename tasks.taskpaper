@@ -7,9 +7,8 @@ Initial version:
 		- Do `tw edit` @done
 		- Better --help @done
 		- Empty @done
-		- Show total time
+		- Show total time @done
 		- Bug: showing yesterday gives you (+) on last item
-		- tw --quiet
 
 	Offsets:
 		- Handle '3m ago' @done

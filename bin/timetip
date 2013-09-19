@@ -37,7 +37,7 @@ cli
     p('  Other commands:');
     us('t show <date>          # show entries for the date');
     us('t show <date> - <end>  # show entries for date range');
-    us('t all                  # show all entries');
+    us('t show all             # show all entries');
     us('t dates                # show dates with time logs');
     us('t edit                 # open in text editor');
     p('');
@@ -85,13 +85,11 @@ extend(cli, {
   },
 
   query: function(date) {
-    if (!date) {
+    if (!date)
       this._die('invalid date.');
-    }
 
-    if (date.constructor === Array) {
+    if (date.constructor === Array)
       this._die('date ranges not supported yet. soon!');
-    }
 
     var data = this.getLogs(date);
     this.getReporter().day(data);
@@ -201,12 +199,12 @@ extend(cli, {
       openEditor(cli.file);
     else if (cmd === 'dates')
       this.dates();
-    else if (cmd === 'all')
-      this._die('date ranges not supported yet. soon!');
     else if (cmd === 'stop' || cmd === '-')
       this.log(SpecParser(rest, { mode: 'break' }));
     else if (cmd === 'start')
       this.log(SpecParser(rest));
+    else if (cmd === 'all' || args === 'show all')
+      this._die('`show all` not supported yet. soon!');
     else if (cmd === 'show' && rest === '')
       this.query(new Date());
     else if (cmd === 'show')

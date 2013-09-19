@@ -15,6 +15,7 @@ Initial version:
 	Querying:
 		A user should be able to look up their data.
 
+		- Make CLI parse out queries @done
 		- Show a single date (`t date`) @done
 		- Show a date range (`t date - date`)
 		- Show all entries (`t all`)

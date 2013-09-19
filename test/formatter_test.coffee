@@ -93,6 +93,11 @@ describe 'Formatter', ->
       @f("%c", 0x7f).should.eql \
         "\x7f"
 
+  describe 'hex', ->
+    it '%x', ->
+      @f("%x", 100).should.eql \
+        "64"
+
   describe 'ansi', ->
     it '%s', ->
       @f("%-10s", "Hey").should.eql \

@@ -6,3 +6,4 @@ chai.should()
 beforeEach -> global.sinon = require('sinon').sandbox.create()
 afterEach  -> global.sinon.restore()
 
+global.hours = 3600000

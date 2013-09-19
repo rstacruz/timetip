@@ -1,89 +1,11 @@
 require('./setup')
-hours = 3600000
 
 describe 'TimeLog', ->
   TimeLog = require('../lib/time_log')
 
   beforeEach ->
     sinon.useFakeTimers +new Date(2013, 8, 15, 18, 0)
-
-  beforeEach ->
     @log = new TimeLog()
-
-  describe 'sanity checks', ->
-    it '.raw', ->
-      expect(@log.raw).eql {}
-
-  describe 'toString()', ->
-    it 'empty', ->
-      expect(@log.toString()).eql ''
-
-    it 'with raw', ->
-      @log.raw = {a: b: 'c'}
-      expect(@log.toString().trim()).eql '''
-      [a]
-      b = c
-      '''
-
-  describe 'writing', ->
-    it 'push() of task', ->
-      @log.push
-        type: "task"
-        date: new Date(2013, 9, 15, 3, 0)
-        project: "test"
-        task: "hello"
-
-      expect(@log.toString().trim()).eql '''
-      [2013-10-15 tue]
-      3:00am = test hello
-      '''
-
-    it 'push() of break', ->
-      @log.push
-        type: "break"
-        date: new Date(2013, 9, 15, 3, 0)
-
-      expect(@log.toString().trim()).eql '''
-      [2013-10-15 tue]
-      3:00am = --
-      '''
-
-    it 'push() of break with reason', ->
-      @log.push
-        type: "break"
-        date: new Date(2013, 9, 15, 3, 0)
-        reason: "coffee"
-
-      expect(@log.toString().trim()).eql '''
-      [2013-10-15 tue]
-      3:00am = -- coffee --
-      '''
-
-  describe '.format()', ->
-    it '.format(date)', ->
-      d = @log.format(new Date(2013, 2, 4), 'date')
-      expect(d).eql '2013-03-04 mon'
-
-    it '.format(time)', ->
-      d = @log.format(new Date(2013, 2, 4, 15, 20), 'time')
-      expect(d).eql '3:20pm'
-
-  describe '.parseDate()', ->
-    it 'date', ->
-      d = @log.parseDate('2013-03-04 mon')
-      expect(d).eql new Date(2013, 2, 4)
-
-    it 'time, date', ->
-      d = @log.parseDate('3:20pm', new Date(2013, 2, 4))
-      expect(d).eql new Date(2013, 2, 4, 15, 20)
-
-    it 'invalid time', ->
-      d = @log.parseDate('#')
-      expect(d).eql null
-
-    it 'invalid time, date', ->
-      d = @log.parseDate('#', new Date(2013, 2, 4))
-      expect(d).eql null
 
   describe '.get() today', ->
     beforeEach ->
@@ -194,21 +116,3 @@ describe 'TimeLog', ->
           date: Date.create('2013-09-18 3:34pm')
 
     it.skip '.day() - skip invalid entries'
-
-  describe 'summaries', ->
-    beforeEach ->
-      @log.raw =
-        '#': {}
-        '2013-09-18 wed':
-          '3:00pm': 'Work stuff'
-          '5:00pm': '-- coffee --'
-          '5:30pm': 'Work stuff'
-          '6:30pm': '-- dinner --'
-
-      @s = @log.get(new Date(2013, 8, 18)).summary
-
-    it '.summary.productive', ->
-      expect(@s.productive).eql 3 * hours
-
-    it '.summary.total', ->
-      expect(@s.total).eql 3.5 * hours

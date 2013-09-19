@@ -103,7 +103,7 @@ describe 'TimeLog', ->
       expect(dates[1]).eql new Date(2013, 8, 17)
       expect(dates[2]).eql new Date(2013, 8, 18)
 
-    describe '.get() sceranios', ->
+    describe '.get() scenarios', ->
       it 'non-existent', ->
         @data = @log.get(new Date(2013, 8, 1))
         expect(@data).eql null

@@ -12,6 +12,9 @@ anywhere Node can. (even Windows!)
  - **Built for [humans][prog] who love text editors.** Time logs are stored in a 
  [human-readable format](#storage) that you can (should!) edit yourself.
 
+ - **Natural language.** All commands are made in such a way as if you're 
+ talking to timewriter, eg: `t stop`, `t Doing things 3 minutes ago`.
+
  - **Portable data.** Aside from its human-readable format, you can [easily 
  export your data](#exporting) to json or csv.
 
@@ -64,18 +67,19 @@ $ t
   2:30pm     Jsconf check ticket sales                               1h 5m
   3:35pm     ⋅⋅ break                                                   3m
   3:38pm  ✓  Errands grocery
-
-
 ~~~
 
 ## Catching up
 
 Oops. Did you start working and forget to run your timer? No problem, just use 
-add an offset in the format `+<minutes>`. Example:
+add an offset in the format `<duration> ago`, or specify the time. Example:
 
 ~~~ sh
 $ t Misc coffee 3m ago
 # ...starts "Misc coffee" as if you ran it 3 mins ago
+
+$ t Misc coffee 3 minutes ago
+# ...same
 
 $ t Misc coffee 11:52am
 # ...starts it at a specific time

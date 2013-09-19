@@ -27,14 +27,6 @@ Initial version:
 		- Json reporter @done
 		- Csv reporter
 
-	Misc features:
-		- Handle break after break @done
-		- Do `tw edit` @done
-		- Better --help @done
-		- Empty @done
-		- Show total time @done
-		- Bug: showing yesterday shows the last item as ongoing (+)
-
 	Stuff that's done
 	-----------------
 
@@ -60,3 +52,10 @@ Initial version:
 		- A better printf() @done
 		- Flag --no-color @done
 
+	Misc features:
+		- Handle break after break @done
+		- Do `tw edit` @done
+		- Better --help @done
+		- Empty @done
+		- Show total time @done
+		- Bug: showing yesterday shows the last item as ongoing (+) @done

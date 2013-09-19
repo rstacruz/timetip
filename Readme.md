@@ -1,7 +1,11 @@
 timetip
 =======
 
-Minimal time logs tracker. Runs on Node.js. Features:
+*(WIP: works, but see [feature roadmap][tasks.taskpaper] for progress on getting 
+    it feature-complete.)*
+
+Deliciously-minimal time tracker for the command-line. Built on Node.js.  
+Features:
 
  - **Friction-free time logging.** Just type `t shopping in the grocery` to 
  [start a task](#get-started).
@@ -22,7 +26,7 @@ anywhere Node can. (even Windows!)
 
 Install it via npm:
 
-    npm install -g timetip
+    npm install -g rstacruz/timetip
 
 To make things easier, add this to your `~/.profile`. (optional)
 

@@ -138,10 +138,11 @@ Or all:
 
 ## Exporting
 
-**Export your data** by using `t <date> --format json`:
+**Export your data** by using the alternative reporters (`--reporter`). The 
+*json* reporter exports your data as a Json object:
 
 ~~~ js
-$ t all --format json
+$ t all --reporter json
 {
   entries: [
     {
@@ -156,11 +157,11 @@ $ t all --format json
 }
 ~~~
 
-Or `--format csv` if you so please: (actually tab-separated; great for pasting 
+Or `--reporter csv` if you so please: (actually tab-separated; great for pasting 
     into Google Docs)
 
 ~~~ js
-$ t all --format csv
+$ t all --reporter csv
 task  2013-09-18     3:45pm  4:42pm   61000    Jsconf    email speakers
 task  2013-09-18     4:42pm  4:5Apm   43000    Jsconf    check tickets
 ~~~

@@ -5,9 +5,12 @@ var cli        = require('commander');
 var extend     = require('util')._extend;
 var _          = require('underscore');
 var f          = require('../lib/formatter');
+var T          = require('../lib/reporters/default').theme;
+var S          = require('../lib/reporters/default').symbols;
 var openEditor = require('../lib/helpers').openEditor;
 var printUsage = require('../lib/helpers').printUsage;
 var duration   = require('../lib/helpers').duration;
+var isToday    = require('../lib/helpers').isToday;
 
 cli
   .version(require('../package').version)
@@ -56,6 +59,7 @@ var TimeLog = require('../lib/time_log');
 var log = new TimeLog(cli.file);
 var reporter;
 
+
 extend(cli, {
   status: function() {
     var data = this.getLogs(new Date());
@@ -77,17 +81,25 @@ extend(cli, {
 
   /* ---- */
 
-  invalidUsage: function() {
-    console.error(""+cli._name+": invalid usage");
-    console.error("try `"+cli._name+" --help` for more info");
-    process.exit(26);
-  },
-
   noLogs: function(date) {
-    console.error(cli._name+": no logs for "+date.format('{yyyy}-{MM}-{dd}'));
     console.error('');
-    console.error("start one with: `"+cli._name+" <your task>`");
-    console.error("see `"+cli._name+" --help` for more info.");
+
+    if (isToday(date)) {
+      console.error(f(' %s  %s %s',
+        T.now(S.check),
+        'nothing logged yet today.'));
+      console.error(f('    start now! try: %s %s',
+        T.accent(cli._name),
+        T.accent("<what you're doing>")));
+      console.error('');
+      console.error("    see `"+cli._name+" --help` for more info.");
+    }
+    else
+      console.error(f(' %s  %s %s %s',
+        T.err(S.cross),
+        'nothing logged for',
+        T.accent(isToday(date) ? 'today' : date.format('{month} {dd}, {yyyy}'))));
+
     process.exit(0);
   },
 
@@ -150,8 +162,6 @@ extend(cli, {
       this.query(date);
     else if (spec = SpecParser(args))
       this.log(spec);
-    else
-      this.invalidUsage();
   }
 });
 

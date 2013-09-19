@@ -76,6 +76,14 @@ describe 'TimeLog', ->
       d = @log.parseDate('3:20pm', new Date(2013, 2, 4))
       expect(d).eql new Date(2013, 2, 4, 15, 20)
 
+    it 'invalid time', ->
+      d = @log.parseDate('#')
+      expect(d).eql null
+
+    it 'invalid time, date', ->
+      d = @log.parseDate('#', new Date(2013, 2, 4))
+      expect(d).eql null
+
   describe 'reading', ->
     beforeEach ->
       @log.raw =

@@ -37,6 +37,7 @@ cli
     p('  Other commands:');
     us('t show <date>          # show entries for the date');
     us('t show <date> - <end>  # show entries for date range');
+    us('t all                  # show all entries');
     us('t dates                # show dates with time logs');
     us('t edit                 # open in text editor');
     p('');
@@ -84,6 +85,14 @@ extend(cli, {
   },
 
   query: function(date) {
+    if (!date) {
+      this._die('invalid date.');
+    }
+
+    if (date.constructor === Array) {
+      this._die('date ranges not supported yet. soon!');
+    }
+
     var data = this.getLogs(date);
     this.getReporter().day(data);
   },
@@ -124,6 +133,12 @@ extend(cli, {
     console.error(f(' %s  %s', T.now(S.check), str));
   },
 
+  _die: function(str) {
+    this._tip('');
+    this._err(str);
+    process.exit(26);
+  },
+
   _err: function(str) {
     console.error(f(' %s  %s', T.err(S.cross), str));
   },
@@ -161,10 +176,8 @@ extend(cli, {
     var Reporters = require('..').reporters;
     var Reporter = Reporters[cli.reporter];
 
-    if (!Reporter) {
-      console.error(cli._name+": unknown reporter '"+cli.reporter+"'");
-      process.exit(26);
-    }
+    if (!Reporter)
+      this._die("unknown reporter `"+cli.reporter+"`");
 
     reporter = new Reporter(log);
     return reporter;
@@ -188,15 +201,19 @@ extend(cli, {
       openEditor(cli.file);
     else if (cmd === 'dates')
       this.dates();
-    else if (cmd === '')
-      this.status();
+    else if (cmd === 'all')
+      this._die('date ranges not supported yet. soon!');
     else if (cmd === 'stop' || cmd === '-')
       this.log(SpecParser(rest, { mode: 'break' }));
     else if (cmd === 'start')
       this.log(SpecParser(rest));
+    else if (cmd === 'show' && rest === '')
+      this.query(new Date());
     else if (cmd === 'show')
-      this.query(DateParser(rest) || new Date());
-    else if (date = DateParser(args))
+      this.query(DateParser.any(rest));
+    else if (cmd === '')
+      this.status();
+    else if (date = DateParser.any(args))
       this.query(date);
     else if (spec = SpecParser(args))
       this.log(spec);

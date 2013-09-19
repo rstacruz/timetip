@@ -1,4 +1,5 @@
 require('./setup')
+hours = 3600000
 
 describe 'TimeLog', ->
   TimeLog = require('../lib/time_log')
@@ -95,7 +96,7 @@ describe 'TimeLog', ->
       @today = @log.get('2013-09-15')
 
     it '.last.duration', ->
-      expect(@today.last.duration).eql 2 * 3600000
+      expect(@today.last.duration).eql 2 * hours
 
   describe 'reading', ->
     beforeEach ->
@@ -207,7 +208,7 @@ describe 'TimeLog', ->
       @s = @log.get(new Date(2013, 8, 18)).summary
 
     it '.summary.productive', ->
-      expect(@s.productive).eql 3 * 3600000
+      expect(@s.productive).eql 3 * hours
 
     it '.summary.total', ->
-      expect(@s.total).eql 3.5 * 3600000
+      expect(@s.total).eql 3.5 * hours

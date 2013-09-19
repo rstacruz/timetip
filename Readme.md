@@ -74,8 +74,14 @@ Oops. Did you start working and forget to run your timer? No problem, just use
 add an offset in the format `+<minutes>`. Example:
 
 ~~~ sh
-$ t Misc coffee +3
+$ t Misc coffee 3m ago
 # ...starts "Misc coffee" as if you ran it 3 mins ago
+
+$ t Misc coffee 11:52am
+# ...starts it at a specific time
+
+$ t stop 12:30pm
+# ...also works for `stop`
 ~~~
 
 ## Storage

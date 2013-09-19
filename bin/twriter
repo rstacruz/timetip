@@ -21,7 +21,6 @@ cli
 
     p('  Logging tasks:');
     us('t start <task>       # start working');
-    us('t start <task> +<N>  # start working, offset N minutes');
     us('t stop [<reason>]    # stop working');
     p('');
     p('  Viewing logs:');
@@ -123,7 +122,7 @@ require('util')._extend(cli, {
     else if (cmd === 'start')
       this.start(SpecParser(rest));
     else if (cmd === 'show')
-      this.query(DateParser(rest));
+      this.query(DateParser(rest) || new Date());
     else if (date = DateParser(args))
       this.query(date);
     else if (spec = SpecParser(args))

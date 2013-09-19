@@ -123,7 +123,7 @@ extend(cli, {
     else if (date = DateParser(args))
       this.query(date);
     else if (spec = SpecParser(args))
-      this.start(spec);
+      this.log(spec);
     else
       this.invalidUsage();
   }

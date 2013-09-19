@@ -64,7 +64,7 @@ extend(cli, {
   status: function() {
     var date = new Date();
     var data = this.getLogs(date);
-    if (!data.now) return this.noLogs(date);
+    if (!data.last) return this.noLogs(date);
 
     this.getReporter().day(data);
   },

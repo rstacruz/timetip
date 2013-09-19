@@ -1,5 +1,5 @@
 timetip
-==========
+=======
 
 Minimal time logs tracker. Runs on Node.js. Features:
 
@@ -196,6 +196,27 @@ task  2013-09-18     4:42pm  4:5Apm   43000    Jsconf    check tickets
     tw yesterday                show entries from yesterday
 ~~~
 
+## Programmatic usage
+
+Want to easily parse time logs? Use it as a Node.js module. See the 
+[source][time_log.js] for more details.
+
+~~~ js
+var TimeLog = require('timetip').TimeLog;
+
+var log = new TimeLog('~/.timelogs');
+
+var day = log.get('yesterday');
+var day = log.get(new Date(2013, 8, 2));
+
+day.entries
+day.last
+day.summary
+~~~
+
+## Acknowledgements
+
+MIT license
+
 [prog]: http://en.wikipedia.org/wiki/Programmer
-
-
+[time_log.js]: lib/time_log.js

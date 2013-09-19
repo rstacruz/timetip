@@ -1,6 +1,36 @@
 Initial version:
-	Recording time:
-		- Record to ~/.timelogs/timelog @done
+
+	Stuff to do
+	-----------
+
+	Offsets:
+		This is the feature that let's do insert tasks in the past,
+		such as `t Shopping 12 mins ago`.
+
+		- Handle '3m ago' @done
+		- Handle '11:35pm' @done
+		- Insert at proper position
+		- Highlight it in the reporter
+	
+	Querying:
+		A user should be able to look up their data.
+
+		- Show a single date (`t date`) @done
+		- Show a date range (`t date - date`)
+		- Show all entries (`t all`)
+		- Log#range()
+
+	Other reporters:
+		A user should be able to export their data to any format.
+
+		- Json reporter
+		- Csv reporter
+
+	Programmatic usage:
+		A user should be able to use parse time logs in Node.js through an
+		npm package.
+
+		- Expose TimeLog in index.js @done
 
 	Misc features:
 		- Handle break after break @done
@@ -8,32 +38,24 @@ Initial version:
 		- Better --help @done
 		- Empty @done
 		- Show total time @done
-		- Bug: showing yesterday gives you (+) on last item
+		- Bug: showing yesterday shows the last item as ongoing (+)
 
-	Offsets:
-		- Handle '3m ago' @done
-		- Handle '11:35pm' @done
-		- Insert at proper position
-		- Highlight it in the reporter
-	
-	Querying:
-		- tw date @done
-		- tw date - date
-		- tw all
-		- Log.range()
+	Stuff that's done
+	-----------------
+
+	Recording time:
+		- Record to ~/.timelogs/timelog @done
 
 	Reporter feature:
-		- Log.get() @done
-		- Make `tw date` (et al) delegate to a reporter @done
+		Refactor the display to delegate to 'reporters' that have a
+		standardized interface.
 
-	Other reporters:
-		- json
-		- csv
+		- Implement Log.get() @done
+		- Make `t date` (et al) delegate to a reporter @done
 
 	No color support:
+		You should be able to do `t --no-color` to hide any fancyness.
+
 		- A better printf() @done
 		- Flag --no-color @done
-
-	Undoing:
-		- tw --undo
 

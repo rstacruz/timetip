@@ -13,7 +13,6 @@ var duration   = require('../lib/helpers').duration;
 cli
   .version(require('../package').version)
   .option('-f, --file <path>', 'the data file [~/.timelogs]', '~/.timelogs')
-  .option('--edit', 'open the data file in a text editor')
   .option('--no-color', 'disable colors', true)
   .on('--help', function() {
     if (!cli.color) process.env.NO_COLOR = true;
@@ -26,12 +25,13 @@ cli
     us('t start <task>       # start working');
     us('t stop [<reason>]    # stop working');
     p('');
-    p('  Viewing logs:');
-    us('t                      # show today');
+    p('  Other commands:');
     us('t show <date>          # show entries for the date');
     us('t show <date> - <end>  # show entries for date range');
+    us('t edit                 # open in text editor');
     p('');
     p('  Shortcuts:');
+    us('t                    # show today (alias: `show today`)');
     us('t <task>             # start working (alias: `start`)');
     us('t - [<reason>]       # stop working (alias: `stop`)');
     us('t <date>             # show entries for the date (alias: `show`)');
@@ -39,7 +39,7 @@ cli
     p('  Examples:');
     ex('t Myproject stuff    # start working on "Myproject stuff"');
     ex('t stop               # stop the current task');
-    ex('t stop lunch break   # stop the current task, and log the reason');
+    ex('t stop lunch break   # stop the current task and log the reason');
     p('');
     ex('t Sept 2             # show entries september 2');
     ex('t 4 days ago         # show entries from 4 days ago');
@@ -116,7 +116,7 @@ extend(cli, {
     if (!cli.color)
       process.env.NO_COLOR = true;
 
-    if (cli.edit)
+    if (cmd === 'edit')
       openEditor(cli.file);
     else if (cmd === '')
       this.status();

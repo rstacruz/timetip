@@ -16,7 +16,7 @@ describe 'TimeLog', ->
           '4:00pm': '--'
         '2013-09-18 wed':
           '3:14pm': 'Work stuff'
-          '3:24pm': '-- coffee --'
+          '3:24pm': '-- coffee'
           '3:34pm': 'Work make music'
 
     it '.dates()', ->

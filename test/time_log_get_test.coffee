@@ -11,13 +11,13 @@ describe 'TimeLog.get()', ->
     @log.raw =
       '2013-09-14 sat':
         '1:00pm': 'Things'
-        '3:30pm': '-- coffee --'
+        '3:30pm': '-- coffee'
         '4:00pm': 'Work'
         '5:00pm': 'Etc'
 
       '2013-09-15 sun':
         '3:00pm': 'Work stuff'
-        '3:30pm': '-- coffee --'
+        '3:30pm': '-- coffee'
         '4:00pm': 'Work make music'
 
   describe 'yesterday', ->

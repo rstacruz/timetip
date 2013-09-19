@@ -8,6 +8,7 @@ Initial version:
 		- Better --help @done
 		- Empty @done
 		- Show total time
+		- Bug: showing yesterday gives you (+) on last item
 		- Offsets
 	
 	Querying:
@@ -15,6 +16,9 @@ Initial version:
 		- tw date - date
 		- tw all
 		- Log.range()
+
+	Undoing:
+		- tw --undo
 
 	Reporter feature:
 		- Log.get() @done

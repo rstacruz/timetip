@@ -53,7 +53,7 @@ var Reporter   = require('../lib/reporters/default');
 var log = new TimeLog(cli.file);
 var reporter = new Reporter(log);
 
-require('util')._extend(cli, {
+extend(cli, {
   status: function() {
     var data = this.getLogs(new Date());
     reporter.day(data);
@@ -65,9 +65,8 @@ require('util')._extend(cli, {
   },
 
   start: function(spec) {
-    var date = new Date();
-    log.push(extend(spec, { date: date })).save();
-    reporter.day(log.get(date), { added: true });
+    log.push(spec).save();
+    reporter.day(log.get(spec.date), { added: true });
   },
 
   stop: function(reason) {

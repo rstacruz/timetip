@@ -169,37 +169,40 @@ task  2013-09-18     4:42pm  4:5Apm   43000    Jsconf    check tickets
 ## --help
 
 ~~~ sh
-  Usage: tw [options]
+  Usage: timetip [options]
 
   Options:
 
-    -h, --help         output usage information
-    -V, --version      output the version number
-    -f, --file <path>  the data file [~/.timelogs]
-    --edit             open the data file in a text editor
+    -h, --help          output usage information
+    -V, --version       output the version number
+    -f, --file <path>   the data file [~/.timelogs]
+    -R, --reporter <r>  use reporter (default|json)
+    --no-color          disable colors
 
   Logging tasks:
-    tw start <task>             start working
-    tw start <task> +<n>        start working, offset N minutes
-    tw stop [<reason>]          stop working
+    timetip start <task>           start working
+    timetip stop [<reason>]        stop working
 
-  Viewing logs:
-    tw                          show today
-    tw show <date>              show entries for the date
-    tw show <date> - <end>      show entries for date range
+  Other commands:
+    timetip show <date>            show entries for the date
+    timetip show <date> - <end>    show entries for date range
+    timetip edit                   open in text editor
 
   Shortcuts:
-    tw <task>                   start working (alias: start)
-    tw <date>                   show entries for the date (alias: show)
+    timetip                        show today (alias: show today)
+    timetip <task>                 start working (alias: start)
+    timetip - [<reason>]           stop working (alias: stop)
+    timetip <date>                 show entries for the date (alias: show)
 
   Examples:
-    tw myproject stuff          start working on "Myproject stuff"
-    tw stop                     stop the current task
-    tw stop lunch break         stop the current task, and log the reason
+    timetip myproject stuff        start working on "myproject stuff"
+    timetip meeting 3m ago         start working on "meeting" 3 minutes ago
+    timetip stop                   stop the current task
+    timetip stop lunch break       stop the current task and log the reason
 
-    tw sept 2                   show entries september 2
-    tw 4 days ago               show entries from 4 days ago
-    tw yesterday                show entries from yesterday
+    timetip sept 2                 show entries september 2
+    timetip 4 days ago             show entries from 4 days ago
+    timetip yesterday              show entries from yesterday
 ~~~
 
 ## Programmatic usage

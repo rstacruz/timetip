@@ -13,6 +13,7 @@ var duration   = require('../lib/helpers').duration;
 cli
   .version(require('../package').version)
   .option('-f, --file <path>', 'the data file [~/.timelogs]', '~/.timelogs')
+  .option('-R, --reporter <r>', 'use reporter (default|json)', 'default')
   .option('--no-color', 'disable colors', true)
   .on('--help', function() {
     if (!cli.color) process.env.NO_COLOR = true;
@@ -47,25 +48,24 @@ cli
     ex('t Yesterday          # show entries from yesterday');
   });
 
-var TimeLog    = require('../lib/time_log');
-var Reporter   = require('../lib/reporters/default');
+var TimeLog = require('../lib/time_log');
 
 /*
  * The controller
  */
 
 var log = new TimeLog(cli.file);
-var reporter = new Reporter(log);
+var reporter;
 
 extend(cli, {
   status: function() {
     var data = this.getLogs(new Date());
-    reporter.day(data);
+    this.getReporter().day(data);
   },
 
   query: function(date) {
     var data = this.getLogs(date);
-    reporter.day(data);
+    this.getReporter().day(data);
   },
 
   // Start or stop
@@ -73,7 +73,7 @@ extend(cli, {
     if (!spec) return this.invalidUsage();
 
     log.push(spec).save();
-    reporter.day(log.get(spec.date), { added: true });
+    this.getReporter().day(log.get(spec.date), { added: true });
   },
 
   /* ---- */
@@ -101,6 +101,26 @@ extend(cli, {
     var data = log.get(date);
     if (!data) return this.noLogs(date);
     return data;
+  },
+
+  /**
+   * Returns the reporter asked for in `--reporter`
+   * @private
+   */
+
+  getReporter: function() {
+    if (reporter) return reporter;
+
+    var Reporters = require('..').reporters;
+    var Reporter = Reporters[cli.reporter];
+
+    if (!Reporter) {
+      console.error(cli._name+": unknown reporter '"+cli.reporter+"'");
+      process.exit(26);
+    }
+
+    reporter = new Reporter(log);
+    return reporter;
   },
 
   run: function(argv) {

@@ -23,4 +23,10 @@ bar using:
 set -g status-right '  #(cat ~/.timetip_stat)  '
 ~~~
 
+## Vim
+
+Want to syntax-highlight your time logs properly? Add this on top of your 
+`~/.timelogs`:
+
+    # = vim:ft=dosini
 

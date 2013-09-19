@@ -23,7 +23,8 @@ Initial version:
 	Other reporters:
 		A user should be able to export their data to any format.
 
-		- Json reporter
+		- Refactor to look up custom reporters @done
+		- Json reporter @done
 		- Csv reporter
 
 	Misc features:

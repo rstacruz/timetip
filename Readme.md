@@ -220,7 +220,9 @@ day.summary
 
 ## Acknowledgements
 
-MIT license
+© 2013, Rico Sta. Cruz. Released under the [MIT License].
+
+[MIT License]: http://www.opensource.org/licenses/mit-license.php
 
 [prog]: http://en.wikipedia.org/wiki/Programmer
 [time_log.js]: lib/time_log.js

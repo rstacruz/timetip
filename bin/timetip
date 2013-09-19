@@ -37,6 +37,7 @@ cli
     p('  Other commands:');
     us('t show <date>          # show entries for the date');
     us('t show <date> - <end>  # show entries for date range');
+    us('t dates                # show dates with time logs');
     us('t edit                 # open in text editor');
     p('');
     p('  Examples:');
@@ -67,6 +68,21 @@ extend(cli, {
     this.getReporter().day(data);
   },
 
+  dates: function() {
+    var r = this.getReporter();
+    if (!r.dates) return;
+
+    var dates = this.getLog().dates();
+    if (dates.length === 0) {
+      this._tip('');
+      this._err(f('no entries logged yet.'));
+      this.gettingStarted();
+      return;
+    }
+
+    r.dates(dates);
+  },
+
   query: function(date) {
     var data = this.getLogs(date);
     this.getReporter().day(data);
@@ -86,22 +102,34 @@ extend(cli, {
     console.error('');
 
     if (isToday(date)) {
-      console.error(f(' %s  %s %s',
-        T.now(S.check),
-        'nothing logged yet today.'));
-      console.error(f('    start now! try: %s %s',
-        T.accent(cli._name),
-        T.accent("<what you're doing>")));
-      console.error('');
-      console.error("    see `"+cli._name+" --help` for more info.");
+      this._ok ('nothing logged yet today.');
+      this.gettingStarted();
     }
     else
-      console.error(f(' %s  %s %s %s',
-        T.err(S.cross),
-        'nothing logged for',
+      this._err(f('nothing logged for %s',
         T.accent(isToday(date) ? 'today' : date.format('{month} {dd}, {yyyy}'))));
 
     process.exit(0);
+  },
+
+  gettingStarted: function() {
+    this._tip(f('start now! try: %s %s',
+      T.accent(cli._name),
+      T.accent("<what you're doing>")));
+    this._tip('');
+    this._tip("see `"+cli._name+" --help` for more info.");
+  },
+
+  _ok: function(str) {
+    console.error(f(' %s  %s', T.now(S.check), str));
+  },
+
+  _err: function(str) {
+    console.error(f(' %s  %s', T.err(S.cross), str));
+  },
+
+  _tip: function(str) {
+    console.error('    '+str);
   },
 
   /**
@@ -158,6 +186,8 @@ extend(cli, {
 
     if (cmd === 'edit')
       openEditor(cli.file);
+    else if (cmd === 'dates')
+      this.dates();
     else if (cmd === '')
       this.status();
     else if (cmd === 'stop' || cmd === '-')

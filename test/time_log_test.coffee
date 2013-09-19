@@ -7,19 +7,6 @@ describe 'TimeLog', ->
     sinon.useFakeTimers +new Date(2013, 8, 15, 18, 0)
     @log = new TimeLog()
 
-  describe '.get() today', ->
-    beforeEach ->
-      @log.raw =
-        '2013-09-15 sun':
-          '3:00pm': 'Work stuff'
-          '3:30pm': '-- coffee --'
-          '4:00pm': 'Work make music'
-
-      @today = @log.get('2013-09-15')
-
-    it '.last.duration', ->
-      expect(@today.last.duration).eql 2 * hours
-
   describe 'reading', ->
     beforeEach ->
       @log.raw =

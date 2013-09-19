@@ -23,9 +23,6 @@ Initial version:
 		- tw all
 		- Log.range()
 
-	Undoing:
-		- tw --undo
-
 	Reporter feature:
 		- Log.get() @done
 		- Make `tw date` (et al) delegate to a reporter @done
@@ -35,5 +32,9 @@ Initial version:
 		- csv
 
 	No color support:
-		- A better printf()
-		- Flag --no-color
+		- A better printf() @done
+		- Flag --no-color @done
+
+	Undoing:
+		- tw --undo
+

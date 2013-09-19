@@ -6,26 +6,28 @@ Deliciously-minimal time tracker for the command-line. Built on Node.js.
 ![Screenshot](https://github.com/rstacruz/timetip/raw/master/support/screenshot.png)
 
  - **Frictionless time logging.**  
- [Start a task](#get-started) by typing `t shopping in the grocery`.
+ [>](#get-started) Start by typing `t shopping in the grocery`.
 
  - **Everything in the terminal.**  
-  [It's a Node.js command-line app](#install) that runs anywhere Node can.
+  [>](#install) It's a Node.js command-line app that runs anywhere Node can.
   Even Windows!
 
  - **Natural language parsing.**   
- [All commands](#--help) are made in such a way as if you're talking to timetip.  
+ [>](#--help) All commands are composed in such a way as if you're talking to timetip.  
  Examples: `t stop` or `t Meeting 3 minutes ago`.
 
  - **For humans who love text editors.**  
- [Time logs](#storage) are stored in a simple *human-editable* format that you're
+ [>](#storage) Logs are stored in a simple human-editable format that you're
  encouraged to edit yourself.
 
  - **Portable data.**  
- [Export your data](#exporting) to json or csv painlessly. You can also use it as an
+ [>](#exporting) Export to json or csv painlessly. You can also use it as an
  [npm package](#programmatic-usage) to parse out your files.
 
-*(WIP, and works very well! see [feature roadmap](tasks.taskpaper) for progress
-    on getting it feature-complete.)*
+![Travis Status](https://travis-ci.org/rstacruz/timetip.png)
+
+*(WIP, and works very well! see [roadmap](tasks.taskpaper) for progress on
+    getting it feature-complete.)*
 
 ## Install
 

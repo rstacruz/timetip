@@ -37,7 +37,8 @@ cli
     us('t <date>             # show entries for the date (alias: `show`)');
     p('');
     p('  Examples:');
-    ex('t Myproject stuff    # start working on "Myproject stuff"');
+    ex('t Myproject stuff    # start working on "myproject stuff"');
+    ex('t Meeting 3m ago     # start working on "meeting" 3 minutes ago');
     ex('t stop               # stop the current task');
     ex('t stop lunch break   # stop the current task and log the reason');
     p('');

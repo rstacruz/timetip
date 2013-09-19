@@ -76,7 +76,12 @@ describe 'Formatter', ->
       @f("%+4i", 12).should.eql \
         " +12"
 
-  describe 'hash tables', ->
+  describe 'numeric index', ->
+    it '%1$s', ->
+      @f("i got %2$s and %1$s", 'chips', 'pizza').should.eql \
+        "i got pizza and chips"
+
+  describe 'string index', ->
     it '%(x)i', ->
       @f("it's %(temp)i*C", {temp: 4}).should.eql \
         "it's 4*C"

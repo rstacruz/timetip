@@ -9,7 +9,12 @@ Initial version:
 		- Empty @done
 		- Show total time
 		- Bug: showing yesterday gives you (+) on last item
-		- Offsets
+
+	Offsets:
+		- Handle '3m ago' @done
+		- Handle '11:35pm' @done
+		- Insert at proper position
+		- Highlight it in the reporter
 	
 	Querying:
 		- tw date @done
@@ -23,9 +28,6 @@ Initial version:
 	Reporter feature:
 		- Log.get() @done
 		- Make `tw date` (et al) delegate to a reporter @done
-			reporter(mode, data)
-			reporter('today', data)
-			reporter('range', data)
 
 	Other reporters:
 		- json

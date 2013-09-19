@@ -9,7 +9,7 @@ Initial version:
 
 		- Handle '3m ago' @done
 		- Handle '11:35pm' @done
-		- Insert at proper position
+		- Insert at proper position @done
 		- Highlight it in the reporter
 	
 	Querying:

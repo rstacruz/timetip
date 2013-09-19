@@ -4,7 +4,7 @@ describe 'TimeLog', ->
   TimeLog = require('../lib/time_log')
 
   beforeEach ->
-    sinon.useFakeTimers +new Date(2010, 9, 15)
+    sinon.useFakeTimers +new Date(2013, 8, 15, 18, 0)
 
   beforeEach ->
     @log = new TimeLog()
@@ -28,33 +28,33 @@ describe 'TimeLog', ->
     it 'push() of task', ->
       @log.push
         type: "task"
-        date: new Date(2010, 9, 15, 3, 0)
+        date: new Date(2013, 9, 15, 3, 0)
         project: "test"
         task: "hello"
 
       expect(@log.toString().trim()).eql '''
-      [2010-10-15 fri]
+      [2013-10-15 tue]
       3:00am = test hello
       '''
 
     it 'push() of break', ->
       @log.push
         type: "break"
-        date: new Date(2010, 9, 15, 3, 0)
+        date: new Date(2013, 9, 15, 3, 0)
 
       expect(@log.toString().trim()).eql '''
-      [2010-10-15 fri]
+      [2013-10-15 tue]
       3:00am = --
       '''
 
     it 'push() of break with reason', ->
       @log.push
         type: "break"
-        date: new Date(2010, 9, 15, 3, 0)
+        date: new Date(2013, 9, 15, 3, 0)
         reason: "coffee"
 
       expect(@log.toString().trim()).eql '''
-      [2010-10-15 fri]
+      [2013-10-15 tue]
       3:00am = -- coffee --
       '''
 
@@ -83,6 +83,19 @@ describe 'TimeLog', ->
     it 'invalid time, date', ->
       d = @log.parseDate('#', new Date(2013, 2, 4))
       expect(d).eql null
+
+  describe '.get() today', ->
+    beforeEach ->
+      @log.raw =
+        '2013-09-15 sun':
+          '3:00pm': 'Work stuff'
+          '3:30pm': '-- coffee --'
+          '4:00pm': 'Work make music'
+
+      @today = @log.get('2013-09-15')
+
+    it '.last.duration', ->
+      expect(@today.last.duration).eql 2 * 3600000
 
   describe 'reading', ->
     beforeEach ->

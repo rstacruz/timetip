@@ -26,6 +26,7 @@ Initial version:
 		- Refactor to look up custom reporters @done
 		- Json reporter @done
 		- Csv reporter
+		- Implement `.get(date).last.duration` 
 
 	Stuff that's done
 	-----------------

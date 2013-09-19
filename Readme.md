@@ -5,7 +5,7 @@ Deliciously-minimal time tracker for the command-line. Built on Node.js.
 
 ![Screenshot](https://github.com/rstacruz/timetip/raw/master/support/screenshot.png)
 
- - **Friction-free time logging.**  
+ - **Frictionless time logging.**  
  [Start a task](#get-started) by typing `t shopping in the grocery`.
 
  - **Everything in the terminal.**  

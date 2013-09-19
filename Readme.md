@@ -11,12 +11,12 @@ Features:
 anywhere Node can. (even Windows!)
 
  - **Built for [humans][prog]** who love text editors. Time logs are stored in a 
- [human-readable format](#storage) that you can (should!) edit yourself.
+ [human-editable format](#storage) that you can (should!) edit yourself.
 
  - **Natural language parsing.** All commands are made in such a way as if 
  you're talking to timetip, eg: `t stop`, `t Doing things 3 minutes ago`.
 
- - **Portable data.** Aside from its human-readable format, you can [easily 
+ - **Portable data.** Aside from its human-editable format, you can [easily 
  export your data](#exporting) to json or csv. You can also use it as an [npm 
  package](#programmatic-usage) to parse out your files in Node.
 

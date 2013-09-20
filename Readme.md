@@ -205,7 +205,7 @@ task  2013-09-18     4:42pm  4:5Apm   43000    Jsconf    check tickets
     timetip stop                   stop the current task
     timetip stop lunch break       stop the current task and log the reason
 
-    timetip sept 2                 show entries september 2
+    timetip sep 2                  show entries from a day
     timetip 4 days ago             show entries from 4 days ago
     timetip yesterday              show entries from yesterday
 ~~~

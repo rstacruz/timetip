@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "underscore": "1.5.x",
-    "sugar": "1.4.x",
     "ini": "1.1.x",
     "commander": "2.0.x"
   },

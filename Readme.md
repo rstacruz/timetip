@@ -24,7 +24,7 @@ Deliciously-minimal time tracker for the command-line. Built on Node.js.
  [>](#exporting) Export to json or csv painlessly. You can also use it as an
  [npm package](#programmatic-usage) to parse out your files.
 
-![Travis Status](https://travis-ci.org/rstacruz/timetip.png)
+[![Status](https://travis-ci.org/rstacruz/timetip.png)](https://travis-ci.org/rstacruz/timetip)
 
 *(WIP, and works very well! see [roadmap](tasks.taskpaper) for progress on
     getting it feature-complete.)*

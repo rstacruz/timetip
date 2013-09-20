@@ -43,8 +43,8 @@ small bash script:
 ~~~ sh
 # ~/.profile
 alias t="timetap"
-alias t.home="ln -nfs ~/Dropbox/Timesheets/home.txt ~/.timelogs"
-alias t.work="ln -nfs ~/Dropbox/Timesheets/work.txt ~/.timelogs"
+alias t.home="ln -nfs ~/Dropbox/Timesheets/home.txt ~/.timelogs ; t"
+alias t.work="ln -nfs ~/Dropbox/Timesheets/work.txt ~/.timelogs ; t"
 ~~~
 
 You can now simply:

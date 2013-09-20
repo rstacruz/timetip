@@ -47,7 +47,8 @@ cli
     ex('t stop               # stop the current task');
     ex('t stop lunch break   # stop the current task and log the reason');
     p('');
-    ex('t Sept 2             # show entries september 2');
+    ex('t Sep 2              # show entries from a day');
+    ex('t May 5 - May 10     # show entries a range');
     ex('t 4 days ago         # show entries from 4 days ago');
     ex('t Yesterday          # show entries from yesterday');
   });

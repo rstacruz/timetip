@@ -37,6 +37,10 @@ Initial version:
 
 		- Tests for DefaultReporter
 
+	Misc/bugs:
+		- Show the last 'break' for non-today display
+			(ie: I'd want to see when I left the office)
+
 	Stuff that's done
 	-----------------
 

@@ -15,11 +15,14 @@ Initial version:
 	Querying:
 		A user should be able to look up their data.
 
-		- Make CLI parse out queries @done
-		- Show a single date (`t date`) @done
-		- Show a date range (`t date - date`)
-		- Show all entries (`t all`)
-		- Log#range()
+		UI:
+			- Make CLI parse out queries @done
+			- Show a single date (`t date`) @done
+			- Show a date range (`t date - date`)
+			- Show all entries (`t all`)
+		Model:
+			- Log#dates([from,to])
+			- Log#range()
 
 	Other reporters:
 		A user should be able to export their data to any format.
@@ -28,6 +31,11 @@ Initial version:
 		- Json reporter @done
 		- Csv reporter
 		- Implement `.get(date).last.duration` @done
+
+	Tests:
+		Models are heavily-tested, but view stuff aren't much.
+
+		- Tests for DefaultReporter
 
 	Stuff that's done
 	-----------------

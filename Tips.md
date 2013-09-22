@@ -5,18 +5,13 @@ Tmux status bar
 
 There's a crappy Tmux status bar reporter using:
 
-    $ t -R tmux > ~/.timetip_stat
+    $ t -R tmux
 
-And you can run it continuously (save this as a bash script):
-
-    while true; do t -R tmux > ~/.timetip_stat; sleep 30; done
-
-When that script is running continuously, you can show it in your Tmux status 
-bar using:
+You can show it in your Tmux status bar using:
 
 ~~~ sh
 # ~/.tmux.conf
-set -g status-right '  #(cat ~/.timetip_stat)  '
+set -g status-right '  #(timetip -R tmux)  '
 ~~~
 
 Vim highlighting

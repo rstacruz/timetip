@@ -38,7 +38,6 @@ describe 'DefaultReporter', ->
         ]
 
     it 'lines count', ->
-      console.log @out
       expect(@out.split('\n').length).eql 3
 
     it 'year heading', ->

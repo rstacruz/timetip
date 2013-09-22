@@ -27,6 +27,20 @@ describe 'SpecParser', ->
       task: 'world'
       date: new Date(2010, 9, 15, 3, 0)
 
+  it 'time shorthand', ->
+    expect(SpecParser('hello world 3am')).eql
+      type: 'task'
+      project: 'hello'
+      task: 'world'
+      date: new Date(2010, 9, 15, 3, 0)
+
+  it 'time at beginning', ->
+    expect(SpecParser('3:00am hello world')).eql
+      type: 'task'
+      project: 'hello'
+      task: 'world'
+      date: new Date(2010, 9, 15, 3, 0)
+
   it '3 minutes ago', ->
     expect(SpecParser('hello world 3 minutes ago')).eql
       type: 'task'

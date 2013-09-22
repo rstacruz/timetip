@@ -25,7 +25,7 @@ describe 'TimeLog.push', ->
 
     expect(@log.toString().trim()).eql '''
     [2013-10-15 tue]
-    3:00am =
+    3:00am = -
     '''
 
   it 'push() of break with reason', ->

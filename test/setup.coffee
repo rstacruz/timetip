@@ -10,12 +10,10 @@ global.hours = 3600000
 
 global.capture = (fn) ->
   out = ''
-  err = ''
-  sinon.stub console, 'log',   (s) => out += "#{s}\n"
-  sinon.stub console, 'error', (s) => err += "#{s}\n"
+  aspect = 'log'
+  sinon.stub console, aspect, (s) => out += "#{s}\n"
   try
     fn()
-    return [out, err]
+    return out
   finally
-    console.log.restore()
-    console.error.restore()
+    console[aspect].restore()

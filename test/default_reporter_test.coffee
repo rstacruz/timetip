@@ -2,35 +2,24 @@ require('./setup')
 
 describe 'DefaultReporter', ->
   Reporter = require('../lib/reporters/default')
+  TimeLog = require('../lib/time_log')
+
   bold = Reporter.theme.bold
   mute = Reporter.theme.mute
   red  = Reporter.theme.err
 
   beforeEach ->
-    @reporter = new Reporter()
+    @log = new TimeLog()
+    @reporter = new Reporter(@log)
 
   it 'sanity', ->
     expect(Reporter).be.function
     expect(@reporter.day).be.function
     expect(Reporter.description).be.string
 
-  it '.day()', ->
-    [out, err] = capture =>
-      @reporter.day
-        date: new Date(2013, 8, 18)
-        entries: [
-          {
-            type: 'task'
-            date: new Date(2013, 8, 18, 4, 0)
-            endDate: new Date(2013, 8, 18, 5, 25)
-          }
-        ]
-        summary:
-          productive: (1 + 25/60) * 3600000
-
   describe '.dates()', ->
     beforeEach ->
-      [@out, @err] = capture =>
+      @out = capture =>
         @reporter.dates [
           new Date(2013, 8, 17)
           new Date(2013, 8, 18)

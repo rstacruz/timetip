@@ -198,7 +198,7 @@ extend(cli, {
 
     if (cmd === 'edit')
       openEditor(cli.file);
-    else if (cmd === 'dates')
+    else if (cmd === 'dates' || cmd === 'days')
       this.dates();
     else if (cmd === 'stop' || cmd === '-')
       this.log(SpecParser(rest, { mode: 'break' }));

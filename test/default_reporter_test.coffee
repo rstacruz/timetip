@@ -11,6 +11,7 @@ describe 'DefaultReporter', ->
   beforeEach ->
     @log = new TimeLog()
     @reporter = new Reporter(@log)
+    sinon.useFakeTimers +new Date(2013, 8, 22)
 
   it 'sanity', ->
     expect(Reporter).be.function
@@ -25,9 +26,10 @@ describe 'DefaultReporter', ->
           new Date(2013, 8, 18)
           new Date(2013, 8, 19)
         ]
+      @lines = @out.split('\n')
 
     it 'lines count', ->
-      expect(@out.split('\n').length).eql 3
+      expect(@lines.length).eql 3
 
     it 'year heading', ->
       expect(@out).include '2013'
@@ -42,3 +44,9 @@ describe 'DefaultReporter', ->
 
     it 'dates (not)', ->
       expect(@out).not.include '21'
+
+    it 'day count', ->
+      s = @lines[1]
+        .replace(/\x1b\[.*?m/g, '')
+        .split(/\s+/)
+      expect(s.length).eql 25

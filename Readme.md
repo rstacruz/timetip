@@ -30,7 +30,7 @@ Deliciously-minimal time tracker for the command-line. Built on Node.js.
 
 Install it via npm:
 
-    npm install -g rstacruz/timetip
+    npm install -g timetip
 
 To make things easier, add this to your `~/.profile`. (optional)
 

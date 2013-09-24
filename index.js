@@ -4,5 +4,9 @@ module.exports = {
     'default': require('./lib/reporters/default'),
     'json': require('./lib/reporters/json'),
     'tmux': require('./lib/reporters/tmux')
+  },
+  utils: {
+    formatter: require('./lib/formatter'),
+    color: require('./lib/color')
   }
 };

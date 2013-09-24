@@ -21,13 +21,10 @@ Deliciously-minimal time tracker for the command-line. Built on Node.js.
  encouraged to edit yourself.
 
  - **Portable data.**  
- [>](#exporting) Export to json or csv painlessly. You can also use it as an
+ [>](#exporting) Export to json painlessly. You can also use it as an
  [npm package](#programmatic-usage) to parse out your files.
 
 [![Status](https://travis-ci.org/rstacruz/timetip.png)](https://travis-ci.org/rstacruz/timetip)
-
-*(WIP, and works very well! see [roadmap](tasks.taskpaper) for progress on
-    getting it feature-complete.)*
 
 ## Install
 
@@ -160,15 +157,6 @@ $ t all --reporter json
     }, ...
   ]
 }
-~~~
-
-Or `--reporter csv` if you so please: (actually tab-separated; great for pasting 
-    into Google Docs)
-
-~~~ js
-$ t all --reporter csv
-task  2013-09-18     3:45pm  4:42pm   61000    Jsconf    email speakers
-task  2013-09-18     4:42pm  4:5Apm   43000    Jsconf    check tickets
 ~~~
 
 ## --help

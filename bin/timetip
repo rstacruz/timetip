@@ -89,11 +89,16 @@ extend(cli, {
     if (!date)
       this._die('invalid date.');
 
-    if (date.constructor === Array)
-      this._die('date ranges not supported yet. soon!');
+    var rep = this.getReporter();
 
-    var data = this.getLogs(date);
-    this.getReporter().day(data);
+    if (date.constructor === Array) { /* Range */
+      var data = this.getRange(date);
+      if (rep.range) rep.range(data);
+    }
+    else { /* Day */
+      var data = this.getLogs(date);
+      rep.day(data);
+    }
   },
 
   // Start or stop
@@ -157,6 +162,12 @@ extend(cli, {
     return data;
   },
 
+  getRange: function(range) {
+    var data = this.getLog().range(range);
+    if (!data) return this.noLogs(range);
+    return data;
+  },
+
   getLog: function() {
     if (log) return log;
 
@@ -178,7 +189,7 @@ extend(cli, {
     if (!Reporter)
       this._die("unknown reporter `"+cli.reporter+"`");
 
-    reporter = new Reporter(log);
+    reporter = new Reporter(this.getLog());
     return reporter;
   },
 

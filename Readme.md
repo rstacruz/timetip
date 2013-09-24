@@ -34,7 +34,7 @@ Install it via npm:
 
 To make things easier, add this to your `~/.profile`. (optional)
 
-    alias t="timetip --file ~/.timelogs"
+    alias t="timetip"
 
 *Note: the examples below assume that you have the alias above. If you choose 
 not to to use it, assume that the `t` below is `timetip`.*

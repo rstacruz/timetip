@@ -16,6 +16,7 @@ cli
   .version(require('../package').version)
   .option('-f, --file <path>', 'the data file [~/.timelogs]', '~/.timelogs')
   .option('-R, --reporter <r>', 'use reporter (default|json)', 'default')
+  .option('-u, --use <path>', 'use node module <path>')
   .option('--no-color', 'disable colors', true)
   .on('--help', function() {
     if (!cli.color) process.env.NO_COLOR = true;
@@ -210,6 +211,9 @@ extend(cli, {
 
     if (!cli.color)
       process.env.NO_COLOR = true;
+    if (cli.use) {
+      cli.use.split(',').forEach(function(mod) { require(mod)(require('..')); });
+    }
 
     if (cmd === 'edit')
       openEditor(cli.file);

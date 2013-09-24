@@ -91,7 +91,11 @@ extend(cli, {
 
     var rep = this.getReporter();
 
-    if (date.constructor === Array) { /* Range */
+    if (date === 'all') {
+      var data = this.getRange();
+      if (rep.range) rep.range(data);
+    }
+    else if (date.constructor === Array) { /* Range */
       var data = this.getRange(date);
       if (rep.range) rep.range(data);
     }
@@ -216,7 +220,7 @@ extend(cli, {
     else if (cmd === 'start')
       this.log(SpecParser(rest));
     else if (cmd === 'all' || args === 'show all')
-      this._die('`show all` not supported yet. soon!');
+      this.query('all');
     else if (cmd === 'show' && rest === '')
       this.query(new Date());
     else if (cmd === 'show')

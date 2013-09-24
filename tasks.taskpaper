@@ -2,15 +2,6 @@ Initial version:
 
 	Stuff to do
 	-----------
-
-	Offsets:
-		This is the feature that let's do insert tasks in the past,
-		such as `t Shopping 12 mins ago`.
-
-		- Handle '3m ago' @done
-		- Handle '11:35pm' @done
-		- Insert at proper position @done
-		- Highlight it in the reporter
 	
 	Day annotations:
 		It would nice to annotate your days, like "went to the hospital"
@@ -27,11 +18,11 @@ Initial version:
 		UI:
 			- Make CLI parse out queries @done
 			- Show a single date (`t date`) @done
-			- Show a date range (`t date - date`)
+			- Show a date range (`t date - date`) @done
 			- Show all entries (`t all`)
 		Model:
-			- Log#dates([from,to])
-			- Log#range()
+			- Log#dates([from,to]) @done
+			- Log#range() @done
 
 	Other reporters:
 		A user should be able to export their data to any format.
@@ -42,12 +33,18 @@ Initial version:
 		- Implement `.get(date).last.duration` @done
 
 	Misc/bugs:
-		- Show the last 'break' for non-today display
-			(ie: I'd want to see when I left the office)
-		- DefaultReporter: hide productive time on non-productive days @done
+		- Highlight offsets in the reporter
 
 	Stuff that's done
 	-----------------
+
+	Offsets:
+		This is the feature that let's do insert tasks in the past,
+		such as `t Shopping 12 mins ago`.
+
+		- Handle '3m ago' @done
+		- Handle '11:35pm' @done
+		- Insert at proper position @done
 
 	Tests:
 		Models are heavily-tested, but view stuff aren't much.
@@ -83,3 +80,6 @@ Initial version:
 		- Empty @done
 		- Show total time @done
 		- Bug: showing yesterday shows the last item as ongoing (+) @done
+		- Show the last 'break' for non-today display @done
+			(ie: I'd want to see when I left the office)
+		- DefaultReporter: hide productive time on non-productive days @done

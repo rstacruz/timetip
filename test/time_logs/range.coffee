@@ -4,6 +4,7 @@ describe 'TimeLog range', ->
   TimeLog = require('../../lib/time_log')
 
   beforeEach ->
+    sinon.useFakeTimers +new Date(2013, 8, 15)
     @mon = new Date(2013, 8, 9)
     @tue = new Date(2013, 8, 10)
     @wed = new Date(2013, 8, 11)
@@ -12,6 +13,7 @@ describe 'TimeLog range', ->
     @sat = new Date(2013, 8, 14)
     @sun = new Date(2013, 8, 15)
 
+  beforeEach ->
     @log = new TimeLog()
     @log.raw =
       '2013-09-09 mon':

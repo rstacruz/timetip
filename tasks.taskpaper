@@ -44,7 +44,7 @@ Initial version:
 	Misc/bugs:
 		- Show the last 'break' for non-today display
 			(ie: I'd want to see when I left the office)
-		- DefaultReporter: hide productive time on non-productive days
+		- DefaultReporter: hide productive time on non-productive days @done
 
 	Stuff that's done
 	-----------------

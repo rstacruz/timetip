@@ -1,7 +1,7 @@
-require './setup'
+require '../setup'
 
 describe 'Color', ->
-  color = require('../lib/color')
+  color = require('../../lib/color')
 
   it '.blue', ->
     color.blue('hi').should.eq '\x1b[34mhi\x1b[0m'

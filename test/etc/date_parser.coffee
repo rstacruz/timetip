@@ -1,7 +1,7 @@
-require './setup'
+require '../setup'
 
 describe 'DateParser', ->
-  DateParser = require('../lib/date_parser')
+  DateParser = require('../../lib/date_parser')
 
   beforeEach ->
     sinon.useFakeTimers +new Date(2011, 9, 15)

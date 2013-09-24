@@ -12,7 +12,7 @@
   },
   "main": "index",
   "scripts": {
-    "test": "./node_modules/.bin/mocha -R spec --compilers coffee:coffee-script"
+    "test": "./node_modules/.bin/mocha -R spec --recursive --compilers coffee:coffee-script"
   },
   "dependencies": {
     "underscore": "1.5.x",

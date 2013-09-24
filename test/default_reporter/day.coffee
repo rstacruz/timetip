@@ -1,8 +1,8 @@
-require('./setup')
+require('../setup')
 
 describe 'DefaultReporter dates', ->
-  Reporter = require('../lib/reporters/default')
-  TimeLog = require('../lib/time_log')
+  Reporter = require('../../lib/reporters/default')
+  TimeLog = require('../../lib/time_log')
 
   {bold, mute, accent, red} = Reporter.theme
 

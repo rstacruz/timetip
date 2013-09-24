@@ -1,7 +1,7 @@
-require './setup'
+require '../setup'
 
 describe 'Helpers', ->
-  Helpers = require('../lib/helpers')
+  Helpers = require('../../lib/helpers')
 
   describe 'sortedPush()', ->
     {sortedPush} = Helpers

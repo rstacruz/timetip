@@ -1,7 +1,7 @@
-require('./setup')
+require('../setup')
 
 describe 'TimeLog.push', ->
-  TimeLog = require('../lib/time_log')
+  TimeLog = require('../../lib/time_log')
 
   beforeEach ->
     @log = new TimeLog()

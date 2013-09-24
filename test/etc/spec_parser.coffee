@@ -1,7 +1,7 @@
-require('./setup')
+require('../setup')
 
 describe 'SpecParser', ->
-  SpecParser = require('../lib/spec_parser')
+  SpecParser = require('../../lib/spec_parser')
 
   beforeEach ->
     sinon.useFakeTimers +new Date(2010, 9, 15, 12, 0)

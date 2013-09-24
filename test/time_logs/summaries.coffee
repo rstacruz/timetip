@@ -1,7 +1,7 @@
-require('./setup')
+require('../setup')
 
 describe 'TimeLog summaries', ->
-  TimeLog = require('../lib/time_log')
+  TimeLog = require('../../lib/time_log')
 
   beforeEach ->
     sinon.useFakeTimers +new Date(2013, 8, 15, 18, 0)

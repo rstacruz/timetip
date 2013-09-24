@@ -1,8 +1,8 @@
-require('./setup')
+require('../setup')
 
 describe 'DefaultReporter', ->
-  Reporter = require('../lib/reporters/default')
-  TimeLog = require('../lib/time_log')
+  Reporter = require('../../lib/reporters/default')
+  TimeLog = require('../../lib/time_log')
 
   bold = Reporter.theme.bold
   mute = Reporter.theme.mute

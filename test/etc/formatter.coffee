@@ -1,9 +1,9 @@
-require './setup'
+require '../setup'
 chai.should()
 
 describe 'Formatter', ->
   beforeEach ->
-    @f = require '../lib/formatter'
+    @f = require '../../lib/formatter'
 
   describe 'strings', ->
     it '%s', ->

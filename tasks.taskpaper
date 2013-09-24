@@ -18,6 +18,8 @@ Initial version:
 
 		- Log#get(): return day summaries
 		- DefaultReporter: make it show the day summary (if it has any)
+		- Log#push(): allow `{ type: 'note', note: '...' }`
+		- CLI: allow `t note foobar`
 
 	Querying:
 		A user should be able to look up their data.

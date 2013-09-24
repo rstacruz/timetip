@@ -47,7 +47,7 @@ describe 'DefaultReporter dates', ->
       @lines = @out.split('\n')
 
     it 'line count', ->
-      expect(@lines.length).eql 6
+      expect(@lines.length).eql 7
 
     describe 'heading', ->
       it 'summary', ->

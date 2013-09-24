@@ -12,6 +12,12 @@ Initial version:
 		- Log#push(): allow `{ type: 'note', note: '...' }`
 		- CLI: allow `t note foobar`
 
+	Misc/bugs:
+		- Highlight offsets in the reporter
+
+	Stuff that's done
+	-----------------
+
 	Querying:
 		A user should be able to look up their data.
 
@@ -19,7 +25,7 @@ Initial version:
 			- Make CLI parse out queries @done
 			- Show a single date (`t date`) @done
 			- Show a date range (`t date - date`) @done
-			- Show all entries (`t all`)
+			- Show all entries (`t all`) @done
 		Model:
 			- Log#dates([from,to]) @done
 			- Log#range() @done
@@ -29,14 +35,7 @@ Initial version:
 
 		- Refactor to look up custom reporters @done
 		- Json reporter @done
-		- Csv reporter
 		- Implement `.get(date).last.duration` @done
-
-	Misc/bugs:
-		- Highlight offsets in the reporter
-
-	Stuff that's done
-	-----------------
 
 	Offsets:
 		This is the feature that let's do insert tasks in the past,

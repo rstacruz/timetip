@@ -26,7 +26,7 @@ Deliciously-minimal time tracker for the command-line. Built on Node.js.
 
 [![Status](https://travis-ci.org/rstacruz/timetip.png)](https://travis-ci.org/rstacruz/timetip)
 
-See the [man page](man/timetip.1.md) for more usage notes and examples.
+See the [man page] for more usage notes and examples.
 
 ## Install
 
@@ -165,3 +165,4 @@ day.summary
 
 [MIT License]: http://www.opensource.org/licenses/mit-license.php
 [time_log.js]: lib/time_log.js
+[man page]: http://rstacruz.github.io/timetip/timetip.1.html

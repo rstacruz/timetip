@@ -3,7 +3,7 @@ timetip(1) -- simple time tracker and time sheet manager
 
 ## SYNOPSIS
 
-`timetip` [<shorthand>]  \
+`timetip` [<shorthand>]  
 `timetip` <command> [<args...>]
 
 ## DESCRIPTION

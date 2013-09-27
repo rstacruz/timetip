@@ -16,47 +16,62 @@ Deliciously\-minimal time tracker for the command\-line, with a very simple comm
 Below is a full list of commands you can use in their proper form\.
 .
 .TP
-\fBtimetip start\fR \fInew\-task\-name\fR
+timetip \fBstart\fR \fInew\-task\-name\fR
 Start working on \fItask\fR\. See \fITASKS\fR\.
 .
 .TP
-\fBtimetip stop\fR [\fIreason\fR]
+timetip \fBstop\fR [\fIreason\fR]
 Stops working\. Optionally, you may give a \fIreason\fR\.
 .
 .TP
-\fBtimetip show\fR [\fIdate\fR|\fIrange\fR|\fBall\fR]
-Show entries for the given \fIdate\fR or \fIrange\fR, or show \fBall\fR entries\. When no arguments are given, \'today\' is assumed\. See \fIDATES AND RANGES\fR for details on the possible formats\.
+timetip \fBshow\fR [\fIdate\fR|\fIrange\fR|all]
+Show entries for the given \fIdate\fR or \fIrange\fR, or show all entries\. When no arguments are given, \'today\' is assumed\. See \fIDATES\fR for details on the possible formats\.
 .
 .TP
-\fBtimetip edit\fR
+timetip \fBedit\fR
 Opens the time log in your default text editor\.
 .
 .TP
-\fBtimetip dates\fR
+timetip \fBdates\fR
 Lists down which dates have time entries in them\.
 .
 .TP
-\fBtimetip summary\fR [\fIdate\fR|\fIrange\fR|\fBall\fR]
-Shows the summary for a given \fIdate\fR or \fIrange\fR\. When no arguments are given, \fBall\fR is assumed\.
+timetip \fBsummary\fR [\fIdate\fR|\fIrange\fR|all]
+Shows the summary for a given \fIdate\fR or \fIrange\fR\. When no arguments are given, \'all\' is assumed\.
 .
 .SH "SHORTHANDS"
 Here are all the commands you need to get started\. These are shortened form of the \fICOMMANDS\fR above to help you do the most common tasks\.
 .
 .TP
 \fBtimetip\fR \fInew\-task\-name\fR
-Starts working on the \fItask\fR you\'re doing\. (same as \fBtimetip start\fR)
+Starts working on the \fItask\fR you\'re doing\. (same as \fBstart\fR)
 .
 .TP
 \fBtimetip\fR \fIdate\fR|\fIrange\fR
-Shows entries for the given \fIdate\fR\. (\fBtimetip show\fR)
+Shows entries for the given \fIdate\fR\. (\fBshow\fR)
 .
 .TP
 \fBtimetip\fR
-Shows entries for today\. (\fBtimetip show\fR)
+Shows entries for today\. (\fBshow\fR)
 .
 .TP
 \fBtimetip \-\fR [\fIreason\fR]
-Stops working, and logs your \fIreason\fR for the break\. (\fBtimetip stop\fR)
+Stops working, and logs your \fIreason\fR for the break\. (\fBstop\fR)
+.
+.P
+Here are some examples of short hand:
+.
+.IP "" 4
+.
+.nf
+
+$ timetip Meeting        <\->  timetip start Meeting
+$ timetip yesterday      <\->  timetip show yesterday
+$ timetip \- lunch        <\->  timetip stop lunch
+.
+.fi
+.
+.IP "" 0
 .
 .SH "OPTIONS"
 These are general options that work with almost all of the commands\.
@@ -208,7 +223,7 @@ $ timetip stop 11:20pm
 .
 .IP "" 0
 .
-.SH "DATES AND RANGES"
+.SH "DATES"
 The \fIdate\fR strings are parsed as natural language dates\. They can be simple dates (eg: \fBMarch 5\fR), or any reasonable format that can be figured out unambiguously (eg: \fBlast thursday\fR)\. Some examples:
 .
 .IP "" 4

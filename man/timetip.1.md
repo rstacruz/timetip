@@ -15,26 +15,26 @@ them and display it nicely.
 
 Below is a full list of commands you can use in their proper form.
 
- * `timetip start` <new-task-name> :
+ * timetip `start` <new-task-name> :
    Start working on <task>. See [TASKS][].
 
- * `timetip stop` [<reason>] :
+ * timetip `stop` [<reason>] :
    Stops working. Optionally, you may give a <reason>.
 
- * `timetip show` [<date>|<range>|`all`] :
-   Show entries for the given <date> or <range>, or show `all` entries. When no 
-   arguments are given, 'today' is assumed. See [DATES AND RANGES][] for details 
-   on the possible formats.
+ * timetip `show` [<date>|<range>|all] :
+   Show entries for the given <date> or <range>, or show all entries. When no 
+   arguments are given, 'today' is assumed. See [DATES][] for details on the
+   possible formats.
 
- * `timetip edit` :
+ * timetip `edit` :
    Opens the time log in your default text editor.
 
- * `timetip dates` :
+ * timetip `dates` :
    Lists down which dates have time entries in them.
 
- * `timetip summary` [<date>|<range>|`all`] :
+ * timetip `summary` [<date>|<range>|all] :
    Shows the summary for a given <date> or <range>. When no arguments are given, 
-   `all` is assumed.
+   'all' is assumed.
 
 ## SHORTHANDS
 
@@ -42,16 +42,22 @@ Here are all the commands you need to get started. These are shortened form of
 the [COMMANDS][] above to help you do the most common tasks.
 
  * `timetip` <new-task-name> :
-   Starts working on the <task> you're doing. (same as `timetip start`)
+   Starts working on the <task> you're doing. (same as `start`)
 
  * `timetip` <date>|<range> :
-   Shows entries for the given <date>. (`timetip show`)
+   Shows entries for the given <date>. (`show`)
 
  * `timetip` :
-   Shows entries for today. (`timetip show`)
+   Shows entries for today. (`show`)
 
  * `timetip -` [<reason>] :
-   Stops working, and logs your <reason> for the break. (`timetip stop`)
+   Stops working, and logs your <reason> for the break. (`stop`)
+
+Here are some examples of short hand:
+
+    $ timetip Meeting        <->  timetip start Meeting
+    $ timetip yesterday      <->  timetip show yesterday
+    $ timetip - lunch        <->  timetip stop lunch
 
 ## OPTIONS
 
@@ -129,7 +135,7 @@ Specifying times and offsets work just as well.
     $ timetip stop phone call with dad 5m ago
     $ timetip stop 11:20pm
 
-## DATES AND RANGES
+## DATES
 
 The <date> strings are parsed as natural language dates. They can be simple
 dates (eg: `March 5`), or any reasonable format that can be figured out

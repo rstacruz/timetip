@@ -168,6 +168,14 @@ $ timetip last mon - last thu
 3:10pm = -- lunch
 </code></pre>
 
+<p>The format boils down to these:</p>
+
+<ul>
+<li>Dates are headings in the format of <code>[yyyy-mm-dd dom]</code>.</li>
+<li>Tasks are in the format <code>&lt;time> = &lt;project></code>.</li>
+</ul>
+
+
 <p>Note that comments (beginning in <code>;</code>) are going to be stripped.</p>
 
 <h2 id="REPORTERS">REPORTERS</h2>
@@ -185,6 +193,17 @@ with the following reporters:</p>
 <p>You can export your data using the <code>json</code> reporter:</p>
 
 <pre><code>$ timetip --reporter json
+  {
+    "date": "2013-09-26",
+    "entries": [
+      { "type": "task",
+        "project": "Meeting",
+        "task": "skype with Dan",
+        "duration": 30000000,
+        "date": "2013-09-26T02:40:00.000Z",
+        "endDate": "2013-09-26T02:40:00.000Z" }, ...
+    ]
+  }
 </code></pre>
 
 <h2 id="EXAMPLES">EXAMPLES</h2>

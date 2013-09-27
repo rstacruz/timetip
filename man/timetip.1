@@ -263,9 +263,9 @@ $ timetip last mon \- last thu
 .IP "" 0
 .
 .SH "FILE FORMAT"
-It\'s an ini file\. It is designed to be human\-editable and human\-readable, and you are encouraged to edit your time sheets outside of \fBtimetip\fR\. Files are saved to \fB~/\.timelogs\fR by default, and looks like this:
+It\'s an ini file\. It is designed to be human\-editable and human\-readable, and you are encouraged to edit your time sheets outside of \fBtimetip\fR\. Files are saved to \fB~/\.timelogs\fR by default\.
 .
-.IP "" 4
+.SS "Example"
 .
 .nf
 
@@ -282,10 +282,7 @@ It\'s an ini file\. It is designed to be human\-editable and human\-readable, an
 .
 .fi
 .
-.IP "" 0
-.
-.P
-The format boils down to these:
+.SS "Specifications"
 .
 .IP "\(bu" 4
 Dates are headings in the format of \fB[yyyy\-mm\-dd dom]\fR
@@ -301,7 +298,7 @@ Breaks with reasons are in the format of \fB<time> = \-\- <reason>\fR
 .
 .IP "" 0
 .
-.P
+.SS "Comments"
 Note that comments (beginning in \fB;\fR) are going to be stripped\.
 .
 .SH "REPORTERS"
@@ -318,7 +315,7 @@ You can use custom reporters to change the display format\. By default, it comes
 .
 .IP "" 0
 .
-.P
+.SS "Exporting data"
 You can export your data using the \fBjson\fR reporter:
 .
 .IP "" 4

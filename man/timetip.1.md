@@ -164,7 +164,9 @@ Examples:
 
 It's an ini file. It is designed to be human-editable and human-readable, and 
 you are encouraged to edit your time sheets outside of `timetip`. Files are 
-saved to `~/.timelogs` by default, and looks like this:
+saved to `~/.timelogs` by default.
+
+### Example
 
     [2013-09-16 mon]
     1:14pm = Misc write emails
@@ -177,12 +179,14 @@ saved to `~/.timelogs` by default, and looks like this:
     4:09pm = Jsconf check ticket sales
     4:25pm = Errands grocery
 
-The format boils down to these:
+### Specifications
 
   * Dates are headings in the format of `[yyyy-mm-dd dom]`
   * Tasks are in the format `<time> = <project>`
   * Breaks are in the format of `<time> = `
   * Breaks with reasons are in the format of `<time> = -- <reason>`
+
+### Comments
 
 Note that comments (beginning in `;`) are going to be stripped.
 
@@ -194,6 +198,8 @@ with the following reporters:
   * `default` - Default reporter for terminal viewing.
   * `json` - Exports your data to JSON.
   * `tmux` - Displays a tmux status.
+
+### Exporting data
 
 You can export your data using the `json` reporter:
 

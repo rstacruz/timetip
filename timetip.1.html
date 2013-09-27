@@ -59,6 +59,7 @@
     <a href="#SHORTHANDS">SHORTHANDS</a>
     <a href="#COMMANDS">COMMANDS</a>
     <a href="#OPTIONS">OPTIONS</a>
+    <a href="#TASKS">TASKS</a>
     <a href="#DATES-AND-RANGES">DATES AND RANGES</a>
     <a href="#FILE-FORMAT">FILE FORMAT</a>
     <a href="#REPORTERS">REPORTERS</a>
@@ -102,10 +103,10 @@ the <a href="#COMMANDS" title="COMMANDS" data-bare-link="true">COMMANDS</a> belo
 
 <h2 id="COMMANDS">COMMANDS</h2>
 
-<p>Below is a full list of commands you can use in their proper form:</p>
+<p>Below is a full list of commands you can use in their proper form.</p>
 
 <dl>
-<dt><code>timetip start</code> <var>new-task-name</var> </dt><dd><p>Start working on <var>task</var>.</p></dd>
+<dt><code>timetip start</code> <var>new-task-name</var> </dt><dd><p>Start working on <var>task</var>. See <a href="#TASKS" title="TASKS" data-bare-link="true">TASKS</a>.</p></dd>
 <dt><code>timetip stop</code> [<var>reason</var>] </dt><dd><p>Stops working. Optionally, you may give a <var>reason</var>.</p></dd>
 <dt><code>timetip show</code> [<var>date</var>|<var>range</var>|all] </dt><dd><p>Show entries for the given <var>date</var> or <var>range</var>, or show <code>all</code> entries. When no
 arguments are given, <code>today</code> is assumed. See <a href="#DATES-AND-RANGES" title="DATES AND RANGES" data-bare-link="true">DATES AND RANGES</a> for details
@@ -118,6 +119,8 @@ shows the summary for all entries in the time sheet.</p></dd>
 
 <h2 id="OPTIONS">OPTIONS</h2>
 
+<p>These are general options that work with almost all of the commands.</p>
+
 <dl>
 <dt><code>-R</code>, <code>--reporter</code> <var>name</var> </dt><dd><p>Use the reporter <var>name</var>. See <a href="#REPORTERS" title="REPORTERS" data-bare-link="true">REPORTERS</a> for more info.</p></dd>
 <dt><code>-u</code>, <code>--use</code> <var>path</var> </dt><dd><p>Load the JavaScript file in <var>path</var> as a plugin. This is useful for making
@@ -128,6 +131,38 @@ your own custom reporters or commands.</p></dd>
 <dt><code>-V</code>, <code>--version</code> </dt><dd><p>Displays version information and exits.</p></dd>
 </dl>
 
+
+<h2 id="TASKS">TASKS</h2>
+
+<p>Tasks are started with the <code>timetip start</code> command. The convention is that the
+first word is always the project name -- this is simply for the convenience of
+having summaries.</p>
+
+<pre><code>$ timetip start Meeting with Dan
+</code></pre>
+
+<p>You may specify a time as well. This is useful for when you started working
+without logging it first.</p>
+
+<pre><code>$ timetip start Meeting 11:53am
+</code></pre>
+
+<p>You can also specify the time as an offset in the form of <code>&lt;duration> ago</code>, such
+as:</p>
+
+<pre><code>$ timetip start Meeting 15m ago
+$ timetip start Meeting 3 minutes ago
+</code></pre>
+
+<p>And of course, these conventions work with the <a href="#SHORTHANDS" title="SHORTHANDS" data-bare-link="true">SHORTHANDS</a> too:</p>
+
+<pre><code>$ timetip Meeting 3m ago
+</code></pre>
+
+<p>Also, it works for breaks (via <code>stop</code> or <code>-</code>):</p>
+
+<pre><code>$ timetip stop 3m ago
+</code></pre>
 
 <h2 id="DATES-AND-RANGES">DATES AND RANGES</h2>
 
@@ -160,19 +195,29 @@ $ timetip last mon - last thu
 
 <h2 id="FILE-FORMAT">FILE FORMAT</h2>
 
-<p>It's an ini file. It looks like this:</p>
+<p>It's an ini file. It is designed to be human-editable and human-readable, and
+you are encouraged to edit your time sheets outside of <code>timetip</code>. Files are
+saved to <code>~/.timelogs</code> by default, and looks like this:</p>
 
-<pre><code>[2013-01-01 mon]
-2:45pm = Meeting with John
+<pre><code>[2013-09-16 mon]
+1:14pm = Misc write emails
+2:42pm = Misc balance checkbook
 3:00pm =
-3:10pm = -- lunch
+
+[2013-09-18 wed]
+3:14pm = Jsconf email speakers
+3:59pm = -- coffee break
+4:09pm = Jsconf check ticket sales
+4:25pm = Errands grocery
 </code></pre>
 
 <p>The format boils down to these:</p>
 
 <ul>
-<li>Dates are headings in the format of <code>[yyyy-mm-dd dom]</code>.</li>
-<li>Tasks are in the format <code>&lt;time> = &lt;project></code>.</li>
+<li>Dates are headings in the format of <code>[yyyy-mm-dd dom]</code></li>
+<li>Tasks are in the format <code>&lt;time> = &lt;project></code></li>
+<li>Breaks are in the format of <code>&lt;time> =</code></li>
+<li>Breaks with reasons are in the format of <code>&lt;time> = -- &lt;reason></code></li>
 </ul>
 
 

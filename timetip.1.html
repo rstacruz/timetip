@@ -60,7 +60,7 @@
     <a href="#SHORTHANDS">SHORTHANDS</a>
     <a href="#OPTIONS">OPTIONS</a>
     <a href="#TASKS">TASKS</a>
-    <a href="#DATES-AND-RANGES">DATES AND RANGES</a>
+    <a href="#DATES">DATES</a>
     <a href="#FILE-FORMAT">FILE FORMAT</a>
     <a href="#REPORTERS">REPORTERS</a>
     <a href="#EXAMPLES">EXAMPLES</a>
@@ -92,15 +92,15 @@ them and display it nicely.</p>
 <p>Below is a full list of commands you can use in their proper form.</p>
 
 <dl>
-<dt><code>timetip start</code> <var>new-task-name</var> </dt><dd><p>Start working on <var>task</var>. See <a href="#TASKS" title="TASKS" data-bare-link="true">TASKS</a>.</p></dd>
-<dt><code>timetip stop</code> [<var>reason</var>] </dt><dd><p>Stops working. Optionally, you may give a <var>reason</var>.</p></dd>
-<dt><code>timetip show</code> [<var>date</var>|<var>range</var>|<code>all</code>] </dt><dd><p>Show entries for the given <var>date</var> or <var>range</var>, or show <code>all</code> entries. When no
-arguments are given, 'today' is assumed. See <a href="#DATES-AND-RANGES" title="DATES AND RANGES" data-bare-link="true">DATES AND RANGES</a> for details
-on the possible formats.</p></dd>
-<dt><code>timetip edit</code> </dt><dd><p>Opens the time log in your default text editor.</p></dd>
-<dt><code>timetip dates</code> </dt><dd><p>Lists down which dates have time entries in them.</p></dd>
-<dt><code>timetip summary</code> [<var>date</var>|<var>range</var>|<code>all</code>] </dt><dd><p>Shows the summary for a given <var>date</var> or <var>range</var>. When no arguments are given,
-<code>all</code> is assumed.</p></dd>
+<dt>timetip <code>start</code> <var>new-task-name</var> </dt><dd><p>Start working on <var>task</var>. See <a href="#TASKS" title="TASKS" data-bare-link="true">TASKS</a>.</p></dd>
+<dt>timetip <code>stop</code> [<var>reason</var>] </dt><dd><p>Stops working. Optionally, you may give a <var>reason</var>.</p></dd>
+<dt>timetip <code>show</code> [<var>date</var>|<var>range</var>|all] </dt><dd><p>Show entries for the given <var>date</var> or <var>range</var>, or show all entries. When no
+arguments are given, 'today' is assumed. See <a href="#DATES" title="DATES" data-bare-link="true">DATES</a> for details on the
+possible formats.</p></dd>
+<dt>timetip <code>edit</code> </dt><dd><p>Opens the time log in your default text editor.</p></dd>
+<dt>timetip <code>dates</code> </dt><dd><p>Lists down which dates have time entries in them.</p></dd>
+<dt>timetip <code>summary</code> [<var>date</var>|<var>range</var>|all] </dt><dd><p>Shows the summary for a given <var>date</var> or <var>range</var>. When no arguments are given,
+'all' is assumed.</p></dd>
 </dl>
 
 
@@ -110,12 +110,19 @@ on the possible formats.</p></dd>
 the <a href="#COMMANDS" title="COMMANDS" data-bare-link="true">COMMANDS</a> above to help you do the most common tasks.</p>
 
 <dl>
-<dt><code>timetip</code> <var>new-task-name</var> </dt><dd><p>Starts working on the <var>task</var> you're doing. (same as <code>timetip start</code>)</p></dd>
-<dt><code>timetip</code> <var>date</var>|<var>range</var> </dt><dd><p>Shows entries for the given <var>date</var>. (<code>timetip show</code>)</p></dd>
-<dt><code>timetip</code> </dt><dd><p>Shows entries for today. (<code>timetip show</code>)</p></dd>
-<dt><code>timetip -</code> [<var>reason</var>] </dt><dd><p>Stops working, and logs your <var>reason</var> for the break. (<code>timetip stop</code>)</p></dd>
+<dt><code>timetip</code> <var>new-task-name</var> </dt><dd><p>Starts working on the <var>task</var> you're doing. (same as <code>start</code>)</p></dd>
+<dt><code>timetip</code> <var>date</var>|<var>range</var> </dt><dd><p>Shows entries for the given <var>date</var>. (<code>show</code>)</p></dd>
+<dt><code>timetip</code> </dt><dd><p>Shows entries for today. (<code>show</code>)</p></dd>
+<dt><code>timetip -</code> [<var>reason</var>] </dt><dd><p>Stops working, and logs your <var>reason</var> for the break. (<code>stop</code>)</p></dd>
 </dl>
 
+
+<p>Here are some examples of short hand:</p>
+
+<pre><code>$ timetip Meeting        &lt;->  timetip start Meeting
+$ timetip yesterday      &lt;->  timetip show yesterday
+$ timetip - lunch        &lt;->  timetip stop lunch
+</code></pre>
 
 <h2 id="OPTIONS">OPTIONS</h2>
 
@@ -194,7 +201,7 @@ $ timetip stop phone call with dad 5m ago
 $ timetip stop 11:20pm
 </code></pre>
 
-<h2 id="DATES-AND-RANGES">DATES AND RANGES</h2>
+<h2 id="DATES">DATES</h2>
 
 <p>The <var>date</var> strings are parsed as natural language dates. They can be simple
 dates (eg: <code>March 5</code>), or any reasonable format that can be figured out

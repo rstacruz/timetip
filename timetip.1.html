@@ -235,7 +235,9 @@ $ timetip last mon - last thu
 
 <p>It's an ini file. It is designed to be human-editable and human-readable, and
 you are encouraged to edit your time sheets outside of <code>timetip</code>. Files are
-saved to <code>~/.timelogs</code> by default, and looks like this:</p>
+saved to <code>~/.timelogs</code> by default.</p>
+
+<h3 id="Example">Example</h3>
 
 <pre><code>[2013-09-16 mon]
 1:14pm = Misc write emails
@@ -249,7 +251,7 @@ saved to <code>~/.timelogs</code> by default, and looks like this:</p>
 4:25pm = Errands grocery
 </code></pre>
 
-<p>The format boils down to these:</p>
+<h3 id="Specifications">Specifications</h3>
 
 <ul>
 <li>Dates are headings in the format of <code>[yyyy-mm-dd dom]</code></li>
@@ -258,6 +260,8 @@ saved to <code>~/.timelogs</code> by default, and looks like this:</p>
 <li>Breaks with reasons are in the format of <code>&lt;time> = -- &lt;reason></code></li>
 </ul>
 
+
+<h3 id="Comments">Comments</h3>
 
 <p>Note that comments (beginning in <code>;</code>) are going to be stripped.</p>
 
@@ -272,6 +276,8 @@ with the following reporters:</p>
 <li><code>tmux</code> - Displays a tmux status.</li>
 </ul>
 
+
+<h3 id="Exporting-data">Exporting data</h3>
 
 <p>You can export your data using the <code>json</code> reporter:</p>
 

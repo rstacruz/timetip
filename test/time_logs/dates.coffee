@@ -52,3 +52,12 @@ describe 'TimeLog dates', ->
     it 'matches none', ->
       dates = @log.dates([@mon, @tue])
       expect(dates).eql []
+
+  describe '.dates() single date', ->
+    it 'present', ->
+      dates = @log.dates(@fri)
+      expect(dates).eql [@fri]
+
+    it 'absent', ->
+      dates = @log.dates(@sun)
+      expect(dates).eql []

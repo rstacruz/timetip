@@ -52,6 +52,16 @@ describe 'TimeLog range', ->
       dates = @data.dates.map (d) -> d.date
       expect(dates).eql [@wed, @fri, @sat]
 
+  describe 'range(date) present', ->
+    beforeEach ->
+      @data = @log.range(@wed)
+
+    it 'length', ->
+      expect(@data.dates.length).eql 1
+
+    it 'date', ->
+      expect(@data.dates[0].date).eql @wed
+
   describe 'range() all', ->
     beforeEach ->
       @data = @log.range()

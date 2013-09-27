@@ -21,8 +21,8 @@ cli
   .on('--help', function() {
     if (!cli.color) process.env.NO_COLOR = true;
 
-    function us(str) { printUsage(cli._name, str, "1;34"); }
-    function ex(str) { printUsage(cli._name, str, 36); }
+    function us(str) { printUsage(cli._name, str, "1"); }
+    function ex(str) { printUsage(cli._name, str, "0"); }
     function p(str)  { console.log(str); }
 
     p('  Shortcuts:');
@@ -52,7 +52,8 @@ cli
     ex('t Sep 2              # show entries from a day');
     ex('t May 5 - May 10     # show entries a range');
     ex('t 4 days ago         # show entries from 4 days ago');
-    ex('t Yesterday          # show entries from yesterday');
+    p('');
+    p('  Also see `man timetip` for more info and examples.');
   });
 
 var TimeLog = require('../lib/time_log');

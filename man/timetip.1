@@ -125,7 +125,7 @@ $ timetip last mon \- last thu
 .IP "" 0
 .
 .SH "FILE FORMAT"
-It\'s an ini file\. It looks like this:
+It\'s an ini file\. It is designed to be human\-editable and human\-readable, and you are encouraged to edit your time sheets outside of \fBtimetip\fR\. Files are saved to \fB~/\.timelogs\fR by default, and looks like this:
 .
 .IP "" 4
 .
@@ -137,6 +137,23 @@ It\'s an ini file\. It looks like this:
 3:10pm = \-\- lunch
 .
 .fi
+.
+.IP "" 0
+.
+.P
+The format boils down to these:
+.
+.IP "\(bu" 4
+Dates are headings in the format of \fB[yyyy\-mm\-dd dom]\fR\.
+.
+.IP "\(bu" 4
+Tasks are in the format \fB<time> = <project>\fR\.
+.
+.IP "\(bu" 4
+Breaks are in the format of \fB<time> =\fR\.
+.
+.IP "\(bu" 4
+Breaks with reasons are in the format of \fB<time> = \-\- <reason>\fR\.
 .
 .IP "" 0
 .
@@ -165,6 +182,17 @@ You can export your data using the \fBjson\fR reporter:
 .nf
 
 $ timetip \-\-reporter json
+  {
+    "date": "2013\-09\-26",
+    "entries": [
+      { "type": "task",
+        "project": "Meeting",
+        "task": "skype with Dan",
+        "duration": 30000000,
+        "date": "2013\-09\-26T02:40:00\.000Z",
+        "endDate": "2013\-09\-26T02:40:00\.000Z" }, \.\.\.
+    ]
+  }
 .
 .fi
 .

@@ -96,12 +96,21 @@ Examples:
     $ timetip last mon - last thu
 
 ## FILE FORMAT
-It's an ini file. It looks like this:
+It's an ini file. It is designed to be human-editable and human-readable, and 
+you are encouraged to edit your time sheets outside of `timetip`. Files are 
+saved to `~/.timelogs` by default, and looks like this:
 
     [2013-01-01 mon]
     2:45pm = Meeting with John
     3:00pm =
     3:10pm = -- lunch
+
+The format boils down to these:
+
+  * Dates are headings in the format of `[yyyy-mm-dd dom]`.
+  * Tasks are in the format `<time> = <project>`.
+  * Breaks are in the format of `<time> = `.
+  * Breaks with reasons are in the format of `<time> = -- <reason>`.
 
 Note that comments (beginning in `;`) are going to be stripped.
 
@@ -117,6 +126,18 @@ with the following reporters:
 You can export your data using the `json` reporter:
 
     $ timetip --reporter json
+      {
+        "date": "2013-09-26",
+        "entries": [
+          { "type": "task",
+            "project": "Meeting",
+            "task": "skype with Dan",
+            "duration": 30000000,
+            "date": "2013-09-26T02:40:00.000Z",
+            "endDate": "2013-09-26T02:40:00.000Z" }, ...
+        ]
+      }
+          
 
 ## EXAMPLES
 

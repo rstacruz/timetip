@@ -160,7 +160,9 @@ $ timetip last mon - last thu
 
 <h2 id="FILE-FORMAT">FILE FORMAT</h2>
 
-<p>It's an ini file. It looks like this:</p>
+<p>It's an ini file. It is designed to be human-editable and human-readable, and
+you are encouraged to edit your time sheets outside of <code>timetip</code>. Files are
+saved to <code>~/.timelogs</code> by default, and looks like this:</p>
 
 <pre><code>[2013-01-01 mon]
 2:45pm = Meeting with John
@@ -173,6 +175,8 @@ $ timetip last mon - last thu
 <ul>
 <li>Dates are headings in the format of <code>[yyyy-mm-dd dom]</code>.</li>
 <li>Tasks are in the format <code>&lt;time> = &lt;project></code>.</li>
+<li>Breaks are in the format of <code>&lt;time> =</code>.</li>
+<li>Breaks with reasons are in the format of <code>&lt;time> = -- &lt;reason></code>.</li>
 </ul>
 
 

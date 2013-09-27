@@ -13,4 +13,7 @@ www/%.1.html: man/%.1
 man: man/timetip.1
 	man $<
 
-.PHONY: man
+deploy:
+	git subtree push --prefix www git@github.com:rstacruz/timetip.git gh-pages
+
+.PHONY: man deploy

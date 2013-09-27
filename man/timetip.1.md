@@ -38,32 +38,37 @@ Below is a full list of commands you can use in their proper form:
  * `timetip stop` [<reason>] :
    Stops working. Optionally, you may give a <reason>.
 
- * `timetip show` <date>|<range>|all :
-   Show entries for the given <date> or <range>, or show `all` entries. See [DATES AND
-   RANGES][] for details on the possible formats.
+ * `timetip show` [<date>|<range>|all] :
+   Show entries for the given <date> or <range>, or show `all` entries. When no 
+   arguments are given, `today` is assumed. See [DATES AND RANGES][] for details 
+   on the possible formats.
 
  * `timetip edit` :
    Opens the time log in your default text editor.
 
- * `timetip summary` [<date>|<range>] :
-   Shows the summary for a given <date> or <range>.
+ * `timetip summary` [<date>|<range>|all] :
+   Shows the summary for a given <date> or <range>. When no arguments are given, 
+   shows the summary for all entries in the time sheet.
 
 ## OPTIONS
 
-  * `-R`, `--reporter` <name>:
+  * `-R`, `--reporter` <name> :
     Use the reporter <name>. See [REPORTERS][] for more info.
 
-  * `-u`, `--use` <path>:
+  * `-u`, `--use` <path> :
     Load the JavaScript file in <path> as a plugin. This is useful for making
     your own custom reporters or commands.
 
-  * `--no-color`:
+  * `-f`, `--file` <path> :
+    Use the file in <path> as the time sheet file. See [FILE FORMAT][].
+
+  * `--no-color` :
     Disables the use of color in outputs.
 
-  * `-h`, `--help`:
+  * `-h`, `--help` :
     Displays a help screen.
 
-  * `-V`, `--version`:
+  * `-V`, `--version` :
     Displays version information and exits.
 
 ## DATES AND RANGES
@@ -89,6 +94,16 @@ Examples:
     $ timetip mar 2 - mar 5
     $ timetip since last week
     $ timetip last mon - last thu
+
+## FILE FORMAT
+It's an ini file. It looks like this:
+
+    [2013-01-01 mon]
+    2:45pm = Meeting with John
+    3:00pm =
+    3:10pm = -- lunch
+
+Note that comments (beginning in `;`) are going to be stripped.
 
 ## REPORTERS
 

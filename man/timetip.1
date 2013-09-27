@@ -43,16 +43,16 @@ Start working on \fItask\fR\.
 Stops working\. Optionally, you may give a \fIreason\fR\.
 .
 .TP
-\fBtimetip show\fR \fIdate\fR|\fIrange\fR|all
-Show entries for the given \fIdate\fR or \fIrange\fR, or show \fBall\fR entries\. See \fIDATES AND RANGES\fR for details on the possible formats\.
+\fBtimetip show\fR [\fIdate\fR|\fIrange\fR|all]
+Show entries for the given \fIdate\fR or \fIrange\fR, or show \fBall\fR entries\. When no arguments are given, \fBtoday\fR is assumed\. See \fIDATES AND RANGES\fR for details on the possible formats\.
 .
 .TP
 \fBtimetip edit\fR
 Opens the time log in your default text editor\.
 .
 .TP
-\fBtimetip summary\fR [\fIdate\fR|\fIrange\fR]
-Shows the summary for a given \fIdate\fR or \fIrange\fR\.
+\fBtimetip summary\fR [\fIdate\fR|\fIrange\fR|all]
+Shows the summary for a given \fIdate\fR or \fIrange\fR\. When no arguments are given, shows the summary for all entries in the time sheet\.
 .
 .SH "OPTIONS"
 .
@@ -63,6 +63,10 @@ Use the reporter \fIname\fR\. See \fIREPORTERS\fR for more info\.
 .TP
 \fB\-u\fR, \fB\-\-use\fR \fIpath\fR
 Load the JavaScript file in \fIpath\fR as a plugin\. This is useful for making your own custom reporters or commands\.
+.
+.TP
+\fB\-f\fR, \fB\-\-file\fR \fIpath\fR
+Use the file in \fIpath\fR as the time sheet file\. See \fIFILE FORMAT\fR\.
 .
 .TP
 \fB\-\-no\-color\fR
@@ -119,6 +123,25 @@ $ timetip last mon \- last thu
 .fi
 .
 .IP "" 0
+.
+.SH "FILE FORMAT"
+It\'s an ini file\. It looks like this:
+.
+.IP "" 4
+.
+.nf
+
+[2013\-01\-01 mon]
+2:45pm = Meeting with John
+3:00pm =
+3:10pm = \-\- lunch
+.
+.fi
+.
+.IP "" 0
+.
+.P
+Note that comments (beginning in \fB;\fR) are going to be stripped\.
 .
 .SH "REPORTERS"
 You can use custom reporters to change the display format\. By default, it comes with the following reporters:

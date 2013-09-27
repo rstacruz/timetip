@@ -54,7 +54,7 @@ do the most common tasks.
  * `timetip -` [<reason>] :
    Stops working, and logs your <reason> for the break. (`stop`)
 
-Here are some examples of the shorthand syntax:
+### Examples
 
     $ timetip Meeting        <->  timetip start Meeting
     $ timetip yesterday      <->  timetip show yesterday

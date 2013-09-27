@@ -18,6 +18,6 @@ man: man/timetip.1
 	man $<
 
 deploy:
-	git subtree push --prefix www git@github.com:rstacruz/timetip.git gh-pages
+	git subtree push --prefix www origin gh-pages
 
 .PHONY: man deploy

@@ -28,5 +28,6 @@
   "bin": {
     "timetip": "./bin/timetip"
   },
+  "man": "./man/timetip.1",
   "license": "MIT"
 }

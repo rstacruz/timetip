@@ -30,10 +30,10 @@ the [COMMANDS][] below to help you do the most common tasks.
 
 ## COMMANDS
 
-Below is a full list of commands you can use in their proper form:
+Below is a full list of commands you can use in their proper form.
 
  * `timetip start` <new-task-name> :
-   Start working on <task>.
+   Start working on <task>. See [TASKS][].
 
  * `timetip stop` [<reason>] :
    Stops working. Optionally, you may give a <reason>.
@@ -51,6 +51,8 @@ Below is a full list of commands you can use in their proper form:
    shows the summary for all entries in the time sheet.
 
 ## OPTIONS
+
+These are general options that work with almost all of the commands.
 
   * `-R`, `--reporter` <name> :
     Use the reporter <name>. See [REPORTERS][] for more info.
@@ -70,6 +72,33 @@ Below is a full list of commands you can use in their proper form:
 
   * `-V`, `--version` :
     Displays version information and exits.
+
+## TASKS
+
+Tasks are started with the `timetip start` command. The convention is that the 
+first word is always the project name -- this is simply for the convenience of 
+having summaries.
+
+    $ timetip start Meeting with Dan
+
+You may specify a time as well. This is useful for when you started working 
+without logging it first.
+
+    $ timetip start Meeting 11:53am
+
+You can also specify the time as an offset in the form of `<duration> ago`, such 
+as:
+
+    $ timetip start Meeting 15m ago
+    $ timetip start Meeting 3 minutes ago
+
+And of course, these conventions work with the [SHORTHANDS][] too:
+
+    $ timetip Meeting 3m ago
+
+Also, it works for breaks (via `stop` or `-`):
+
+    $ timetip stop 3m ago
 
 ## DATES AND RANGES
 
@@ -96,21 +125,28 @@ Examples:
     $ timetip last mon - last thu
 
 ## FILE FORMAT
+
 It's an ini file. It is designed to be human-editable and human-readable, and 
 you are encouraged to edit your time sheets outside of `timetip`. Files are 
 saved to `~/.timelogs` by default, and looks like this:
 
-    [2013-01-01 mon]
-    2:45pm = Meeting with John
+    [2013-09-16 mon]
+    1:14pm = Misc write emails
+    2:42pm = Misc balance checkbook
     3:00pm =
-    3:10pm = -- lunch
+    
+    [2013-09-18 wed]
+    3:14pm = Jsconf email speakers
+    3:59pm = -- coffee break
+    4:09pm = Jsconf check ticket sales
+    4:25pm = Errands grocery
 
 The format boils down to these:
 
-  * Dates are headings in the format of `[yyyy-mm-dd dom]`.
-  * Tasks are in the format `<time> = <project>`.
-  * Breaks are in the format of `<time> = `.
-  * Breaks with reasons are in the format of `<time> = -- <reason>`.
+  * Dates are headings in the format of `[yyyy-mm-dd dom]`
+  * Tasks are in the format `<time> = <project>`
+  * Breaks are in the format of `<time> = `
+  * Breaks with reasons are in the format of `<time> = -- <reason>`
 
 Note that comments (beginning in `;`) are going to be stripped.
 

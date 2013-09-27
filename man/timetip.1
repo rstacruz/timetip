@@ -32,11 +32,11 @@ Shows entries for today\. (Alias: \fBshow today\fR)
 Stops working, and logs your \fIreason\fR for the break\. (Alias: \fBstop\fR)
 .
 .SH "COMMANDS"
-Below is a full list of commands you can use in their proper form:
+Below is a full list of commands you can use in their proper form\.
 .
 .TP
 \fBtimetip start\fR \fInew\-task\-name\fR
-Start working on \fItask\fR\.
+Start working on \fItask\fR\. See \fITASKS\fR\.
 .
 .TP
 \fBtimetip stop\fR [\fIreason\fR]
@@ -55,6 +55,7 @@ Opens the time log in your default text editor\.
 Shows the summary for a given \fIdate\fR or \fIrange\fR\. When no arguments are given, shows the summary for all entries in the time sheet\.
 .
 .SH "OPTIONS"
+These are general options that work with almost all of the commands\.
 .
 .TP
 \fB\-R\fR, \fB\-\-reporter\fR \fIname\fR
@@ -79,6 +80,72 @@ Displays a help screen\.
 .TP
 \fB\-V\fR, \fB\-\-version\fR
 Displays version information and exits\.
+.
+.SH "TASKS"
+Tasks are started with the \fBtimetip start\fR command\. The convention is that the first word is always the project name \-\- this is simply for the convenience of having summaries\.
+.
+.IP "" 4
+.
+.nf
+
+$ timetip start Meeting with Dan
+.
+.fi
+.
+.IP "" 0
+.
+.P
+You may specify a time as well\. This is useful for when you started working without logging it first\.
+.
+.IP "" 4
+.
+.nf
+
+$ timetip start Meeting 11:53am
+.
+.fi
+.
+.IP "" 0
+.
+.P
+You can also specify the time as an offset in the form of \fB<duration> ago\fR, such as:
+.
+.IP "" 4
+.
+.nf
+
+$ timetip start Meeting 15m ago
+$ timetip start Meeting 3 minutes ago
+.
+.fi
+.
+.IP "" 0
+.
+.P
+And of course, these conventions work with the \fISHORTHANDS\fR too:
+.
+.IP "" 4
+.
+.nf
+
+$ timetip Meeting 3m ago
+.
+.fi
+.
+.IP "" 0
+.
+.P
+Also, it works for breaks (via \fBstop\fR or \fB\-\fR):
+.
+.IP "" 4
+.
+.nf
+
+$ timetip stop 3m ago
+.
+.fi
+.
+.IP "" 0
 .
 .SH "DATES AND RANGES"
 The \fIdate\fR strings are parsed as natural language dates\. They can be simple dates (eg: \fBMarch 5\fR), or any reasonable format that can be figured out unambiguously (eg: \fBlast thursday\fR)\. Some examples:
@@ -131,10 +198,16 @@ It\'s an ini file\. It is designed to be human\-editable and human\-readable, an
 .
 .nf
 
-[2013\-01\-01 mon]
-2:45pm = Meeting with John
+[2013\-09\-16 mon]
+1:14pm = Misc write emails
+2:42pm = Misc balance checkbook
 3:00pm =
-3:10pm = \-\- lunch
+
+[2013\-09\-18 wed]
+3:14pm = Jsconf email speakers
+3:59pm = \-\- coffee break
+4:09pm = Jsconf check ticket sales
+4:25pm = Errands grocery
 .
 .fi
 .
@@ -144,16 +217,16 @@ It\'s an ini file\. It is designed to be human\-editable and human\-readable, an
 The format boils down to these:
 .
 .IP "\(bu" 4
-Dates are headings in the format of \fB[yyyy\-mm\-dd dom]\fR\.
+Dates are headings in the format of \fB[yyyy\-mm\-dd dom]\fR
 .
 .IP "\(bu" 4
-Tasks are in the format \fB<time> = <project>\fR\.
+Tasks are in the format \fB<time> = <project>\fR
 .
 .IP "\(bu" 4
-Breaks are in the format of \fB<time> =\fR\.
+Breaks are in the format of \fB<time> =\fR
 .
 .IP "\(bu" 4
-Breaks with reasons are in the format of \fB<time> = \-\- <reason>\fR\.
+Breaks with reasons are in the format of \fB<time> = \-\- <reason>\fR
 .
 .IP "" 0
 .

@@ -108,11 +108,11 @@ $ cat ~/.timelogs
 [2013-09-16 mon]
 1:14pm = Misc write emails
 2:42pm = Misc balance checkbook
-3:00pm = -
+3:00pm =
 
 [2013-09-18 wed]
 3:14pm = Jsconf email speakers
-3:59pm = - coffee break -
+3:59pm = -- coffee break
 4:09pm = Jsconf check ticket sales
 4:25pm = Errands grocery
 ~~~

@@ -26,6 +26,8 @@ Deliciously-minimal time tracker for the command-line. Built on Node.js.
 
 [![Status](https://travis-ci.org/rstacruz/timetip.png)](https://travis-ci.org/rstacruz/timetip)
 
+See the [man page](man/timetip.1.md) for more usage notes and examples.
+
 ## Install
 
 Install it via npm:
@@ -75,25 +77,6 @@ $ t
   2:30pm     Jsconf check ticket sales                               1h 5m
   3:35pm     ⋅ break                                                   14m
   3:49pm  ✓  Errands grocery                                        ⋅⋅ now
-~~~
-
-## Catching up
-
-Oops. Did you start working and forget to run your timer? No problem, just use 
-add an offset in the format `<duration> ago`, or specify the time. Example:
-
-~~~ sh
-$ t Misc coffee 3m ago
-# ...starts "Misc coffee" as if you ran it 3 mins ago
-
-$ t Misc coffee 3 minutes ago
-# ...same
-
-$ t Misc coffee 11:52am
-# ...starts it at a specific time
-
-$ t stop 12:30pm
-# ...also works for `stop`
 ~~~
 
 ## Storage
@@ -159,45 +142,6 @@ $ t all --reporter json
 }
 ~~~
 
-## --help
-
-~~~ sh
-  Usage: timetip [options]
-
-  Options:
-
-    -h, --help          output usage information
-    -V, --version       output the version number
-    -f, --file <path>   the data file [~/.timelogs]
-    -R, --reporter <r>  use reporter (default|json)
-    --no-color          disable colors
-
-  Shortcuts:
-    timetip <task>                 start working (alias: start)
-    timetip - [<reason>]           stop working (alias: stop)
-    timetip <date>                 show entries for the date (alias: show)
-    timetip                        show today (alias: show today)
-
-  Logging tasks:
-    timetip start <task>           start working
-    timetip stop [<reason>]        stop working
-
-  Other commands:
-    timetip show <date>            show entries for the date
-    timetip show <date> - <end>    show entries for date range
-    timetip edit                   open in text editor
-
-  Examples:
-    timetip myproject stuff        start working on "myproject stuff"
-    timetip meeting 3m ago         start working on "meeting" 3 minutes ago
-    timetip stop                   stop the current task
-    timetip stop lunch break       stop the current task and log the reason
-
-    timetip sep 2                  show entries from a day
-    timetip 4 days ago             show entries from 4 days ago
-    timetip yesterday              show entries from yesterday
-~~~
-
 ## Programmatic usage
 
 Want to easily parse time logs? Use it as a Node.js module. See the 
@@ -205,7 +149,6 @@ Want to easily parse time logs? Use it as a Node.js module. See the
 
 ~~~ js
 var TimeLog = require('timetip').TimeLog;
-
 var log = new TimeLog('~/.timelogs');
 
 var day = log.get('2013-09-02');

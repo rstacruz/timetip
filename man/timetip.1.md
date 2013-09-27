@@ -19,7 +19,7 @@ Below is a full list of commands you can use in their proper form.
    Start working on <task>. See [TASKS][].
 
  * timetip `stop` [<reason>] :
-   Stops working. Optionally, you may give a <reason>.
+   Stops working. you may optionally give a <reason> to be logged.
 
  * timetip `show` [<date>|<range>|all] :
    Show entries for the given <date> or <range>, or show all entries. When no 

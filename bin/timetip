@@ -41,6 +41,7 @@ cli
     us('t show all             # show all entries');
     us('t dates                # show dates with time logs');
     us('t edit                 # open in text editor');
+    us('t summary [<range>]    # show summary of entries');
     p('');
     p('  Examples:');
     ex('t Myproject stuff    # start working on "myproject stuff"');

@@ -1,32 +1,15 @@
-timetip(1) -- time manager
-==========================
+timetip(1) -- simple time tracker and time sheet manager
+========================================================
 
 ## SYNOPSIS
 
-`timetip` [<command>] [<args...>]
+`timetip` <command> [<args...>]
 
 ## DESCRIPTION
 
 Deliciously-minimal time tracker for the command-line, with a very simple
 command-line interface. Timetip is able to log your tasks, as well as query
 them and display it nicely.
-
-## SHORTHANDS
-
-Here are all the commands you need to get started. These are shortened form of
-the [COMMANDS][] below to help you do the most common tasks.
-
- * `timetip` <new-task-name> :
-   Starts working on the <task> you're doing. (Alias: `start`)
-
- * `timetip` <date>|<range> :
-   Shows entries for the given <date>. (Alias: `show`)
-
- * `timetip` :
-   Shows entries for today. (Alias: `show today`)
-
- * `timetip -` [<reason>] :
-   Stops working, and logs your <reason> for the break. (Alias: `stop`)
 
 ## COMMANDS
 
@@ -38,17 +21,37 @@ Below is a full list of commands you can use in their proper form.
  * `timetip stop` [<reason>] :
    Stops working. Optionally, you may give a <reason>.
 
- * `timetip show` [<date>|<range>|all] :
+ * `timetip show` [<date>|<range>|`all`] :
    Show entries for the given <date> or <range>, or show `all` entries. When no 
-   arguments are given, `today` is assumed. See [DATES AND RANGES][] for details 
+   arguments are given, 'today' is assumed. See [DATES AND RANGES][] for details 
    on the possible formats.
 
  * `timetip edit` :
    Opens the time log in your default text editor.
 
- * `timetip summary` [<date>|<range>|all] :
+ * `timetip dates` :
+   Lists down which dates have time entries in them.
+
+ * `timetip summary` [<date>|<range>|`all`] :
    Shows the summary for a given <date> or <range>. When no arguments are given, 
-   shows the summary for all entries in the time sheet.
+   `all` is assumed.
+
+## SHORTHANDS
+
+Here are all the commands you need to get started. These are shortened form of
+the [COMMANDS][] above to help you do the most common tasks.
+
+ * `timetip` <new-task-name> :
+   Starts working on the <task> you're doing. (same as `timetip start`)
+
+ * `timetip` <date>|<range> :
+   Shows entries for the given <date>. (`timetip show`)
+
+ * `timetip` :
+   Shows entries for today. (`timetip show`)
+
+ * `timetip -` [<reason>] :
+   Stops working, and logs your <reason> for the break. (`timetip stop`)
 
 ## OPTIONS
 
@@ -81,13 +84,21 @@ having summaries.
 
     $ timetip start Meeting with Dan
 
+The `start` keyword is optional. You may omit it and just type the task name out
+(as long as it doesn't clash with any of the internal commands).
+
+    $ timetip Jsconf send out emails
+    $ timetip Errands go to the grocery
+    $ timetip Calls return the call of Amy's secretary
+
+### Times and offsets
+
 You may specify a time as well. This is useful for when you started working 
 without logging it first.
 
     $ timetip start Meeting 11:53am
 
-You can also specify the time as an offset in the form of `<duration> ago`, such 
-as:
+You can also specify the time as an offset in the form of `<duration> ago`.
 
     $ timetip start Meeting 15m ago
     $ timetip start Meeting 3 minutes ago
@@ -96,9 +107,27 @@ And of course, these conventions work with the [SHORTHANDS][] too:
 
     $ timetip Meeting 3m ago
 
-Also, it works for breaks (via `stop` or `-`):
+### Finishing tasks (and breaks)
+
+When you're done with a task, simply terminate it with `stop`.
+
+    $ timetip stop
+
+This creates a "break", and timetip will keep track of how long your break times are.
+You can also specify a reason for your break.
+
+    $ timetip stop lunch break
+
+You can also use `-` (hyphen), which is an alias for `stop`.
+
+    $ timetip -
+    $ timetip - coffee
+
+Specifying times and offsets work just as well.
 
     $ timetip stop 3m ago
+    $ timetip stop phone call with dad 5m ago
+    $ timetip stop 11:20pm
 
 ## DATES AND RANGES
 

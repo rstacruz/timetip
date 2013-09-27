@@ -1,8 +1,10 @@
 {
   "name": "timetip",
-  "description": "",
+  "description": "simple time tracker and time sheet manager",
   "keywords": [
-    ""
+    "time",
+    "time log",
+    "time sheet"
   ],
   "author": "Rico Sta. Cruz <hi@ricostacruz.com>",
   "version": "0.1.0",

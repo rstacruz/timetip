@@ -4,32 +4,13 @@
 .TH "TIMETIP" "1" "September 2013" "" ""
 .
 .SH "NAME"
-\fBtimetip\fR \- time manager
+\fBtimetip\fR \- simple time tracker and time sheet manager
 .
 .SH "SYNOPSIS"
-\fBtimetip\fR [\fIcommand\fR] [<args\.\.\.>]
+\fBtimetip\fR \fIcommand\fR [<args\.\.\.>]
 .
 .SH "DESCRIPTION"
 Deliciously\-minimal time tracker for the command\-line, with a very simple command\-line interface\. Timetip is able to log your tasks, as well as query them and display it nicely\.
-.
-.SH "SHORTHANDS"
-Here are all the commands you need to get started\. These are shortened form of the \fICOMMANDS\fR below to help you do the most common tasks\.
-.
-.TP
-\fBtimetip\fR \fInew\-task\-name\fR
-Starts working on the \fItask\fR you\'re doing\. (Alias: \fBstart\fR)
-.
-.TP
-\fBtimetip\fR \fIdate\fR|\fIrange\fR
-Shows entries for the given \fIdate\fR\. (Alias: \fBshow\fR)
-.
-.TP
-\fBtimetip\fR
-Shows entries for today\. (Alias: \fBshow today\fR)
-.
-.TP
-\fBtimetip \-\fR [\fIreason\fR]
-Stops working, and logs your \fIreason\fR for the break\. (Alias: \fBstop\fR)
 .
 .SH "COMMANDS"
 Below is a full list of commands you can use in their proper form\.
@@ -43,16 +24,39 @@ Start working on \fItask\fR\. See \fITASKS\fR\.
 Stops working\. Optionally, you may give a \fIreason\fR\.
 .
 .TP
-\fBtimetip show\fR [\fIdate\fR|\fIrange\fR|all]
-Show entries for the given \fIdate\fR or \fIrange\fR, or show \fBall\fR entries\. When no arguments are given, \fBtoday\fR is assumed\. See \fIDATES AND RANGES\fR for details on the possible formats\.
+\fBtimetip show\fR [\fIdate\fR|\fIrange\fR|\fBall\fR]
+Show entries for the given \fIdate\fR or \fIrange\fR, or show \fBall\fR entries\. When no arguments are given, \'today\' is assumed\. See \fIDATES AND RANGES\fR for details on the possible formats\.
 .
 .TP
 \fBtimetip edit\fR
 Opens the time log in your default text editor\.
 .
 .TP
-\fBtimetip summary\fR [\fIdate\fR|\fIrange\fR|all]
-Shows the summary for a given \fIdate\fR or \fIrange\fR\. When no arguments are given, shows the summary for all entries in the time sheet\.
+\fBtimetip dates\fR
+Lists down which dates have time entries in them\.
+.
+.TP
+\fBtimetip summary\fR [\fIdate\fR|\fIrange\fR|\fBall\fR]
+Shows the summary for a given \fIdate\fR or \fIrange\fR\. When no arguments are given, \fBall\fR is assumed\.
+.
+.SH "SHORTHANDS"
+Here are all the commands you need to get started\. These are shortened form of the \fICOMMANDS\fR above to help you do the most common tasks\.
+.
+.TP
+\fBtimetip\fR \fInew\-task\-name\fR
+Starts working on the \fItask\fR you\'re doing\. (same as \fBtimetip start\fR)
+.
+.TP
+\fBtimetip\fR \fIdate\fR|\fIrange\fR
+Shows entries for the given \fIdate\fR\. (\fBtimetip show\fR)
+.
+.TP
+\fBtimetip\fR
+Shows entries for today\. (\fBtimetip show\fR)
+.
+.TP
+\fBtimetip \-\fR [\fIreason\fR]
+Stops working, and logs your \fIreason\fR for the break\. (\fBtimetip stop\fR)
 .
 .SH "OPTIONS"
 These are general options that work with almost all of the commands\.
@@ -95,6 +99,21 @@ $ timetip start Meeting with Dan
 .IP "" 0
 .
 .P
+The \fBstart\fR keyword is optional\. You may omit it and just type the task name out (as long as it doesn\'t clash with any of the internal commands)\.
+.
+.IP "" 4
+.
+.nf
+
+$ timetip Jsconf send out emails
+$ timetip Errands go to the grocery
+$ timetip Calls return the call of Amy\'s secretary
+.
+.fi
+.
+.IP "" 0
+.
+.SS "Times and offsets"
 You may specify a time as well\. This is useful for when you started working without logging it first\.
 .
 .IP "" 4
@@ -108,7 +127,7 @@ $ timetip start Meeting 11:53am
 .IP "" 0
 .
 .P
-You can also specify the time as an offset in the form of \fB<duration> ago\fR, such as:
+You can also specify the time as an offset in the form of \fB<duration> ago\fR\.
 .
 .IP "" 4
 .
@@ -134,14 +153,56 @@ $ timetip Meeting 3m ago
 .
 .IP "" 0
 .
+.SS "Finishing tasks (and breaks)"
+When you\'re done with a task, simply terminate it with \fBstop\fR\.
+.
+.IP "" 4
+.
+.nf
+
+$ timetip stop
+.
+.fi
+.
+.IP "" 0
+.
 .P
-Also, it works for breaks (via \fBstop\fR or \fB\-\fR):
+This creates a "break", and timetip will keep track of how long your break times are\. You can also specify a reason for your break\.
+.
+.IP "" 4
+.
+.nf
+
+$ timetip stop lunch break
+.
+.fi
+.
+.IP "" 0
+.
+.P
+You can also use \fB\-\fR (hyphen), which is an alias for \fBstop\fR\.
+.
+.IP "" 4
+.
+.nf
+
+$ timetip \-
+$ timetip \- coffee
+.
+.fi
+.
+.IP "" 0
+.
+.P
+Specifying times and offsets work just as well\.
 .
 .IP "" 4
 .
 .nf
 
 $ timetip stop 3m ago
+$ timetip stop phone call with dad 5m ago
+$ timetip stop 11:20pm
 .
 .fi
 .

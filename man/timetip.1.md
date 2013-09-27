@@ -226,7 +226,3 @@ Here are some ways to start or stop a task:
 
   * $ `timetip summary` since last month :
     Summarizes the last month's hours.
-
-## SEE ALSO
-
-timetip-extras(1)

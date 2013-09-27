@@ -117,10 +117,6 @@ parsing:
     $ t aug 2 - aug 10
     $ t last month - now
 
-Or all:
-
-    $ t all
-
 ## Exporting
 
 **Export your data** by using the alternative reporters (`--reporter`). The 

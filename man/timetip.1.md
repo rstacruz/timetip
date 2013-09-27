@@ -153,12 +153,14 @@ Ranges, often used for `show`, and  can be in the following formats:
 
   * <date> - <date>
   * since <date>
+  * all
 
 Examples:
 
     $ timetip mar 2 - mar 5
     $ timetip since last week
     $ timetip last mon - last thu
+    $ timetip all
 
 ## FILE FORMAT
 

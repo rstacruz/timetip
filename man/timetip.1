@@ -7,7 +7,7 @@
 \fBtimetip\fR \- simple time tracker and time sheet manager
 .
 .SH "SYNOPSIS"
-\fBtimetip\fR \fIcommand\fR [<args\.\.\.>]
+\fBtimetip\fR [\fIshorthand\fR] \e \fBtimetip\fR \fIcommand\fR [<args\.\.\.>]
 .
 .SH "DESCRIPTION"
 Deliciously\-minimal time tracker for the command\-line, with a very simple command\-line interface\. Timetip is able to log your tasks, as well as query them and display it nicely\.
@@ -16,31 +16,31 @@ Deliciously\-minimal time tracker for the command\-line, with a very simple comm
 Below is a full list of commands you can use in their proper form\.
 .
 .TP
-timetip \fBstart\fR \fInew\-task\-name\fR
+\fBstart\fR \fInew\-task\-name\fR
 Start working on \fItask\fR\. See \fITASKS\fR\.
 .
 .TP
-timetip \fBstop\fR [\fIreason\fR]
+\fBstop\fR [\fIreason\fR]
 Stops working\. you may optionally give a \fIreason\fR to be logged\.
 .
 .TP
-timetip \fBshow\fR [\fIdate\fR|\fIrange\fR|all]
+\fBshow\fR [\fIdate\fR|\fIrange\fR|all]
 Show entries for the given \fIdate\fR or \fIrange\fR, or show all entries\. When no arguments are given, \'today\' is assumed\. See \fIDATES\fR for details on the possible formats\.
 .
 .TP
-timetip \fBedit\fR
+\fBedit\fR
 Opens the time log in your default text editor\.
 .
 .TP
-timetip \fBdates\fR
+\fBdates\fR
 Lists down which dates have time entries in them\.
 .
 .TP
-timetip \fBsummary\fR [\fIdate\fR|\fIrange\fR|all]
+\fBsummary\fR [\fIdate\fR|\fIrange\fR|all]
 Shows the summary for a given \fIdate\fR or \fIrange\fR\. When no arguments are given, \'all\' is assumed\.
 .
 .SH "SHORTHANDS"
-Here are all the commands you need to get started\. These are shortened form of the \fICOMMANDS\fR above to help you do the most common tasks\.
+The shorthand syntax is a shortened form of the \fICOMMANDS\fR above to help you do the most common tasks\.
 .
 .TP
 \fBtimetip\fR \fInew\-task\-name\fR
@@ -59,7 +59,7 @@ Shows entries for today\. (\fBshow\fR)
 Stops working, and logs your \fIreason\fR for the break\. (\fBstop\fR)
 .
 .P
-Here are some examples of short hand:
+Here are some examples of the shorthand syntax:
 .
 .IP "" 4
 .

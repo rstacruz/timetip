@@ -79,7 +79,8 @@
 
 <h2 id="SYNOPSIS">SYNOPSIS</h2>
 
-<p><code>timetip</code> <var>command</var> [&lt;args...>]</p>
+<p><code>timetip</code> [<var>shorthand</var>]  \
+<code>timetip</code> <var>command</var> [&lt;args...>]</p>
 
 <h2 id="DESCRIPTION">DESCRIPTION</h2>
 
@@ -92,22 +93,22 @@ them and display it nicely.</p>
 <p>Below is a full list of commands you can use in their proper form.</p>
 
 <dl>
-<dt>timetip <code>start</code> <var>new-task-name</var> </dt><dd><p>Start working on <var>task</var>. See <a href="#TASKS" title="TASKS" data-bare-link="true">TASKS</a>.</p></dd>
-<dt>timetip <code>stop</code> [<var>reason</var>] </dt><dd><p>Stops working. you may optionally give a <var>reason</var> to be logged.</p></dd>
-<dt>timetip <code>show</code> [<var>date</var>|<var>range</var>|all] </dt><dd><p>Show entries for the given <var>date</var> or <var>range</var>, or show all entries. When no
+<dt><code>start</code> <var>new-task-name</var> </dt><dd><p>Start working on <var>task</var>. See <a href="#TASKS" title="TASKS" data-bare-link="true">TASKS</a>.</p></dd>
+<dt><code>stop</code> [<var>reason</var>] </dt><dd><p>Stops working. you may optionally give a <var>reason</var> to be logged.</p></dd>
+<dt><code>show</code> [<var>date</var>|<var>range</var>|all] </dt><dd><p>Show entries for the given <var>date</var> or <var>range</var>, or show all entries. When no
 arguments are given, 'today' is assumed. See <a href="#DATES" title="DATES" data-bare-link="true">DATES</a> for details on the
 possible formats.</p></dd>
-<dt>timetip <code>edit</code> </dt><dd><p>Opens the time log in your default text editor.</p></dd>
-<dt>timetip <code>dates</code> </dt><dd><p>Lists down which dates have time entries in them.</p></dd>
-<dt>timetip <code>summary</code> [<var>date</var>|<var>range</var>|all] </dt><dd><p>Shows the summary for a given <var>date</var> or <var>range</var>. When no arguments are given,
+<dt class="flush"><code>edit</code> </dt><dd><p>Opens the time log in your default text editor.</p></dd>
+<dt class="flush"><code>dates</code> </dt><dd><p>Lists down which dates have time entries in them.</p></dd>
+<dt><code>summary</code> [<var>date</var>|<var>range</var>|all] </dt><dd><p>Shows the summary for a given <var>date</var> or <var>range</var>. When no arguments are given,
 'all' is assumed.</p></dd>
 </dl>
 
 
 <h2 id="SHORTHANDS">SHORTHANDS</h2>
 
-<p>Here are all the commands you need to get started. These are shortened form of
-the <a href="#COMMANDS" title="COMMANDS" data-bare-link="true">COMMANDS</a> above to help you do the most common tasks.</p>
+<p>The shorthand syntax is a shortened form of the <a href="#COMMANDS" title="COMMANDS" data-bare-link="true">COMMANDS</a> above to help you
+do the most common tasks.</p>
 
 <dl>
 <dt><code>timetip</code> <var>new-task-name</var> </dt><dd><p>Starts working on the <var>task</var> you're doing. (same as <code>start</code>)</p></dd>
@@ -117,7 +118,7 @@ the <a href="#COMMANDS" title="COMMANDS" data-bare-link="true">COMMANDS</a> abov
 </dl>
 
 
-<p>Here are some examples of short hand:</p>
+<p>Here are some examples of the shorthand syntax:</p>
 
 <pre><code>$ timetip Meeting        &lt;->  timetip start Meeting
 $ timetip yesterday      &lt;->  timetip show yesterday

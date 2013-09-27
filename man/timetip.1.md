@@ -3,6 +3,7 @@ timetip(1) -- simple time tracker and time sheet manager
 
 ## SYNOPSIS
 
+`timetip` [<shorthand>]  \
 `timetip` <command> [<args...>]
 
 ## DESCRIPTION
@@ -15,31 +16,31 @@ them and display it nicely.
 
 Below is a full list of commands you can use in their proper form.
 
- * timetip `start` <new-task-name> :
+ * `start` <new-task-name> :
    Start working on <task>. See [TASKS][].
 
- * timetip `stop` [<reason>] :
+ * `stop` [<reason>] :
    Stops working. you may optionally give a <reason> to be logged.
 
- * timetip `show` [<date>|<range>|all] :
+ * `show` [<date>|<range>|all] :
    Show entries for the given <date> or <range>, or show all entries. When no 
    arguments are given, 'today' is assumed. See [DATES][] for details on the
    possible formats.
 
- * timetip `edit` :
+ * `edit` :
    Opens the time log in your default text editor.
 
- * timetip `dates` :
+ * `dates` :
    Lists down which dates have time entries in them.
 
- * timetip `summary` [<date>|<range>|all] :
+ * `summary` [<date>|<range>|all] :
    Shows the summary for a given <date> or <range>. When no arguments are given, 
    'all' is assumed.
 
 ## SHORTHANDS
 
-Here are all the commands you need to get started. These are shortened form of
-the [COMMANDS][] above to help you do the most common tasks.
+The shorthand syntax is a shortened form of the [COMMANDS][] above to help you
+do the most common tasks.
 
  * `timetip` <new-task-name> :
    Starts working on the <task> you're doing. (same as `start`)
@@ -53,7 +54,7 @@ the [COMMANDS][] above to help you do the most common tasks.
  * `timetip -` [<reason>] :
    Stops working, and logs your <reason> for the break. (`stop`)
 
-Here are some examples of short hand:
+Here are some examples of the shorthand syntax:
 
     $ timetip Meeting        <->  timetip start Meeting
     $ timetip yesterday      <->  timetip show yesterday

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>timetip(1) - time manager</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
+
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+    <a href="#NAME">NAME</a>
+    <a href="#SYNOPSIS">SYNOPSIS</a>
+    <a href="#DESCRIPTION">DESCRIPTION</a>
+    <a href="#SHORTHANDS">SHORTHANDS</a>
+    <a href="#COMMANDS">COMMANDS</a>
+    <a href="#OPTIONS">OPTIONS</a>
+    <a href="#DATES-AND-RANGES">DATES AND RANGES</a>
+    <a href="#REPORTERS">REPORTERS</a>
+    <a href="#EXAMPLES">EXAMPLES</a>
+    <a href="#SEE-ALSO">SEE ALSO</a>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>timetip(1)</li>
+    <li class='tc'></li>
+    <li class='tr'>timetip(1)</li>
+  </ol>
+
+  <h2 id="NAME">NAME</h2>
+<p class="man-name">
+  <code>timetip</code> - <span class="man-whatis">time manager</span>
+</p>
+
+<h2 id="SYNOPSIS">SYNOPSIS</h2>
+
+<p><code>timetip</code> [<var>command</var>] [&lt;args...>]</p>
+
+<h2 id="DESCRIPTION">DESCRIPTION</h2>
+
+<p>Deliciously-minimal time tracker for the command-line, with a very simple
+command-line interface. Timetip is able to log your tasks, as well as query
+them and display it nicely.</p>
+
+<h2 id="SHORTHANDS">SHORTHANDS</h2>
+
+<p>Here are all the commands you need to get started. These are shortened form of
+the <a href="#COMMANDS" title="COMMANDS" data-bare-link="true">COMMANDS</a> below to help you do the most common tasks.</p>
+
+<dl>
+<dt><code>timetip</code> <var>new-task-name</var> </dt><dd><p>Starts working on the <var>task</var> you're doing. (Alias: <code>start</code>)</p></dd>
+<dt><code>timetip</code> <var>date</var>|<var>range</var> </dt><dd><p>Shows entries for the given <var>date</var>. (Alias: <code>show</code>)</p></dd>
+<dt><code>timetip</code> </dt><dd><p>Shows entries for today. (Alias: <code>show today</code>)</p></dd>
+<dt><code>timetip -</code> [<var>reason</var>] </dt><dd><p>Stops working, and logs your <var>reason</var> for the break. (Alias: <code>stop</code>)</p></dd>
+</dl>
+
+
+<h2 id="COMMANDS">COMMANDS</h2>
+
+<p>Below is a full list of commands you can use in their proper form:</p>
+
+<dl>
+<dt><code>timetip start</code> <var>new-task-name</var> </dt><dd><p>Start working on <var>task</var>.</p></dd>
+<dt><code>timetip stop</code> [<var>reason</var>] </dt><dd><p>Stops working. Optionally, you may give a <var>reason</var>.</p></dd>
+<dt><code>timetip show</code> <var>date</var>|<var>range</var>|all </dt><dd><p>Show entries for the given <var>date</var> or <var>range</var>, or show <code>all</code> entries. See <a href="#DATES-AND-RANGES" title="DATES AND RANGES" data-bare-link="true">DATES AND
+RANGES</a> for details on the possible formats.</p></dd>
+<dt><code>timetip edit</code> </dt><dd><p>Opens the time log in your default text editor.</p></dd>
+<dt><code>timetip summary</code> [<var>date</var>|<var>range</var>] </dt><dd><p>Shows the summary for a given <var>date</var> or <var>range</var>.</p></dd>
+</dl>
+
+
+<h2 id="OPTIONS">OPTIONS</h2>
+
+<dl>
+<dt><code>-R</code>, <code>--reporter</code> <var>name</var></dt><dd><p>Use the reporter <var>name</var>. See <a href="#REPORTERS" title="REPORTERS" data-bare-link="true">REPORTERS</a> for more info.</p></dd>
+<dt><code>-u</code>, <code>--use</code> <var>path</var></dt><dd><p>Load the JavaScript file in <var>path</var> as a plugin. This is useful for making
+your own custom reporters or commands.</p></dd>
+<dt><code>--no-color</code></dt><dd><p>Disables the use of color in outputs.</p></dd>
+<dt><code>-h</code>, <code>--help</code></dt><dd><p>Displays a help screen.</p></dd>
+<dt><code>-V</code>, <code>--version</code></dt><dd><p>Displays version information and exits.</p></dd>
+</dl>
+
+
+<h2 id="DATES-AND-RANGES">DATES AND RANGES</h2>
+
+<p>The <var>date</var> strings are parsed as natural language dates. They can be simple
+dates (eg: <code>March 5</code>), or any reasonable format that can be figured out
+unambiguously (eg: <code>last thursday</code>). Some examples:</p>
+
+<pre><code>$ timetip today
+$ timetip september 2
+$ timetip jan 20
+$ timetip yesterday
+$ timetip 1 month ago
+$ timetip 23 days ago
+</code></pre>
+
+<p>Ranges, often used for <code>show</code>, and  can be in the following formats:</p>
+
+<ul>
+<li><var>date</var> - <var>date</var></li>
+<li>since <var>date</var></li>
+</ul>
+
+
+<p>Examples:</p>
+
+<pre><code>$ timetip mar 2 - mar 5
+$ timetip since last week
+$ timetip last mon - last thu
+</code></pre>
+
+<h2 id="REPORTERS">REPORTERS</h2>
+
+<p>You can use custom reporters to change the display format. By default, it comes
+with the following reporters:</p>
+
+<ul>
+<li><code>default</code> - Default reporter for terminal viewing.</li>
+<li><code>json</code> - Exports your data to JSON.</li>
+<li><code>tmux</code> - Displays a tmux status.</li>
+</ul>
+
+
+<p>You can export your data using the <code>json</code> reporter:</p>
+
+<pre><code>$ timetip --reporter json
+</code></pre>
+
+<h2 id="EXAMPLES">EXAMPLES</h2>
+
+<p>Here are some ways to start or stop a task:</p>
+
+<dl>
+<dt>$ <code>timetip</code> Meeting with John </dt><dd><p>Starts working on "Meeting with John".</p></dd>
+<dt>$ <code>timetip</code> Meeting 3m ago </dt><dd><p>Starts working on "Meeting" and gives it a timestamp that's 3 minutes ago
+from now.</p></dd>
+<dt>$ <code>timetip stop</code> </dt><dd><p>Stops the current task.</p></dd>
+<dt>$ <code>timetip stop</code> lunch break </dt><dd><p>Stops the current task, and logs the reason for your break.</p></dd>
+<dt>$ <code>timetip summary</code> </dt><dd><p>Shows a summary of project hours.</p></dd>
+<dt>$ <code>timetip summary</code> since last month </dt><dd><p>Summarizes the last month's hours.</p></dd>
+</dl>
+
+
+<h2 id="SEE-ALSO">SEE ALSO</h2>
+
+<p><span class="man-ref">timetip-extras<span class="s">(1)</span></span></p>
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'></li>
+    <li class='tc'>September 2013</li>
+    <li class='tr'>timetip(1)</li>
+  </ol>
+
+  </div>
+</body>
+</html>

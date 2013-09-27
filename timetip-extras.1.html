@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>timetip-extras(1) - extra tips and tricks for Timetip</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
+
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+    <a href="#NAME">NAME</a>
+    <a href="#TIPS">TIPS</a>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>timetip-extras(1)</li>
+    <li class='tc'></li>
+    <li class='tr'>timetip-extras(1)</li>
+  </ol>
+
+  <h2 id="NAME">NAME</h2>
+<p class="man-name">
+  <code>timetip-extras</code> - <span class="man-whatis">extra tips and tricks for Timetip</span>
+</p>
+
+<h2 id="TIPS">TIPS</h2>
+
+<h3 id="Tmux-status-bar">Tmux status bar</h3>
+
+<p>There's a crappy Tmux status bar reporter using:</p>
+
+<pre><code>$ t -R tmux
+</code></pre>
+
+<p>You can show it in your Tmux status bar using:</p>
+
+<pre><code># ~/.tmux.conf
+set -g status-right '  #(timetip -R tmux)  '
+</code></pre>
+
+<h3 id="Vim-highlighting">Vim highlighting</h3>
+
+<p>Want to syntax-highlight your time logs properly? Add this on top of your
+<code>~/.timelogs</code>:</p>
+
+<pre><code># = vim:ft=dosini
+</code></pre>
+
+<p>It's not a file comment, but rather a key of <code>#</code> with a value of <code>vim:...</code>. It's
+a hack since comments (<code>;</code>) are stripped out when logging tasks :)</p>
+
+<h3 id="Multiple-time-logs">Multiple time logs</h3>
+
+<p>You may prefer to keep 2 (or more) time sheets: say, one for work and one for
+home.</p>
+
+<p>One way to accomplish this is to keep <code>~/.timelogs</code> as a symlink instead of a
+file, and simply switch out the file it links to as you need them. Here's a
+small bash script:</p>
+
+<pre><code># ~/.profile
+alias t="timetip"
+alias t-home="ln -nfs ~/Dropbox/Time/home.txt ~/.timelogs ; t"
+alias t-work="ln -nfs ~/Dropbox/Time/work.txt ~/.timelogs ; t"
+</code></pre>
+
+<p>You can now simply:</p>
+
+<pre><code>$ t-home             # ..switch to the 'home' sheet
+$ t Do dishes        # ..logs a task to the 'home' sheet
+
+$ t-work             # ..switch to the 'work' sheet
+$ t Client meeting   # ..logs a task to the 'work' sheet
+</code></pre>
+
+<h3 id="Multiple-time-logs-alternative-">Multiple time logs (alternative)</h3>
+
+<p>You can also set up 2 aliases that log to different files.</p>
+
+<pre><code># ~/.profile
+alias t-home="timetip --file ~/Dropbox/Timesheets/home.txt"
+alias t-work="timetip --file ~/Dropbox/Timesheets/work.txt"
+</code></pre>
+
+<p>You can then:</p>
+
+<pre><code>$ t-home Do dishes            # ..log to the 'home' sheet
+$ t-work Client meeting       # ..log to the 'work' sheet
+
+$ t-home                      # ..view entries in 'home'
+$ t-work                      # ..view entries in 'work'
+</code></pre>
+
+<h3 id="Integration-with-pomo-js">Integration with pomo.js</h3>
+
+<p>Want to see a timer while you work? Try <a href="https://github.com/rstacruz/pomo.js">pomo.js</a>. You can do <code>t Start things ;
+pomojs -d 30 ; t stop</code> to use a timer with timetip.</p>
+
+<p>Bonus: you can set up a bash function for this.</p>
+
+<pre><code># ~/.profile
+t-pomo() {
+  t $@
+  pomojs -d 30 $@
+  t stop
+}
+</code></pre>
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'></li>
+    <li class='tc'>September 2013</li>
+    <li class='tr'>timetip-extras(1)</li>
+  </ol>
+
+  </div>
+</body>
+</html>

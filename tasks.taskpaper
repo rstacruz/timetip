@@ -3,6 +3,13 @@ Initial version:
 	Stuff to do
 	-----------
 	
+	Summaries:
+		Type `timetip summary` to see a summary.
+
+		- Nice report (DefaultReporter)
+		- Support `summary -R json` (JsonReporter)
+		- Total productive hours
+
 	Day annotations:
 		It would nice to annotate your days, like "went to the hospital"
 		or "left office early to do yoga."

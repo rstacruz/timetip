@@ -1,3 +1,9 @@
+# Development notes:
+#
+#   * install ronn (gem install ronn)
+#   * `make` will rebuild man files
+#   * `make deploy` will deploy site
+#
 all: \
 	man/timetip.1 \
 	man/timetip-extras.1 \

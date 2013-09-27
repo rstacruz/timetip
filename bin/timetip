@@ -55,6 +55,7 @@ cli
   });
 
 var TimeLog = require('../lib/time_log');
+var Summarize = require('../lib/summarize');
 
 /*
  * The controller
@@ -198,6 +199,14 @@ extend(cli, {
     return reporter;
   },
 
+  summary: function(date) {
+    var data = this.getLog().range(date);
+    var summary = Summarize(data);
+    var rep = this.getReporter();
+
+    if (rep.summary) rep.summary(summary, data);
+  },
+
   run: function(argv) {
     cli.parse(argv);
 
@@ -229,6 +238,8 @@ extend(cli, {
       this.query(new Date());
     else if (cmd === 'show')
       this.query(DateParser.any(rest));
+    else if (cmd === 'sum' || cmd === 'summary')
+      this.summary(DateParser.any(rest));
     else if (cmd === '')
       this.status();
     else if (date = DateParser.any(args))

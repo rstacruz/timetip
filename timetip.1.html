@@ -60,6 +60,7 @@
     <a href="#COMMANDS">COMMANDS</a>
     <a href="#OPTIONS">OPTIONS</a>
     <a href="#DATES-AND-RANGES">DATES AND RANGES</a>
+    <a href="#FILE-FORMAT">FILE FORMAT</a>
     <a href="#REPORTERS">REPORTERS</a>
     <a href="#EXAMPLES">EXAMPLES</a>
     <a href="#SEE-ALSO">SEE ALSO</a>
@@ -106,22 +107,25 @@ the <a href="#COMMANDS" title="COMMANDS" data-bare-link="true">COMMANDS</a> belo
 <dl>
 <dt><code>timetip start</code> <var>new-task-name</var> </dt><dd><p>Start working on <var>task</var>.</p></dd>
 <dt><code>timetip stop</code> [<var>reason</var>] </dt><dd><p>Stops working. Optionally, you may give a <var>reason</var>.</p></dd>
-<dt><code>timetip show</code> <var>date</var>|<var>range</var>|all </dt><dd><p>Show entries for the given <var>date</var> or <var>range</var>, or show <code>all</code> entries. See <a href="#DATES-AND-RANGES" title="DATES AND RANGES" data-bare-link="true">DATES AND
-RANGES</a> for details on the possible formats.</p></dd>
+<dt><code>timetip show</code> [<var>date</var>|<var>range</var>|all] </dt><dd><p>Show entries for the given <var>date</var> or <var>range</var>, or show <code>all</code> entries. When no
+arguments are given, <code>today</code> is assumed. See <a href="#DATES-AND-RANGES" title="DATES AND RANGES" data-bare-link="true">DATES AND RANGES</a> for details
+on the possible formats.</p></dd>
 <dt><code>timetip edit</code> </dt><dd><p>Opens the time log in your default text editor.</p></dd>
-<dt><code>timetip summary</code> [<var>date</var>|<var>range</var>] </dt><dd><p>Shows the summary for a given <var>date</var> or <var>range</var>.</p></dd>
+<dt><code>timetip summary</code> [<var>date</var>|<var>range</var>|all] </dt><dd><p>Shows the summary for a given <var>date</var> or <var>range</var>. When no arguments are given,
+shows the summary for all entries in the time sheet.</p></dd>
 </dl>
 
 
 <h2 id="OPTIONS">OPTIONS</h2>
 
 <dl>
-<dt><code>-R</code>, <code>--reporter</code> <var>name</var></dt><dd><p>Use the reporter <var>name</var>. See <a href="#REPORTERS" title="REPORTERS" data-bare-link="true">REPORTERS</a> for more info.</p></dd>
-<dt><code>-u</code>, <code>--use</code> <var>path</var></dt><dd><p>Load the JavaScript file in <var>path</var> as a plugin. This is useful for making
+<dt><code>-R</code>, <code>--reporter</code> <var>name</var> </dt><dd><p>Use the reporter <var>name</var>. See <a href="#REPORTERS" title="REPORTERS" data-bare-link="true">REPORTERS</a> for more info.</p></dd>
+<dt><code>-u</code>, <code>--use</code> <var>path</var> </dt><dd><p>Load the JavaScript file in <var>path</var> as a plugin. This is useful for making
 your own custom reporters or commands.</p></dd>
-<dt><code>--no-color</code></dt><dd><p>Disables the use of color in outputs.</p></dd>
-<dt><code>-h</code>, <code>--help</code></dt><dd><p>Displays a help screen.</p></dd>
-<dt><code>-V</code>, <code>--version</code></dt><dd><p>Displays version information and exits.</p></dd>
+<dt><code>-f</code>, <code>--file</code> <var>path</var> </dt><dd><p>Use the file in <var>path</var> as the time sheet file. See <a href="#FILE-FORMAT" title="FILE FORMAT" data-bare-link="true">FILE FORMAT</a>.</p></dd>
+<dt><code>--no-color</code> </dt><dd><p>Disables the use of color in outputs.</p></dd>
+<dt><code>-h</code>, <code>--help</code> </dt><dd><p>Displays a help screen.</p></dd>
+<dt><code>-V</code>, <code>--version</code> </dt><dd><p>Displays version information and exits.</p></dd>
 </dl>
 
 
@@ -153,6 +157,18 @@ $ timetip 23 days ago
 $ timetip since last week
 $ timetip last mon - last thu
 </code></pre>
+
+<h2 id="FILE-FORMAT">FILE FORMAT</h2>
+
+<p>It's an ini file. It looks like this:</p>
+
+<pre><code>[2013-01-01 mon]
+2:45pm = Meeting with John
+3:00pm =
+3:10pm = -- lunch
+</code></pre>
+
+<p>Note that comments (beginning in <code>;</code>) are going to be stripped.</p>
 
 <h2 id="REPORTERS">REPORTERS</h2>
 

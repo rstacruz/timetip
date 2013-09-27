@@ -14,8 +14,6 @@ them and display it nicely.
 
 ## COMMANDS
 
-Below is a full list of commands you can use in their proper form.
-
  * `start` <new-task-name> :
    Start working on <task>. See [TASKS][].
 

@@ -1,0 +1,178 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "TIMETIP" "1" "September 2013" "" ""
+.
+.SH "NAME"
+\fBtimetip\fR \- time manager
+.
+.SH "SYNOPSIS"
+\fBtimetip\fR [\fIcommand\fR] [<args\.\.\.>]
+.
+.SH "DESCRIPTION"
+Deliciously\-minimal time tracker for the command\-line, with a very simple command\-line interface\. Timetip is able to log your tasks, as well as query them and display it nicely\.
+.
+.SH "SHORTHANDS"
+Here are all the commands you need to get started\. These are shortened form of the \fICOMMANDS\fR below to help you do the most common tasks\.
+.
+.TP
+\fBtimetip\fR \fInew\-task\-name\fR
+Starts working on the \fItask\fR you\'re doing\. (Alias: \fBstart\fR)
+.
+.TP
+\fBtimetip\fR \fIdate\fR|\fIrange\fR
+Shows entries for the given \fIdate\fR\. (Alias: \fBshow\fR)
+.
+.TP
+\fBtimetip\fR
+Shows entries for today\. (Alias: \fBshow today\fR)
+.
+.TP
+\fBtimetip \-\fR [\fIreason\fR]
+Stops working, and logs your \fIreason\fR for the break\. (Alias: \fBstop\fR)
+.
+.SH "COMMANDS"
+Below is a full list of commands you can use in their proper form:
+.
+.TP
+\fBtimetip start\fR \fInew\-task\-name\fR
+Start working on \fItask\fR\.
+.
+.TP
+\fBtimetip stop\fR [\fIreason\fR]
+Stops working\. Optionally, you may give a \fIreason\fR\.
+.
+.TP
+\fBtimetip show\fR \fIdate\fR|\fIrange\fR|all
+Show entries for the given \fIdate\fR or \fIrange\fR, or show \fBall\fR entries\. See \fIDATES AND RANGES\fR for details on the possible formats\.
+.
+.TP
+\fBtimetip edit\fR
+Opens the time log in your default text editor\.
+.
+.TP
+\fBtimetip summary\fR [\fIdate\fR|\fIrange\fR]
+Shows the summary for a given \fIdate\fR or \fIrange\fR\.
+.
+.SH "OPTIONS"
+.
+.TP
+\fB\-R\fR, \fB\-\-reporter\fR \fIname\fR
+Use the reporter \fIname\fR\. See \fIREPORTERS\fR for more info\.
+.
+.TP
+\fB\-u\fR, \fB\-\-use\fR \fIpath\fR
+Load the JavaScript file in \fIpath\fR as a plugin\. This is useful for making your own custom reporters or commands\.
+.
+.TP
+\fB\-\-no\-color\fR
+Disables the use of color in outputs\.
+.
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Displays a help screen\.
+.
+.TP
+\fB\-V\fR, \fB\-\-version\fR
+Displays version information and exits\.
+.
+.SH "DATES AND RANGES"
+The \fIdate\fR strings are parsed as natural language dates\. They can be simple dates (eg: \fBMarch 5\fR), or any reasonable format that can be figured out unambiguously (eg: \fBlast thursday\fR)\. Some examples:
+.
+.IP "" 4
+.
+.nf
+
+$ timetip today
+$ timetip september 2
+$ timetip jan 20
+$ timetip yesterday
+$ timetip 1 month ago
+$ timetip 23 days ago
+.
+.fi
+.
+.IP "" 0
+.
+.P
+Ranges, often used for \fBshow\fR, and can be in the following formats:
+.
+.IP "\(bu" 4
+\fIdate\fR \- \fIdate\fR
+.
+.IP "\(bu" 4
+since \fIdate\fR
+.
+.IP "" 0
+.
+.P
+Examples:
+.
+.IP "" 4
+.
+.nf
+
+$ timetip mar 2 \- mar 5
+$ timetip since last week
+$ timetip last mon \- last thu
+.
+.fi
+.
+.IP "" 0
+.
+.SH "REPORTERS"
+You can use custom reporters to change the display format\. By default, it comes with the following reporters:
+.
+.IP "\(bu" 4
+\fBdefault\fR \- Default reporter for terminal viewing\.
+.
+.IP "\(bu" 4
+\fBjson\fR \- Exports your data to JSON\.
+.
+.IP "\(bu" 4
+\fBtmux\fR \- Displays a tmux status\.
+.
+.IP "" 0
+.
+.P
+You can export your data using the \fBjson\fR reporter:
+.
+.IP "" 4
+.
+.nf
+
+$ timetip \-\-reporter json
+.
+.fi
+.
+.IP "" 0
+.
+.SH "EXAMPLES"
+Here are some ways to start or stop a task:
+.
+.TP
+$ \fBtimetip\fR Meeting with John
+Starts working on "Meeting with John"\.
+.
+.TP
+$ \fBtimetip\fR Meeting 3m ago
+Starts working on "Meeting" and gives it a timestamp that\'s 3 minutes ago from now\.
+.
+.TP
+$ \fBtimetip stop\fR
+Stops the current task\.
+.
+.TP
+$ \fBtimetip stop\fR lunch break
+Stops the current task, and logs the reason for your break\.
+.
+.TP
+$ \fBtimetip summary\fR
+Shows a summary of project hours\.
+.
+.TP
+$ \fBtimetip summary\fR since last month
+Summarizes the last month\'s hours\.
+.
+.SH "SEE ALSO"
+timetip\-extras(1)

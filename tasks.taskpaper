@@ -5,10 +5,14 @@ Initial version:
 	
 	Summaries:
 		Type `timetip summary` to see a summary.
+		- Nice report (DefaultReporter) @done
+		- Support `summary -R json` (JsonReporter) @done
+		- Sum up total productive hours
 
-		- Nice report (DefaultReporter)
-		- Support `summary -R json` (JsonReporter)
-		- Total productive hours
+	Man pages:
+		- Set up ronn @done
+		- Make some man pages @done
+		- Open it on `timetip --help`?
 
 	Day annotations:
 		It would nice to annotate your days, like "went to the hospital"

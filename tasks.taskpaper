@@ -25,6 +25,8 @@ Initial version:
 
 	Misc/bugs:
 		- Highlight offsets in the reporter
+		- Fix '- 1m ago' issue
+		- Add testing for bin
 
 	Stuff that's done
 	-----------------

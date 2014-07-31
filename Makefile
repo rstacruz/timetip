@@ -3,19 +3,17 @@
 #   * install ronn (gem install ronn)
 #   * `make` will rebuild man files
 #   * `make deploy` will deploy site
+#   * `man ./man/timetip.1` to view the man page
 #
 all: \
 	man/timetip.1 \
 	www/timetip.1.html
 
-man/%.1: man/%.1.md
+man/%: man/%.md
 	ronn $<
 
-www/%.1.html: man/%.1
+www/%.html: man/%
 	mv $<.html $@
-
-man: man/timetip.1
-	man $<
 
 deploy:
 	git subtree push --prefix www origin gh-pages
